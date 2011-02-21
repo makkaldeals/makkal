@@ -1,0 +1,15 @@
+#ignore intellij files
+*.iml
+target/
+\.idea/
+\.project
+\.classpath
+\.settings/
+
+#ignore generated output , classes files
+classes/
+out/
+
+#ignore log files
+log/
+
