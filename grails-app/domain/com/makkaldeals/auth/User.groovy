@@ -8,12 +8,13 @@ class User {
 	boolean accountExpired
 	boolean accountLocked
 	boolean passwordExpired
+    long areaCode;
 
 	static hasMany = [openIds: OpenID]
 
 	static constraints = {
 		username blank: false, unique: true
-		password blank: false
+		//password blank: false
 	}
 
 	static mapping = {

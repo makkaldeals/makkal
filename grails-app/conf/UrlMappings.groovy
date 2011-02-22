@@ -1,22 +1,25 @@
 class UrlMappings {
 
-	static mappings = {
+  static mappings = {
 
-		"/login/auth" {
-      			controller = 'openId'
-         		action = 'auth'
-      		}
-      		"/login/openIdCreateAccount" {
-         		controller = 'openId'
-         		action = 'createAccount'
-      		}
-		"/$controller/$action?/$id?"{
-			constraints {
-				// apply constraints here
-			}
-		}
+    "/login/auth" {
+      controller = 'openId'
+      action = 'auth'
+    }
+    "/login/openIdCreateAccount" {
+      controller = 'openId'
+      action = 'createAccount'
+    }
+    "/$controller/$action?/$id?" {
+      constraints {
+        // apply constraints here
+      }
+    }
 
-		"/"(view:"/index")
-		"500"(view:'/error')
-	}
+    "/" {
+      controller = 'auth'
+      action = 'index'
+    }
+    "500"(view: '/error')
+  }
 }

@@ -77,7 +77,7 @@ class OpenIdController {
 			return [command: command, openId: openId]
 		}
 
-		if (!createNewAccount(command.username, command.password, openId)) {
+		if (!createNewAccount(command.username, command.areaCode, openId)) {
 			return [command: command, openId: openId]
 		}
 
@@ -148,12 +148,11 @@ class OpenIdController {
 	 * @param openId  the associated OpenID
 	 * @return  true if successful
 	 */
-	private boolean createNewAccount(String username, String password, String openId) {
+	private boolean createNewAccount(String username, long areaCode, String openId) {
 		User.withTransaction { status ->
 			def config = SpringSecurityUtils.securityConfig
 
-			password = springSecurityService.encodePassword(password)
-			def user = new User(username: username, password: password, enabled: true)
+			def user = new User(username: username, password:"", areaCode:areaCode, enabled: true)
 
 			user.addToOpenIds(url: openId)
 
@@ -209,8 +208,7 @@ class OpenIdController {
 class OpenIdRegisterCommand {
 
 	String username = ""
-	String password = ""
-	String password2 = ""
+    long areaCode;
 
 	static constraints = {
 		username blank: false, validator: { String username, command ->
@@ -218,23 +216,6 @@ class OpenIdRegisterCommand {
 				if (username && User.countByUsername(username)) {
 					return 'openIdRegisterCommand.username.error.unique'
 				}
-			}
-		}
-		password blank: false, minSize: 8, maxSize: 64, validator: { password, command ->
-			if (command.username && command.username.equals(password)) {
-				return 'openIdRegisterCommand.password.error.username'
-			}
-
-			if (password && password.length() >= 8 && password.length() <= 64 &&
-					(!password.matches('^.*\\p{Alpha}.*$') ||
-					!password.matches('^.*\\p{Digit}.*$') ||
-					!password.matches('^.*[!@#$%^&].*$'))) {
-				return 'openIdRegisterCommand.password.error.strength'
-			}
-		}
-		password2 validator: { password2, command ->
-			if (command.password != password2) {
-				return 'openIdRegisterCommand.password2.error.mismatch'
 			}
 		}
 	}

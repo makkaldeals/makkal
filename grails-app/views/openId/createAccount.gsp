@@ -40,13 +40,8 @@
 		</tr>
 
 		<tr>
-			<td><label for='password'>Password:</label></td>
-			<td><g:passwordField name='password' value='${command.password}'/></td>
-		</tr>
-
-		<tr>
-			<td><label for='password2'>Password (again):</label></td>
-			<td><g:passwordField name='password2' value='${command.password2}'/></td>
+			<td><label for='areaCode'>Pin Code :</label></td>
+			<td><g:textField name='areaCode' value='${command.areaCode}'/></td>
 		</tr>
 
 		</table>
