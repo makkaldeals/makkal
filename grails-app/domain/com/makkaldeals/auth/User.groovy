@@ -2,18 +2,16 @@ package com.makkaldeals.auth
 
 class User {
 
-	String username
+	String email
 	String password
 	boolean enabled
 	boolean accountExpired
 	boolean accountLocked
 	boolean passwordExpired
-    long areaCode;
-
-	static hasMany = [openIds: OpenID]
+    String areaCode
 
 	static constraints = {
-		username blank: false, unique: true
+		email blank: false, unique: true
 		//password blank: false
 	}
 

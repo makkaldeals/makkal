@@ -20,7 +20,8 @@ class HomeController {
 
     } else {
       def user = springSecurityService.currentUser;
-      render "Welcome ${user.username} ! : ${user.areaCode} -> ${user.getAuthorities()}";
+      render "Welcome ${user.email} ! : ${user.areaCode} -> ${user.getAuthorities()}";
+    //   render "Welcome ${user.email} ! ";
     }
 
   }

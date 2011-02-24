@@ -13,3 +13,4 @@ out/
 #ignore log files
 log/
 
+*\.bak

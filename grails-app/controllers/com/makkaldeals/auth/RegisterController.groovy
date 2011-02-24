@@ -33,7 +33,7 @@ class RegisterController extends AbstractS2UiController {
 		String salt = saltSource instanceof NullSaltSource ? null : command.email
 		String password = springSecurityService.encodePassword(command.password, salt)
 		def user = lookupUserClass().newInstance(email: command.email,
-				password: password, accountLocked: true, enabled: true)
+				password: password, areaCode:command.areaCode, accountLocked: true, enabled: true)
 		if (!user.validate() || !user.save()) {
 			// TODO
 		}
@@ -194,11 +194,16 @@ class RegisterController extends AbstractS2UiController {
 
 		if (password && password.length() >= 8 && password.length() <= 64 &&
 				(!password.matches('^.*\\p{Alpha}.*$') ||
-				!password.matches('^.*\\p{Digit}.*$') ||
-				!password.matches('^.*[!@#$%^&].*$'))) {
+				!password.matches('^.*\\p{Digit}.*$'))) {
 			return 'command.password.error.strength'
 		}
 	}
+
+    static final areaCodeValidator = { String areaCode, command ->
+      if (!areaCode.isInteger()){
+        return 'command.areacode.error'
+      }
+    }
 
 	
 }
@@ -207,11 +212,14 @@ class RegisterCommand {
 
 	String email
 	String password
+  //todo validate areacode
+    String areaCode
 
 	static constraints = {
 
 		email blank: false, email: true
 		password blank: false, minSize: 8, maxSize: 64, validator: RegisterController.passwordValidator
+        areaCode blank: false, validator: RegisterController.areaCodeValidator
 	}
 }
 

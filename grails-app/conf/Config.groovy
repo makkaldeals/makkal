@@ -101,8 +101,12 @@ grails.plugins.springsecurity.authority.className = 'com.makkaldeails.auth.Role'
 
 // Added by the Spring Security Core plugin:
 grails.plugins.springsecurity.userLookup.userDomainClassName = 'com.makkaldeals.auth.User'
+grails.plugins.springsecurity.userLookup.usernamePropertyName = 'email'
 grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'com.makkaldeals.auth.UserRole'
 grails.plugins.springsecurity.authority.className = 'com.makkaldeals.auth.Role'
 grails.plugins.springsecurity.rememberMe.persistent = true
 grails.plugins.springsecurity.rememberMe.persistentToken.domainClassName = 'com.makkaldeals.auth.PersistentLogin'
-grails.plugins.springsecurity.openid.domainClass = 'com.makkaldeals.auth.OpenID'
+
+
+
+

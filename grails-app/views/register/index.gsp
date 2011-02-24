@@ -30,6 +30,9 @@
 		<s2ui:passwordFieldRow name='password' labelCode='user.password.label' bean="${command}"
                              size='40' labelCodeDefault='Password' value="${command.password}"/>
 
+        <s2ui:textFieldRow name='areaCode' bean="${command}" value="${command.areaCode}" 
+		                   size='40' labelCode='user.areacode.label' labelCodeDefault='Area Code'/>
+
 	
 	</tbody>
 	</table>
