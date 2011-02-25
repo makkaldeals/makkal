@@ -106,7 +106,6 @@ grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'com.makkaldea
 grails.plugins.springsecurity.authority.className = 'com.makkaldeals.auth.Role'
 grails.plugins.springsecurity.rememberMe.persistent = true
 grails.plugins.springsecurity.rememberMe.persistentToken.domainClassName = 'com.makkaldeals.auth.PersistentLogin'
-
-
+grails.plugins.springsecurity.errors.login.fail = "Sorry, we were not able to find a user with that email and password."
 
 

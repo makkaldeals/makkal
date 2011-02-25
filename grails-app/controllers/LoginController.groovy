@@ -91,6 +91,7 @@ class LoginController {
 		def username = session[UsernamePasswordAuthenticationFilter.SPRING_SECURITY_LAST_USERNAME_KEY]
 		String msg = ''
 		def exception = session[WebAttributes.AUTHENTICATION_EXCEPTION]
+
 		if (exception) {
 			if (exception instanceof AccountExpiredException) {
 				msg = SpringSecurityUtils.securityConfig.errors.login.expired
@@ -108,8 +109,7 @@ class LoginController {
 				msg = SpringSecurityUtils.securityConfig.errors.login.fail
 			}
 		}
-
-		if (springSecurityService.isAjax(request)) {
+        if (springSecurityService.isAjax(request)) {
 			render([error: msg] as JSON)
 		}
 		else {

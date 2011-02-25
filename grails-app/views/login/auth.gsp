@@ -7,12 +7,20 @@
 
 <p/>
 
+
+
 <div class="login s2ui_center ui-corner-all" style='text-align:center;'>
 	<div class="login-inner">
 	<form action='${postUrl}' method='POST' id="loginForm" name="loginForm" autocomplete='off'>
 	<div class="sign-in">
 
 	<h1><g:message code='spring.security.ui.login.signin'/></h1>
+
+    <g:if test="${flash.message}">
+      <div class="message">
+             ${flash.message}
+      </div>
+    </g:if>
 
 	<table>
 		<tr>

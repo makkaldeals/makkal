@@ -7,6 +7,8 @@
 
 <p/>
 
+
+
 <s2ui:form width='350' height='220' elementId='forgotPasswordFormContainer'
            titleCode='spring.security.ui.forgotPassword.header' center='true'>
 
@@ -21,6 +23,13 @@
 
 	<br/>
 	<h4><g:message code='spring.security.ui.forgotPassword.description'/></h4>
+
+
+    <g:if test="${flash.error}">
+      <div class="errors">
+             ${flash.error}
+      </div>
+    </g:if>
 
 	<table>
 		<tr>
