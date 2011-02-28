@@ -8,13 +8,10 @@ class ClientController {
 
   def springSecurityService;
 
-  /*def index = {
-
-    redirect(controller:'login' ,action:'index' , params:["targetUrl":"/client/welcome", "role":Role.ROLE_CLIENT])
-  } */
-
   def welcome = {
     def user = springSecurityService.currentUser;
-    render "Client controller : Welcome ${user.email} ! : ${user.areaCode} -> ${user.getAuthorities()}";
+    render (view : 'welcome' , model : [user:user]) ;
+
+
   }
 }

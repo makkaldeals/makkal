@@ -9,10 +9,7 @@ You (or someone pretending to be you) created an account with this email address
 If you made the request, please click <a href="$url">here</a> to finish the registration.
 '''
 			emailFrom = 'do.not.reply@localhost'
-			emailSubject = 'New Account'
-            //todo remove
-			defaultRoleNames = ['ROLE_CLIENT']
-			postRegisterUrl = null // use defaultTargetUrl if not set
+			emailSubject = 'New Account registration with Makkal deals'
 		}
 
 		forgotPassword {
@@ -26,8 +23,19 @@ If you didn't make this request then ignore the email; no changes have been made
 If you did make the request, then click <a href="$url">here</a> to reset your password.
 '''
 			emailFrom = 'do.not.reply@localhost'
-			emailSubject = 'Password Reset'
-			postResetUrl = null // use defaultTargetUrl if not set
+			emailSubject = 'Password Reset for Makkal deals Account'
+		}
+
+      approve {
+           emailBody = '''\
+Hi Admin ,<br/>
+<br/>
+$user.email has registered new customer account with Makkal Deals.
+<br/>
+Please verify information provided by user and click <a href="$url">here</a> to approve his registration.
+'''
+			emailFrom = 'do.not.reply@localhost'
+			emailSubject = 'New Customer registration with Makkal deals'
 		}
 	}
 }

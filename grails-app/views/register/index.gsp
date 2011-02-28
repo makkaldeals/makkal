@@ -13,10 +13,11 @@
 
 <g:form action='register' name='registerForm'>
 
-	<g:if test='${emailSent}'>
-	<br/>
-	<g:message code='spring.security.ui.register.sent'/>
+	<g:if test='${confirmationMessage}'>
+      <br/>
+      ${confirmationMessage}
 	</g:if>
+    
 	<g:else>
 
 	<br/>
@@ -52,7 +53,7 @@
 
 <script>
 $(document).ready(function() {
-	$('#username').focus();
+	$('#email').focus();
 });
 </script>
 

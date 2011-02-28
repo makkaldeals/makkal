@@ -8,10 +8,9 @@ import org.codehaus.groovy.grails.plugins.springsecurity.NullSaltSource
 import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
 import org.codehaus.groovy.grails.plugins.springsecurity.ui.RegistrationCode
 import grails.plugins.springsecurity.ui.AbstractS2UiController
+import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH;
 
-/**
- * @author <a href='mailto:burt@burtbeckwith.com'>Burt Beckwith</a>
- */
+
 class RegisterController extends AbstractS2UiController {
 
 	static defaultAction = 'index'
@@ -25,7 +24,8 @@ class RegisterController extends AbstractS2UiController {
 
 	def register = { RegisterCommand command ->
 
-        log.info("Registring with role ${params.role}") ;
+        String role = params.role;
+        log.info("Registering with role ${role}") ;
 		if (command.hasErrors()) {
 			render view: 'index', model: [command: command]
 			return
@@ -36,28 +36,63 @@ class RegisterController extends AbstractS2UiController {
 		def user = lookupUserClass().newInstance(email: command.email,
 				password: password, areaCode:command.areaCode, accountLocked: true, enabled: true)
 		if (!user.validate() || !user.save()) {
-			// TODO
+			log.error("Error in validating or saving user ${user.errors}")
 		}
 
-		def registrationCode = new RegistrationCode(username: user.email).save()
-		String url = generateLink('verifyRegistration', [t: registrationCode.token,role:params.role , targetUrl:params.targetUrl])
+        def conf = SpringSecurityUtils.securityConfig;
 
-		def conf = SpringSecurityUtils.securityConfig
-		def body = conf.ui.register.emailBody
-       
-		if (body.contains('$')) {
-			body = evaluate(body, [user: user, url: url])
-		}
-		mailService.sendMail {
-			to command.email
-			from conf.ui.register.emailFrom
-			subject conf.ui.register.emailSubject
-			html body.toString()
-		}
+        if (role.equals(Role.ROLE_CLIENT)) {
 
-		render view: 'index', model: [emailSent: true]
+            chain(action : approveRegistration , params : [email : command.email, role:role, targetUrl:params.targetUrl])
+           
+        }
+        else if (role.equals(Role.ROLE_CUSTOMER)) {
+            String url = generateLink('approveRegistration', [role:role, email:command.email, targetUrl:params.targetUrl])
+
+            def body = conf.ui.approve.emailBody
+
+            if (body.contains('$')) {
+                body = evaluate(body, [user: user, url: url])
+            }
+            mailService.sendMail {
+                to CH.config.makkaldeals.user.admin.email
+                from conf.ui.approve.emailFrom
+                subject conf.ui.approve.emailSubject
+                html body.toString()
+            }
+            render view: 'index', model: [confirmationMessage: message(code : 'spring.security.ui.approval.sent')]
+        }
+        else{
+           log.error("Invalid role ${role}");
+           render view: 'index';
+        }
 	}
 
+
+    def approveRegistration = {
+
+        String email = params.email;
+        String role = params.role;
+        String targetUrl = params.targetUrl;
+
+        def registrationCode = new RegistrationCode(username: email).save()
+        String url = generateLink('verifyRegistration', [t: registrationCode.token,role:role , targetUrl:targetUrl])
+
+        def conf = SpringSecurityUtils.securityConfig;
+        def body = conf.ui.register.emailBody
+
+        if (body.contains('$')) {
+            body = evaluate(body, [url: url])
+        }
+        mailService.sendMail {
+            to email
+            from conf.ui.register.emailFrom
+            subject conf.ui.register.emailSubject
+            html body.toString()
+        }
+        render view: 'index', model: [confirmationMessage: message(code : 'spring.security.ui.register.sent' , args : [email])]
+    }
+  
 	def verifyRegistration = {
 
 		def conf = SpringSecurityUtils.securityConfig
