@@ -56,13 +56,6 @@ class LoginController {
 		                           rememberMeParameter: config.rememberMe.parameter]
 	}
 
-	/**
-	 * The redirect action for Ajax requests. 
-	 */
-	def authAjax = {
-		response.setHeader 'Location', SpringSecurityUtils.securityConfig.auth.ajaxLoginFormUrl
-		response.sendError HttpServletResponse.SC_UNAUTHORIZED
-	}
 
 	/**
 	 * Show denied page.
@@ -120,17 +113,5 @@ class LoginController {
 		}
 	}
 
-	/**
-	 * The Ajax success redirect url.
-	 */
-	def ajaxSuccess = {
-		render([success: true, username: springSecurityService.authentication.name] as JSON)
-	}
-
-	/**
-	 * The Ajax denied redirect url.
-	 */
-	def ajaxDenied = {
-		render([error: 'access denied'] as JSON)
-	}
+	
 }

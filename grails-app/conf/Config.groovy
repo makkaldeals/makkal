@@ -53,6 +53,13 @@ grails.spring.bean.packages = []
 // request parameters to mask when logging exceptions
 grails.exceptionresolver.params.exclude = ['password']
 
+makkaldeals {
+  user {
+    admin.email = "admin@makkaldeals.com"
+    admin.password = "makkaladmin"
+  }
+}
+
 // set per-environment serverURL stem for creating absolute links
 environments {
     production {

@@ -1,8 +1,9 @@
 import com.makkaldeals.auth.*;
 
+import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH;
+
 class BootStrap {
 
-    private static final String ADMIN_USER_PASSWORD="gangoffive";
     def springSecurityService;
 
     def init = { servletContext ->
@@ -11,7 +12,7 @@ class BootStrap {
 
     def createDefaultUsersAndRoles() {
 
-        String password = springSecurityService.encodePassword(ADMIN_USER_PASSWORD);
+        String password = springSecurityService.encodePassword(CH.config.makkaldeals.user.admin.password);
 
         def roleAdmin = Role.findByAuthority(Role.ROLE_ADMIN) ?: new Role(authority: Role.ROLE_ADMIN).save();
 
@@ -19,7 +20,7 @@ class BootStrap {
 
         Role.findByAuthority(Role.ROLE_CUSTOMER) ?: new Role(authority: Role.ROLE_CUSTOMER).save();
 
-        def admin = new User(email: 'mdadmin@gmail.com', password: password, enabled: true).save();
+        def admin = new User(email:CH.config.makkaldeals.user.admin.email, password: password, enabled: true).save();
 
         UserRole.create admin, roleAdmin, true;
     }
