@@ -12,7 +12,8 @@ class User {
 
 	static constraints = {
 		email blank: false, unique: true
-		//password blank: false
+		password blank: false
+        areaCode nullable:true;
 	}
 
 	static mapping = {

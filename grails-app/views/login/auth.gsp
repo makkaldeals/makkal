@@ -15,14 +15,15 @@
 	<div class="sign-in">
 
 	<h1><g:message code='spring.security.ui.login.signin'/></h1>
-
     <g:if test="${flash.message}">
       <div class="message">
              ${flash.message}
       </div>
     </g:if>
 
-	<table>
+    <g:hiddenField name="spring-security-redirect" value="${params.targetUrl}" />
+    
+   	<table>
 		<tr>
 			<td><label for="email"><g:message code='user.email.label'/></label></td>
 			<td><input name="j_username" id="email" size="20" /></td>
@@ -36,13 +37,13 @@
 				<input type="checkbox" class="checkbox" name="${rememberMeParameter}" id="remember_me" checked="checked" />
 				<label for='remember_me'><g:message code='spring.security.ui.login.rememberme'/></label> |
 				<span class="forgot-link">
-					<g:link controller='register' action='forgotPassword'><g:message code='spring.security.ui.login.forgotPassword'/></g:link>
+					<g:link controller='register' params="${params}" action='forgotPassword'><g:message code='spring.security.ui.login.forgotPassword'/></g:link>
 				</span>
 			</td>
 		</tr>
 		<tr>
 			<td colspan='2'>
-				<s2ui:linkButton elementId='register' controller='register' messageCode='spring.security.ui.login.register'/>
+				<s2ui:linkButton elementId='register' controller='register' params="${params}" messageCode='spring.security.ui.login.register'/>
 				<s2ui:submitButton elementId='loginButton' form='loginForm' messageCode='spring.security.ui.login.login'/>
 			</td>
 		</tr>

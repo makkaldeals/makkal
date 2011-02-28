@@ -23,6 +23,7 @@
 
 	</table>
 
+    <g:hiddenField name="targetUrl" value="${params.targetUrl}" /> 
 	<s2ui:submitButton elementId='reset' form='resetPasswordForm' messageCode='spring.security.ui.resetPassword.submit'/>
 
 	</div>

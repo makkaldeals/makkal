@@ -2,25 +2,28 @@ import com.makkaldeals.auth.*;
 
 class BootStrap {
 
+    private static final String ADMIN_USER_PASSWORD="gangoffive";
     def springSecurityService;
 
     def init = { servletContext ->
-
-	String password = springSecurityService.encodePassword('password');
-
-	def roleAdmin = new Role(authority: 'ROLE_ADMIN').save();
-
-	def roleUser = new Role(authority: 'ROLE_USER').save();
-
-	def user = new User(email: 'makkaluser', password: password, enabled: true).save();
-
-	def admin = new User(email: 'makkaladmin', password: password, enabled: true).save();
-
-	UserRole.create user, roleUser;
-	UserRole.create admin, roleUser; 
-	UserRole.create admin, roleAdmin, true;
-
+        createDefaultUsersAndRoles();
     }
+
+    def createDefaultUsersAndRoles() {
+
+        String password = springSecurityService.encodePassword(ADMIN_USER_PASSWORD);
+
+        def roleAdmin = Role.findByAuthority(Role.ROLE_ADMIN) ?: new Role(authority: Role.ROLE_ADMIN).save();
+
+        Role.findByAuthority(Role.ROLE_CLIENT) ?: new Role(authority: Role.ROLE_CLIENT).save();
+
+        Role.findByAuthority(Role.ROLE_CUSTOMER) ?: new Role(authority: Role.ROLE_CUSTOMER).save();
+
+        def admin = new User(email: 'mdadmin@gmail.com', password: password, enabled: true).save();
+
+        UserRole.create admin, roleAdmin, true;
+    }
+
     def destroy = {
     }
 }

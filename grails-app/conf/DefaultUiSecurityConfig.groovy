@@ -10,7 +10,8 @@ If you made the request, please click <a href="$url">here</a> to finish the regi
 '''
 			emailFrom = 'do.not.reply@localhost'
 			emailSubject = 'New Account'
-			defaultRoleNames = ['ROLE_USER']
+            //todo remove
+			defaultRoleNames = ['ROLE_CLIENT']
 			postRegisterUrl = null // use defaultTargetUrl if not set
 		}
 

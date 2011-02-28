@@ -25,6 +25,7 @@ class RegisterController extends AbstractS2UiController {
 
 	def register = { RegisterCommand command ->
 
+        log.info("Registring with role ${params.role}") ;
 		if (command.hasErrors()) {
 			render view: 'index', model: [command: command]
 			return
@@ -39,7 +40,7 @@ class RegisterController extends AbstractS2UiController {
 		}
 
 		def registrationCode = new RegistrationCode(username: user.email).save()
-		String url = generateLink('verifyRegistration', [t: registrationCode.token])
+		String url = generateLink('verifyRegistration', [t: registrationCode.token,role:params.role , targetUrl:params.targetUrl])
 
 		def conf = SpringSecurityUtils.securityConfig
 		def body = conf.ui.register.emailBody
@@ -81,9 +82,8 @@ class RegisterController extends AbstractS2UiController {
 			user.save()
 			def UserRole = lookupUserRoleClass()
 			def Role = lookupRoleClass()
-			for (roleName in conf.ui.register.defaultRoleNames) {
-				UserRole.create user, Role.findByAuthority(roleName)
-			}
+			UserRole.create user, Role.findByAuthority(params.role);
+
 			registrationCode.delete()
 		}
 
@@ -96,8 +96,8 @@ class RegisterController extends AbstractS2UiController {
 		springSecurityService.reauthenticate user.email
 
 		flash.message = message(code: 'spring.security.ui.register.complete')
-        println "verificaition complete redirecting to ${defaultTargetUrl} ${conf.ui.register.postRegisterUrl} "
-		redirect uri: conf.ui.register.postRegisterUrl ?: defaultTargetUrl
+        log.info("verificaition complete redirecting to ${params.targetUrl} " );
+		redirect uri: params.targetUrl;
 	}
 
 	def forgotPassword = {
@@ -119,7 +119,7 @@ class RegisterController extends AbstractS2UiController {
 			return
 		}
      	def registrationCode = new RegistrationCode(username: user.email).save()
-     	String url = generateLink('resetPassword', [t: registrationCode.token])
+     	String url = generateLink('resetPassword', [t: registrationCode.token , targetUrl:params.targetUrl])
 
 		def conf = SpringSecurityUtils.securityConfig
 		def body = conf.ui.forgotPassword.emailBody
@@ -171,9 +171,8 @@ class RegisterController extends AbstractS2UiController {
 
 		flash.message = message(code: 'spring.security.ui.resetPassword.success')
 
-		def conf = SpringSecurityUtils.securityConfig
-		String postResetUrl = conf.ui.register.postResetUrl ?: conf.successHandler.defaultTargetUrl
-		redirect uri: postResetUrl
+        log.info("Password reset , redirecting to ${params.targetUrl}");
+		redirect uri: params.targetUrl;
 	}
 
 	protected String generateLink(String action, linkParams) {

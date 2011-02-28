@@ -34,10 +34,11 @@
 	<table>
 		<tr>
 			<td><label for="email"><g:message code='user.email.label'/></label></td>
-			<td><g:textField name="email" size="25" /></td>
+			<td><g:textField name="email" size="25" /></td> 
 		</tr>
 	</table>
 
+    <g:hiddenField name="targetUrl" value="${params.targetUrl}" />
 	<s2ui:submitButton elementId='reset' form='forgotPasswordForm' messageCode='spring.security.ui.forgotPassword.submit'/>
 
 	</g:else>

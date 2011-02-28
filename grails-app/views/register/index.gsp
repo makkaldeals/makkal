@@ -38,7 +38,11 @@
 	</tbody>
 	</table>
 
-	<s2ui:submitButton elementId='create' form='registerForm' messageCode='spring.security.ui.register.submit'/>
+    <g:hiddenField name="role" value="${params.role}" />
+    <g:hiddenField name="targetUrl" value="${params.targetUrl}" /> 
+
+
+ 	<s2ui:submitButton elementId='create' form='registerForm' messageCode='spring.security.ui.register.submit'/>
 
 	</g:else>
 
