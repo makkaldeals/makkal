@@ -17,12 +17,15 @@
 <link rel="stylesheet" media="screen" href="${resource(dir:'css',file:'jquery.safari-checkbox.css')}"/>
 <link rel="stylesheet" media="screen" href="${resource(dir:'css',file:'auth.css')}"/>
 
+<nav:resources/>
 <g:layoutHead/>
 
 </head>
 
 <body>
-
+<div id="menu">
+  <nav:render/>
+</div>
 <g:javascript src='jquery/jquery.jgrowl.js'/>
 <g:javascript src='jquery/jquery.checkbox.js'/>
 <g:javascript src='spring-security-ui.js'/>

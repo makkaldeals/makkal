@@ -1,5 +1,3 @@
-import com.makkaldeals.auth.Role
-
 class UrlMappings {
 
   static mappings = {
@@ -12,18 +10,13 @@ class UrlMappings {
     }
 
     "/" {
-      controller = 'login'
+      controller = 'client'
       action = 'index'
-      role =  Role.ROLE_CLIENT
-      targetUrl = "/client/welcome"
-
     }
 
     "/customer" {
-      controller = 'login'
+      controller = 'customer'
       action = 'index'
-      role =  Role.ROLE_CUSTOMER
-      targetUrl = "/customer/welcome"
     }
 
     "500"(view: '/error')
