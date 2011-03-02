@@ -13,7 +13,7 @@ class ClientController {
     redirect(controller:'login' ,action:'index' , params:["targetUrl":"/client/welcome", "role":Role.ROLE_CLIENT])
   }
 
-  @Secured(['ROLE_CUSTOMER' , 'ROLE_ADMIN'])
+  @Secured(['ROLE_CLIENT' , 'ROLE_ADMIN'])
   def welcome = {
     def user = springSecurityService.currentUser;
     render (view : 'welcome' , model : [user:user]) ;

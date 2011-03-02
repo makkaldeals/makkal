@@ -8,7 +8,10 @@
 
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
-  <head><title>Makkal deals customer</title></head>
+  <head>
+    <meta name='layout' content='register'/>
+    <title>Makkal deals customer</title>
+  </head>
   <body>
 
   Welcome ${user.email} ! , Area code : ${user.areaCode}  , Role : ${user.getAuthorities()}

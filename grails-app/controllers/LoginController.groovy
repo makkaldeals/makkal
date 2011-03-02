@@ -45,8 +45,7 @@ class LoginController {
 
 		if (springSecurityService.isLoggedIn()) {
             log.info("User logged in redirecting to ${params.targetUrl}");
-		  	//redirect uri: config.successHandler.defaultTargetUrl
-            redirect uri: params.targetUrl;
+	        redirect uri: params.targetUrl;
 			return
 		}
 
@@ -83,7 +82,8 @@ class LoginController {
 	 */
 	def authfail = {
 
-		def username = session[UsernamePasswordAuthenticationFilter.SPRING_SECURITY_LAST_USERNAME_KEY]
+        def refererUrl = request.getHeader("Referer");
+        def username = session[UsernamePasswordAuthenticationFilter.SPRING_SECURITY_LAST_USERNAME_KEY]
 		String msg = ''
 		def exception = session[WebAttributes.AUTHENTICATION_EXCEPTION]
 
@@ -109,7 +109,7 @@ class LoginController {
 		}
 		else {
 			flash.message = msg
-			redirect action: auth, params: params
+			redirect url:refererUrl;
 		}
 	}
 

@@ -13,6 +13,12 @@
 
 <g:form action='register' name='registerForm'>
 
+    <g:if test="${flash.message}">
+       <div class="message">
+              ${flash.message}
+       </div>
+     </g:if>
+
 	<g:if test='${confirmationMessage}'>
       <br/>
       ${confirmationMessage}
