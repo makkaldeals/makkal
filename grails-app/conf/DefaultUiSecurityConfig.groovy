@@ -32,7 +32,23 @@ Hi Admin ,<br/>
 <br/>
 $user.email has registered new customer account with Makkal Deals.
 <br/>
-Please verify information provided by user and click <a href="$url">here</a> to approve his registration.
+Please verify information provided by user below and click <a href="$url">here</a> to approve his registration.
+<br/>
+<br/>
+<table>
+<tr> <td> First Name </td> <td> $user.firstName </tr>
+<tr> <td> Lsst Name </td> <td> $user.lastName </tr>
+<tr> <td> Business Name </td> <td> $user.businessName </tr>
+<tr> <td> Category </td> <td> $user.category </tr>
+<tr> <td> Address </td> <td> $user.address </tr>
+<tr> <td> City </td> <td> $user.city </tr>
+<tr> <td> State </td> <td> $user.state </tr>
+<tr> <td> Area Code </td> <td> $user.areaCode </tr>
+<tr> <td> Country </td> <td> $user.country </tr>
+<tr> <td> Phone </td> <td> $user.phone </tr>
+<tr> <td> Website </td> <td> $user.website </tr>
+</table>
+
 '''
 			emailFrom = 'do.not.reply@localhost'
 			emailSubject = 'New Customer registration with Makkal deals'

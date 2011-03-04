@@ -33,12 +33,14 @@ class RegisterController extends AbstractS2UiController {
 
 
     def userClass = lookupUserClass();
+    def customerClass = lookupUserClass(Role.ROLE_CUSTOMER);
     def roleClass = lookupRoleClass();
     def userRoleClass = lookupUserRoleClass();
     def user = userClass.findByEmail(command.email);
     def roleInstance = roleClass.findByAuthority(role);
     //Handle already exisiting user.
     if (user) {
+      log.info("Handing registration for existing user ${user.email}");
       if (userRoleClass.findByUserAndRole(user, roleInstance)) {
         log.error("User ${command.email} with role ${role} already exists");
         flash.message = message(code: 'spring.security.ui.register.user.exists', args: [command.email]);
@@ -52,27 +54,43 @@ class RegisterController extends AbstractS2UiController {
           redirect uri: params.targetUrl;
         }
         else if (role.equals(Role.ROLE_CUSTOMER)) {
-          log.info("Existing user ${command.email} registered as ${role}, needs approval")
-          //FIXME: This needs to be implemented properly.
-          /*String url = generateLink('approveRegistration', [role: role, email: command.email, targetUrl: params.targetUrl])
 
-          def body = conf.ui.approve.emailBody
+          //FIXME: Find better way to do this, this currently deletes existing client user and creates
+          // new instance of customer user, which is not good.
+          log.info("Existing user ${command.email} registered as ${role}, needs approval");
+          //don't update password. use existing password in account
+          String password = user.password;
+          //delete existing user with ROLE_CLIENT
+          def clientRoleInstance = Role.findByAuthority(Role.ROLE_CLIENT);
+          userRoleClass.remove(user, clientRoleInstance, true);
+          user.delete(flush:true);
+          //create user as ROLE_CUSTOMER
+          user = customerClass.
+                  newInstance(email: command.email,
+                  password: password,
+                  firstName: command.firstName,
+                  lastName: command.lastName,
+                  businessName: command.businessName,
+                  category: command.category,
+                  address: command.address,
+                  city: command.city,
+                  state: command.state,
+                  areaCode: command.areaCode,
+                  country: command.country,
+                  phone: command.phone,
+                  website: command.website,
+                  accountLocked: true,
+                  enabled: true)
 
-          if (body.contains('$')) {
-            body = evaluate(body, [user: user, url: url])
-          } 
-          mailService.sendMail {
-            to CH.config.makkaldeals.user.admin.email
-            from conf.ui.approve.emailFrom
-            subject conf.ui.approve.emailSubject
-            html body.toString()
+          if (!user.validate() || !user.save()) {
+            log.error("Error in validating or saving user ${user.errors}")
           }
-          render view: 'index', model: [confirmationMessage: message(code: 'spring.security.ui.approval.sent')]
-          */
-
+          //since user was previously client, add ROLE_CLIENT
+          userRoleClass.create(user, clientRoleInstance);
           generateApproval(user, role, params.targetUrl);
         }
         else {
+          log.error("This should never happen");
           log.error("Invalid role ${role}");
           render view: 'index';
         }
@@ -82,34 +100,47 @@ class RegisterController extends AbstractS2UiController {
     }
     //Handle new user
     else {
+      log.info("Handling registratin for new user ${command.email}");
       String salt = saltSource instanceof NullSaltSource ? null : command.email
       String password = springSecurityService.encodePassword(command.password, salt)
-      user = lookupUserClass().newInstance(email: command.email,
-              password: password, areaCode: command.areaCode, accountLocked: true, enabled: true)
-      if (!user.validate() || !user.save()) {
-        log.error("Error in validating or saving user ${user.errors}")
-      }
 
       if (role.equals(Role.ROLE_CLIENT)) {
 
+        user = userClass.newInstance(email: command.email,
+              password: password,
+              areaCode: command.areaCode,
+              accountLocked: true,
+              enabled: true
+              )
+        if (!user.validate() || !user.save()) {
+          log.error("Error in validating or saving user ${user.errors}")
+        }
         chain(action: approveRegistration, params: [email: command.email, role: role, targetUrl: params.targetUrl])
 
       }
       else if (role.equals(Role.ROLE_CUSTOMER)) {
-        /*String url = generateLink('approveRegistration', [role: role, email: command.email, targetUrl: params.targetUrl])
 
-        def body = conf.ui.approve.emailBody
+        user = customerClass.
+              newInstance(email: command.email,
+              password: password,
+              firstName: command.firstName,
+              lastName: command.lastName,
+              businessName: command.businessName,
+              category: command.category,
+              address: command.address,
+              city: command.city,
+              state: command.state,
+              areaCode: command.areaCode,
+              country: command.country,
+              phone: command.phone,
+              website: command.website,
+              accountLocked: true,
+              enabled: true)
 
-        if (body.contains('$')) {
-          body = evaluate(body, [user: user, url: url])
+        if (!user.validate() || !user.save()) {
+          log.error("Error in validating or saving user ${user.errors}")
         }
-        mailService.sendMail {
-          to CH.config.makkaldeals.user.admin.email
-          from conf.ui.approve.emailFrom
-          subject conf.ui.approve.emailSubject
-          html body.toString()
-        }
-        render view: 'index', model: [confirmationMessage: message(code: 'spring.security.ui.approval.sent')] */
+
         generateApproval(user, role, params.targetUrl);
       }
       else {
@@ -121,7 +152,7 @@ class RegisterController extends AbstractS2UiController {
 
   }
 
-  private void generateApproval(User user , String role, String targetUrl)  {
+  private void generateApproval(User user, String role, String targetUrl) {
 
     def conf = SpringSecurityUtils.securityConfig;
     String url = generateLink('approveRegistration', [role: role, email: user.email, targetUrl: targetUrl])
@@ -181,8 +212,10 @@ class RegisterController extends AbstractS2UiController {
 
     def user
     RegistrationCode.withTransaction {status ->
-      user = lookupUserClass().findByEmail(registrationCode.username)
+      def userClass = lookupUserClass(params.role);
+      user = userClass.findByEmail(registrationCode.username)
       if (!user) {
+        log.info("Could not verify registration. No user found with email ${registrationCode.username} in class ${userClass} ")
         return
       }
       user.accountLocked = false
@@ -282,6 +315,16 @@ class RegisterController extends AbstractS2UiController {
     redirect uri: params.targetUrl;
   }
 
+
+  protected Class<?> lookupUserClass(String role) {
+    if (role.equals(Role.ROLE_CUSTOMER)) {
+      grailsApplication.getDomainClass("com.makkaldeals.auth.Customer").clazz
+    }
+    else {
+      return super.lookupUserClass();
+    }
+  }
+
   protected String generateLink(String action, linkParams) {
     createLink(base: "$request.scheme://$request.serverName:$request.serverPort$request.contextPath",
             controller: 'register', action: action,
@@ -320,6 +363,17 @@ class RegisterCommand {
   String password
   //todo validate areacode
   String areaCode
+  String firstName;
+  String lastName;
+  String businessName;
+  String category;
+  String address;
+  String city;
+  String state;
+  String country;
+  String phone;
+  String website;
+
 
   static constraints = {
 

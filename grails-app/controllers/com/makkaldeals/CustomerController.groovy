@@ -2,6 +2,7 @@ package com.makkaldeals
 
 import grails.plugins.springsecurity.Secured
 import com.makkaldeals.auth.Role
+import com.makkaldeals.auth.Customer
 
 
 class CustomerController {
@@ -16,7 +17,7 @@ class CustomerController {
 
   @Secured(['ROLE_CUSTOMER' , 'ROLE_ADMIN'])
   def welcome = {
-    def user = springSecurityService.currentUser;
+    def user = (Customer) springSecurityService.currentUser;
     render (view : 'welcome' , model : [user:user]) ;
   }
 }

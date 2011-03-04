@@ -15,6 +15,9 @@
   <body>
 
   Welcome ${user.email} ! , Area code : ${user.areaCode}  , Role : ${user.getAuthorities()}
+  <br/>
+
+  Details :  ${user}
 
 
   </body>
