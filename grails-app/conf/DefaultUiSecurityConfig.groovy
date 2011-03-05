@@ -38,15 +38,15 @@ Please verify information provided by user below and click <a href="$url">here</
 <table>
 <tr> <td> First Name </td> <td> $user.firstName </tr>
 <tr> <td> Lsst Name </td> <td> $user.lastName </tr>
-<tr> <td> Business Name </td> <td> $user.businessName </tr>
-<tr> <td> Category </td> <td> $user.category </tr>
-<tr> <td> Address </td> <td> $user.address </tr>
-<tr> <td> City </td> <td> $user.city </tr>
-<tr> <td> State </td> <td> $user.state </tr>
+<tr> <td> Business Name </td> <td> $user.business.name </tr>
+<tr> <td> Category </td> <td> $user.business.category </tr>
+<tr> <td> Address </td> <td> $user.business.address </tr>
+<tr> <td> City </td> <td> $user.business.city </tr>
+<tr> <td> State </td> <td> $user.business.state </tr>
 <tr> <td> Area Code </td> <td> $user.areaCode </tr>
-<tr> <td> Country </td> <td> $user.country </tr>
+<tr> <td> Country </td> <td> $user.business.country </tr>
 <tr> <td> Phone </td> <td> $user.phone </tr>
-<tr> <td> Website </td> <td> $user.website </tr>
+<tr> <td> Website </td> <td> $user.business.website </tr>
 </table>
 
 '''

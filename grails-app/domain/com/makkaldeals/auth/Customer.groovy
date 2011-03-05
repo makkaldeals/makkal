@@ -1,33 +1,106 @@
 package com.makkaldeals.auth
 
+import org.apache.commons.logging.LogFactory
+
+/**
+ * com.makkaldeals.auth
+ *
+ * Created on Mar 5, 2011 . 4:45:46 PM
+ * @Author E. Rajasekar
+ *
+ */
 class Customer extends User {
 
+  private static final log = LogFactory.getLog(this)
+  
   String firstName;
   String lastName;
-  String businessName;
-  String category;
-  String address;
-  String city;
-  String state;
-  String country;
+  Business business;
   String phone;
-  String website;
 
-    static constraints = {
-      firstName blank:false;
-      address blank:false;
-      city blank:false;
-      state blank:false;
-      country blank:false
-      phone blank:false;
+
+  static constraints = {
+    firstName blank: false;
+    phone blank: false;
+    business nullable: false;
+  }
+
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append(firstName);
+    sb.append(" , " + business.name);
+    sb.append(" , " + phone);
+
+  }
+
+ /* static Customer create(String email,
+                         String password,
+                         String firstName,
+                         String lastName,
+                         String businessName,
+                         String category,
+                         String address,
+                         String city,
+                         String state,
+                         String areaCode,
+                         String country,
+                         String phone,
+                         String website) {
+
+
+
+    Business business = new Business(name: businessName, category: category, address: address, city: city, state: state, country: country, website: website);
+    if (!business.save()) {
+      log.error("Error in saving business ${business.errors}");
     }
 
-   public String toString() {
-      StringBuilder sb = new StringBuilder();
-      sb.append(firstName);
-      sb.append(" , " + businessName);
-      sb.append(" , " + address);
-      sb.append(" , " + phone);
-
+    Customer customer = new Customer(email: email,
+            password: password,
+            firstName: firstName,
+            lastName: lastName,
+            business: business,
+            areaCode: areaCode,
+            phone: phone,
+            accountLocked: true,
+            enabled: true);
+    if (!customer.save()) {
+      log.error("Error in saving user ${customer.errors}") ;
     }
+
+  }
+  */
+
+  static Customer create(Map params) {
+
+    Business business =  Business.findByName(params.businessName);
+
+    /*TODO: Need to handle case when user enter different address for same business name.
+    In that case we need to confirm with user .   */
+    
+    //Look up existing business record before inserting
+    if (!business) {
+      business = new Business(name: params.businessName, category: params.category, address: params.address, city: params.city, state: params.state, country: params.country, website: params.website);
+    }
+
+    if (!business.save()) {
+      log.error("Error in saving business ${business.errors}");
+    }
+
+    Customer customer = new Customer(email: params.email,
+            password: params.password,
+            firstName: params.firstName,
+            lastName: params.lastName,
+            business: business,
+            areaCode: params.areaCode,
+            phone: params.phone,
+            accountLocked: true,
+            enabled: true);
+    if (!customer.save()) {
+      log.error("Error in saving user ${customer.errors}") ;
+    }
+
+    return customer;
+
+  }
+
 }

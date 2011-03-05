@@ -26,7 +26,7 @@ class RegisterController extends AbstractS2UiController {
 
     String role = command.role;
     String targetUrl = command.targetUrl;
-    log.info("Registering with role ${role} == ${command.role}");
+    log.info("Registering with role ${role} ");
     if (command.hasErrors()) {
       render view: 'index', model: [command: command]
       return
@@ -67,7 +67,7 @@ class RegisterController extends AbstractS2UiController {
           user.delete(flush:true);
           //create user as ROLE_CUSTOMER
           user = customerClass.
-                  newInstance(email: command.email,
+                  create(email: command.email,
                   password: password,
                   firstName: command.firstName,
                   lastName: command.lastName,
@@ -80,12 +80,8 @@ class RegisterController extends AbstractS2UiController {
                   country: command.country,
                   phone: command.phone,
                   website: command.website,
-                  accountLocked: true,
-                  enabled: true)
+                  )
 
-          if (!user.save()) {
-            log.error("Error saving user ${user.errors}")
-          }
           //since user was previously client, add ROLE_CLIENT
           userRoleClass.create(user, clientRoleInstance);
           generateApproval(user, role, params.targetUrl);
@@ -101,7 +97,7 @@ class RegisterController extends AbstractS2UiController {
     }
     //Handle new user
     else {
-      log.info("Handling registratin for new user ${command.email}");
+      log.info("Handling registration for new user ${command.email}");
       String salt = saltSource instanceof NullSaltSource ? null : command.email
       String password = springSecurityService.encodePassword(command.password, salt)
 
@@ -122,7 +118,7 @@ class RegisterController extends AbstractS2UiController {
       else if (role.equals(Role.ROLE_CUSTOMER)) {
 
         user = customerClass.
-              newInstance(email: command.email,
+              create(email: command.email,
               password: password,
               firstName: command.firstName,
               lastName: command.lastName,
@@ -135,12 +131,7 @@ class RegisterController extends AbstractS2UiController {
               country: command.country,
               phone: command.phone,
               website: command.website,
-              accountLocked: true,
-              enabled: true)
-
-        if (!user.save()) {
-          log.error("Error in saving user ${user.errors}")
-        }
+              )
 
         generateApproval(user, role, targetUrl);
       }
@@ -159,7 +150,6 @@ class RegisterController extends AbstractS2UiController {
     String url = generateLink('approveRegistration', [role: role, email: user.email, targetUrl: targetUrl])
 
     def body = conf.ui.approve.emailBody
-
     if (body.contains('$')) {
       body = evaluate(body, [user: user, url: url])
     }
