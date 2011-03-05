@@ -24,8 +24,9 @@ class RegisterController extends AbstractS2UiController {
 
   def register = {RegisterCommand command ->
 
-    String role = params.role;
-    log.info("Registering with role ${role}");
+    String role = command.role;
+    String targetUrl = command.targetUrl;
+    log.info("Registering with role ${role} == ${command.role}");
     if (command.hasErrors()) {
       render view: 'index', model: [command: command]
       return
@@ -51,7 +52,7 @@ class RegisterController extends AbstractS2UiController {
         if (role.equals(Role.ROLE_CLIENT)) {
           UserRole.create(user, roleInstance);
           springSecurityService.reauthenticate user.email
-          redirect uri: params.targetUrl;
+          redirect uri: targetUrl;
         }
         else if (role.equals(Role.ROLE_CUSTOMER)) {
 
@@ -82,8 +83,8 @@ class RegisterController extends AbstractS2UiController {
                   accountLocked: true,
                   enabled: true)
 
-          if (!user.validate() || !user.save()) {
-            log.error("Error in validating or saving user ${user.errors}")
+          if (!user.save()) {
+            log.error("Error saving user ${user.errors}")
           }
           //since user was previously client, add ROLE_CLIENT
           userRoleClass.create(user, clientRoleInstance);
@@ -112,10 +113,10 @@ class RegisterController extends AbstractS2UiController {
               accountLocked: true,
               enabled: true
               )
-        if (!user.validate() || !user.save()) {
-          log.error("Error in validating or saving user ${user.errors}")
+        if (!user.save()) {
+          log.error("Error in saving user ${user.errors}")
         }
-        chain(action: approveRegistration, params: [email: command.email, role: role, targetUrl: params.targetUrl])
+        chain(action: approveRegistration, params: [email: command.email, role: role, targetUrl: targetUrl])
 
       }
       else if (role.equals(Role.ROLE_CUSTOMER)) {
@@ -137,11 +138,11 @@ class RegisterController extends AbstractS2UiController {
               accountLocked: true,
               enabled: true)
 
-        if (!user.validate() || !user.save()) {
-          log.error("Error in validating or saving user ${user.errors}")
+        if (!user.save()) {
+          log.error("Error in saving user ${user.errors}")
         }
 
-        generateApproval(user, role, params.targetUrl);
+        generateApproval(user, role, targetUrl);
       }
       else {
         log.error("Invalid role ${role}");
@@ -350,7 +351,17 @@ class RegisterController extends AbstractS2UiController {
 
   static final areaCodeValidator = {String areaCode, command ->
     if (!areaCode.isInteger()) {
-      return 'command.areacode.error'
+      return 'registerCommand.areacode.error'
+    }
+  }
+
+
+  static final customerInfoValidator = { val, command ->
+
+    if (command.role.equals(Role.ROLE_CUSTOMER)){
+      if (val == null ||  val.isEmpty())  {
+        return "registerCommand.property.error" ;
+      }
     }
   }
 
@@ -361,7 +372,6 @@ class RegisterCommand {
 
   String email
   String password
-  //todo validate areacode
   String areaCode
   String firstName;
   String lastName;
@@ -373,6 +383,8 @@ class RegisterCommand {
   String country;
   String phone;
   String website;
+  String role;
+  String targetUrl;
 
 
   static constraints = {
@@ -380,6 +392,17 @@ class RegisterCommand {
     email blank: false, email: true
     password blank: false, minSize: 8, maxSize: 64, validator: RegisterController.passwordValidator
     areaCode blank: false, validator: RegisterController.areaCodeValidator
+    firstName validator : RegisterController.customerInfoValidator;
+    businessName validator : RegisterController.customerInfoValidator;
+    category validator : RegisterController.customerInfoValidator;
+    firstName validator : RegisterController.customerInfoValidator;
+    address validator : RegisterController.customerInfoValidator;
+    city validator : RegisterController.customerInfoValidator;
+    state validator : RegisterController.customerInfoValidator;
+    country validator : RegisterController.customerInfoValidator;
+    phone validator : RegisterController.customerInfoValidator;
+    website url:true
+    
   }
 }
 
@@ -389,6 +412,7 @@ class ResetPasswordCommand {
 
   static constraints = {
     password blank: false, minSize: 8, maxSize: 64, validator: RegisterController.passwordValidator
+
 
   }
 }

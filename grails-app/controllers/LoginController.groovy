@@ -43,12 +43,6 @@ class LoginController {
 
 		def config = SpringSecurityUtils.securityConfig
 
-		if (springSecurityService.isLoggedIn()) {
-            log.info("User logged in redirecting to ${params.targetUrl}");
-	        redirect uri: params.targetUrl;
-			return
-		}
-
 		String view = 'auth'
 		String postUrl = "${request.contextPath}${config.apf.filterProcessesUrl}"
         render view: view, model: [postUrl: postUrl,

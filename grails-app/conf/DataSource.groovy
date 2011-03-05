@@ -18,7 +18,8 @@ environments {
 
           dbCreate = "create-drop"
 	      url = "jdbc:hsqldb:file:devMakkalDb;shutdown=true"
-          logSql = true ;
+          //uncomment next line to log sqls
+          //logSql = true ;
         }
     }
     test {
