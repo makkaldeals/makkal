@@ -17,7 +17,7 @@
 	<h1><g:message code='spring.security.ui.login.signin'/></h1>
     <g:if test="${flash.message}">
       <div class="message">
-             ${flash.message}
+             <g:message code="${flash.message}"/>
       </div>
     </g:if>
 

@@ -95,7 +95,7 @@ class LoginController {
 				msg = SpringSecurityUtils.securityConfig.errors.login.locked
 			}
 			else {
-				msg = SpringSecurityUtils.securityConfig.errors.login.fail
+				msg = "spring.security.ui.login.fail";
 			}
 		}
         if (springSecurityService.isAjax(request)) {
