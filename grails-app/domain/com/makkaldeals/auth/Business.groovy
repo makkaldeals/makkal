@@ -25,6 +25,6 @@ class Business {
     city blank: false;
     state blank: false;
     country blank: false;
-    website url:true;
+    website nullable:true, url:true;
   }
 }

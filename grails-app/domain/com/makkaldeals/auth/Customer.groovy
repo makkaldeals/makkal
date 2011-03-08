@@ -18,6 +18,7 @@ class Customer extends User {
   Business business;
   String phone;
 
+  static hasMany = [ posts : Post];
 
   static constraints = {
     firstName blank: false;
@@ -32,43 +33,6 @@ class Customer extends User {
     sb.append(" , " + phone);
 
   }
-
- /* static Customer create(String email,
-                         String password,
-                         String firstName,
-                         String lastName,
-                         String businessName,
-                         String category,
-                         String address,
-                         String city,
-                         String state,
-                         String areaCode,
-                         String country,
-                         String phone,
-                         String website) {
-
-
-
-    Business business = new Business(name: businessName, category: category, address: address, city: city, state: state, country: country, website: website);
-    if (!business.save()) {
-      log.error("Error in saving business ${business.errors}");
-    }
-
-    Customer customer = new Customer(email: email,
-            password: password,
-            firstName: firstName,
-            lastName: lastName,
-            business: business,
-            areaCode: areaCode,
-            phone: phone,
-            accountLocked: true,
-            enabled: true);
-    if (!customer.save()) {
-      log.error("Error in saving user ${customer.errors}") ;
-    }
-
-  }
-  */
 
   static Customer create(Map params) {
 
@@ -85,7 +49,6 @@ class Customer extends User {
     if (!business.save()) {
       log.error("Error in saving business ${business.errors}");
     }
-
     Customer customer = new Customer(email: params.email,
             password: params.password,
             firstName: params.firstName,
@@ -93,7 +56,7 @@ class Customer extends User {
             business: business,
             areaCode: params.areaCode,
             phone: params.phone,
-            accountLocked: true,
+            accountLocked: (params.accountLocked != null ) ? params.accountLocked :true,
             enabled: true);
     if (!customer.save()) {
       log.error("Error in saving user ${customer.errors}") ;

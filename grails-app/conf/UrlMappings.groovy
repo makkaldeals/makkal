@@ -19,6 +19,8 @@ class UrlMappings {
       action = 'index'
     }
 
+    "/customer/tagged/$tag"(controller:"customer", action:"postsByTag")
+
     "500"(view: '/error')
   }
 }
