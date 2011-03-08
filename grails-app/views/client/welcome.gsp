@@ -14,7 +14,7 @@
   </head>
   <body>
 
-  Welcome ${user.email} ! , Area code : ${user.areaCode}  , Role : ${user.getAuthorities()}
+  Welcome ${session.user.email} ! , Area code : ${session.user.areaCode}  , Role : ${session.user.getAuthorities()}
 
 
   </body>

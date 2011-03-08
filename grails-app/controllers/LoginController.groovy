@@ -51,7 +51,7 @@ class LoginController {
 
 
     def authSuccess = {
-      session.user =  springSecurityService.currentUser.email;
+      session.user =  springSecurityService.currentUser;
       redirect uri:params.targetUrl;
     }
 

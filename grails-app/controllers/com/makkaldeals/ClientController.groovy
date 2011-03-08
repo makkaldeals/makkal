@@ -15,8 +15,7 @@ class ClientController {
 
   @Secured(['ROLE_CLIENT' , 'ROLE_ADMIN'])
   def welcome = {
-    def user = springSecurityService.currentUser;
-    render (view : 'welcome' , model : [user:user]) ;
+    render view:'welcome' ;
 
 
   }

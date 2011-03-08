@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page import="com.makkaldeals.auth.User; com.makkaldeals.auth.Business" contentType="text/html;charset=UTF-8" %>
 <html>
   <head>
     <meta name='layout' content='register'/>
@@ -14,10 +14,17 @@
   </head>
   <body>
 
+  <%
+    def user = session.user;
+    if (!user.isAttached()){
+      user.attach();
+    }
+
+  %>
   Welcome ${user.email} ! , Area code : ${user.areaCode}  , Role : ${user.getAuthorities()}
   <br/>
 
-  Details :  ${user}
+  Details :  ${user.firstName} ,  ${user.business.name} , ${user.phone}
 
 
   </body>

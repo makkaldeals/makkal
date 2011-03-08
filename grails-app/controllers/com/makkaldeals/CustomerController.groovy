@@ -17,7 +17,6 @@ class CustomerController {
 
   @Secured(['ROLE_CUSTOMER' , 'ROLE_ADMIN'])
   def welcome = {
-    def user = (Customer) springSecurityService.currentUser;
-    render (view : 'welcome' , model : [user:user]) ;
+    render view:'welcome'
   }
 }
