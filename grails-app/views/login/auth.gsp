@@ -21,7 +21,7 @@
       </div>
     </g:if>
 
-    <g:hiddenField name="spring-security-redirect" value="${params.targetUrl}" />
+    <g:hiddenField name="spring-security-redirect" value="/login/authSuccess?targetUrl=${params.targetUrl}" />
     
    	<table>
 		<tr>
