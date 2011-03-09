@@ -13,6 +13,6 @@
   <title>Makkal deals customer</title>
 </head>
 <body>
-<g:render template="/customer/showPostTempl" model="[post:post]"></g:render>
+<g:render template="/posts/showPostTempl" model="[post:post]"></g:render>
 </body>
 </html>

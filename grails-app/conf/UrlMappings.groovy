@@ -19,11 +19,17 @@ class UrlMappings {
       action = 'index'
     }
 
-    "/customer/tagged/$tag"(controller:"customer", action:"postsByTag")
+    name postsByTag : "/posts/tagged/$tag"(controller:"posts", action:"postsByTag")
 
-    name postsByBusiness : "/$business"(controller:"customer", action:"postsByBusiness")
+    name postsByBusiness : "/$business"(controller:"posts", action:"postsByBusiness")
 
-    "/customer/$author?/$year?/$month?/$day?"(controller:"customer", action:"showPosts") {
+    name postsByBusinessArea : "/business/$business/$city?/$areaCode?"(controller:"posts", action:"postsByBusiness") {
+        constraints {
+                areaCode matches:/\d+/
+        }
+    }
+
+    name postsByAuthor : "/posts/author/$author?/$year?/$month?/$day?"(controller:"posts", action:"showPosts") {
             constraints {
                 year matches:/\d{4}/
                 month matches:/\d{2}/

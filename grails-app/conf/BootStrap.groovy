@@ -50,16 +50,16 @@ class BootStrap {
      UserRole.create(customer1, Role.findByAuthority(Role.ROLE_CUSTOMER),true);
 
      def customer2 = Customer.create(
-                  email: "customer2@gmail.com",
+                  email: "customer2@makkaldeals.com",
                   password: customerPwd,
                   firstName: "Customer 2",
                   lastName: "Gmail",
                   businessName: "business1",
                   category: "category2",
                   address: "address1",
-                  city: "Tampa",
+                  city: "Miami",
                   state: "FL",
-                  areaCode: "33634",
+                  areaCode: "43634",
                   country: "United States",
                   phone: "22222222",
                   accountLocked:false);
@@ -67,7 +67,7 @@ class BootStrap {
      UserRole.create(customer2, Role.findByAuthority(Role.ROLE_CUSTOMER),true);
 
      def customer3 = Customer.create(
-                  email: "customer3@gmail.com",
+                  email: "customer3@makkaldeals.com",
                   password: customerPwd,
                   firstName: "Customer 3",
                   lastName: "Gmail",
@@ -82,6 +82,23 @@ class BootStrap {
                   accountLocked:false);
 
      UserRole.create(customer3, Role.findByAuthority(Role.ROLE_CUSTOMER),true);
+
+      def customer4 = Customer.create(
+                  email: "customer4@makkaldeals.com",
+                  password: customerPwd,
+                  firstName: "Customer 4",
+                  lastName: "Gmail",
+                  businessName: "business1",
+                  category: "category2",
+                  address: "address1",
+                  city: "Tampa",
+                  state: "FL",
+                  areaCode: "33635",
+                  country: "United States",
+                  phone: "22222222",
+                  accountLocked:false);
+
+     UserRole.create(customer4, Role.findByAuthority(Role.ROLE_CUSTOMER),true);
 
      def client = new User(email: "e.rajasekar@makkaldeals.com" , password:clientPwd, enabled:true).save();
 

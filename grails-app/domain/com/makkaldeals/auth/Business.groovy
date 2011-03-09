@@ -15,15 +15,18 @@ class Business {
   String city;
   String state;
   String country;
+  //TODO: areaCode is duplicated in User & business, find better way to deal with it.
+  String areaCode;
   String website;
 
   static constraints = {
 
-    name blank:false, unique:true;
+    name blank:false;
     category blank:false;
     address blank: false;
     city blank: false;
     state blank: false;
+    areaCode blank:false;
     country blank: false;
     website nullable:true, url:true;
   }

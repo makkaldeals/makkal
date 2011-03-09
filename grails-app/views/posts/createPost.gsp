@@ -26,7 +26,7 @@
 
   </h1>
   <g:renderErrors bean="${post}"></g:renderErrors>
-  <g:form name="createPostForm" controller="customer" action="publishPost" >
+  <g:form name="createPostForm" controller="posts" action="publishPost" >
     <g:if test="${post.id}">
       <g:hiddenField name="id" value="${post.id}"/>
     </g:if>

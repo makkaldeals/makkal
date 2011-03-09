@@ -15,12 +15,12 @@
   <body>
   <div >
     <sec:access expression="hasRole('ROLE_CUSTOMER')">
-        <g:link controller="customer" action="createPost"><g:message code="post.create.link" default="Create Post"></g:message></g:link>
+        <g:link controller="posts" action="createPost"><g:message code="post.create.link" default="Create Post"></g:message></g:link>
     </sec:access>
   </div>
 
   <g:each var="post" in="${posts}">
-    <g:render template="/customer/showPostTempl" model="[post:post]"></g:render>
+    <g:render template="/posts/showPostTempl" model="[post:post]"></g:render>
   </g:each>
 
 

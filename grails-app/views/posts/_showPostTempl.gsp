@@ -7,13 +7,13 @@
 --%>
 <div>
   <p><b>Title:
-  <g:link controller="customer" action="showPost" params="[id:post.id]">${post.title}</g:link>
+  <g:link controller="posts" action="showPost" params="[id:post.id]">${post.title}</g:link>
   </b>
   </p>
   <p>${post.content}</p>
   <p>
     Posted by
-      <g:link controller="customer" action="showPosts" params="[author:post.author.email]">${post.author.firstName} ${post.author.lastName}</g:link>
+      <g:link mapping="postsByAuthor" params="[author:post.author.email]">${post.author.firstName} ${post.author.lastName}</g:link>
 
     at
 
@@ -25,7 +25,7 @@
     <!-- Show edit link only if he is author of post -->
     <g:if test="${post.author.id == session.user.id}">
 
-      <g:link controller="customer" action="editPost" params="[id:post.id]">
+      <g:link controller="posts" action="editPost" params="[id:post.id]">
         <g:message code="post.edit.link" default="Edit"></g:message>
       </g:link>
     </g:if>
@@ -33,7 +33,7 @@
     <br>
     Tags :
     <g:each status="i" var="tag" in="${post.tags}">
-      <g:link controller="customer" action="tagged" id="${tag}">${tag}</g:link><g:if test="${i<post.tags.size()-1}">,</g:if>
+      <g:link mapping="postsByTag" params="[tag:tag]">${tag}</g:link><g:if test="${i<post.tags.size()-1}">,</g:if>
     </g:each>
   </p>
   <hr>

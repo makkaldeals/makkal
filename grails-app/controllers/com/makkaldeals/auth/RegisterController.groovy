@@ -228,7 +228,8 @@ class RegisterController extends AbstractS2UiController {
 
     flash.message = message(code: 'spring.security.ui.register.complete')
     log.info("verificaition complete redirecting to ${params.targetUrl} ");
-    redirect uri: params.targetUrl;
+
+    redirect (controller:'login' , action:'authSuccess' , params:params);
   }
 
   def forgotPassword = {
