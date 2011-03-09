@@ -32,12 +32,12 @@ class BootStrap {
     String clientPwd = springSecurityService.encodePassword("client2011");
     String customerPwd = springSecurityService.encodePassword("customer2011");
 
-    def customer = Customer.create(
+    def customer1 = Customer.create(
                   email: "e.rajasekar@gmail.com",
                   password: customerPwd,
                   firstName: "Rajasekar",
                   lastName: "Gmail",
-                  businessName: "customer1",
+                  businessName: "business1",
                   category: "category1",
                   address: "address1",
                   city: "Tampa",
@@ -47,7 +47,41 @@ class BootStrap {
                   phone: "111111111",
                   accountLocked:false);
 
-     UserRole.create(customer, Role.findByAuthority(Role.ROLE_CUSTOMER),true);
+     UserRole.create(customer1, Role.findByAuthority(Role.ROLE_CUSTOMER),true);
+
+     def customer2 = Customer.create(
+                  email: "customer2@gmail.com",
+                  password: customerPwd,
+                  firstName: "Customer 2",
+                  lastName: "Gmail",
+                  businessName: "business1",
+                  category: "category2",
+                  address: "address1",
+                  city: "Tampa",
+                  state: "FL",
+                  areaCode: "33634",
+                  country: "United States",
+                  phone: "22222222",
+                  accountLocked:false);
+
+     UserRole.create(customer2, Role.findByAuthority(Role.ROLE_CUSTOMER),true);
+
+     def customer3 = Customer.create(
+                  email: "customer3@gmail.com",
+                  password: customerPwd,
+                  firstName: "Customer 3",
+                  lastName: "Gmail",
+                  businessName: "business2",
+                  category: "category2",
+                  address: "address1",
+                  city: "Tampa",
+                  state: "FL",
+                  areaCode: "33634",
+                  country: "United States",
+                  phone: "22222222",
+                  accountLocked:false);
+
+     UserRole.create(customer3, Role.findByAuthority(Role.ROLE_CUSTOMER),true);
 
      def client = new User(email: "e.rajasekar@makkaldeals.com" , password:clientPwd, enabled:true).save();
 
@@ -55,11 +89,9 @@ class BootStrap {
 
      Date now = new Date();
 
-     def post = new Post(title:"title1" , content:"content1" , dateCreated:now, lastUpdated:now);
-     customer.addToPosts(post);
-
-     log.info("RAJA ${post.title} by ${post.author.firstName}")
-
+     def post = new Post(title:"title1" , content:"content1" , dateCreated:now, lastUpdated:now, published:true);
+     post.author = customer2;
+     post.save();
 
   }
 

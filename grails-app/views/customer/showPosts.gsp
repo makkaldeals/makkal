@@ -14,22 +14,13 @@
   </head>
   <body>
   <div >
-    <g:link controller="customer" action="createPost"><g:message code="post.create.link" default="Create Post"></g:message></g:link>
+    <sec:access expression="hasRole('ROLE_CUSTOMER')">
+        <g:link controller="customer" action="createPost"><g:message code="post.create.link" default="Create Post"></g:message></g:link>
+    </sec:access>
   </div>
 
   <g:each var="post" in="${posts}">
-
-     <p><b> Title: ${post.title}</b></p>
-     <p>${post.content}</p>
-     <p>
-       Posted by ${post.author.firstName} on
-       <g:formatDate date="${post.dateCreated}" format="MMM dd, yyyy" /> <br>
-       Tags :
-       <g:each status="i" var="tag" in="${post.tags}">
-		<g:link controller="customer" action="tagged" id="${tag}">${tag}</g:link><g:if test="${i<post.tags.size()-1}">, </g:if>
-	   </g:each>
-     </p>
-     <hr>
+    <g:render template="/customer/showPostTempl" model="[post:post]"></g:render>
   </g:each>
 
 

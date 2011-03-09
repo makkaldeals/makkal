@@ -6,6 +6,8 @@
 
 <title><g:layoutTitle default='User Registration'/></title>
 
+<resource:include components="richTextEditor" autoComplete="[skin: 'default']" />
+
 <link rel="shortcut icon" href="${resource(dir:'images',file:'favicon.ico')}" type="image/x-icon"/>
 <g:javascript library='jquery' plugin='jquery' />
 
@@ -17,6 +19,7 @@
 <link rel="stylesheet" media="screen" href="${resource(dir:'css',file:'jquery.safari-checkbox.css')}"/>
 <link rel="stylesheet" media="screen" href="${resource(dir:'css',file:'auth.css')}"/>
 
+
 <nav:resources/>
 <g:layoutHead/>
 
@@ -24,7 +27,8 @@
 
 <body>
 <div id="menu">
-  <nav:render/>
+  <nav:render /> 
+
 </div>
 <g:javascript src='jquery/jquery.jgrowl.js'/>
 <g:javascript src='jquery/jquery.checkbox.js'/>

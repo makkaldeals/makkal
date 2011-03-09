@@ -10,6 +10,7 @@
 <html>
 <head>
   <meta name='layout' content='register'/>
+  <resource:richTextEditor type="full" />
   <title>Makkal deals customer</title>
 </head>
 <body>
@@ -38,7 +39,8 @@
     <p>
     <label for="post.content"><g:message code="post.content.label" default="Content:"/></label> <br>
 
-    <g:textArea name="post.content" value="${post.content}" rows="5" cols="50"/>
+    <!-- <g:textArea name="post.content" value="${post.content}" rows="5" cols="50"/>  -->
+     <richui:richTextEditor name="post.content" value="${post.content}" width="525" />
 
     </p>
     <p>

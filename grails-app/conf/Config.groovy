@@ -1,5 +1,5 @@
 import org.apache.log4j.DailyRollingFileAppender
-
+import com.makkaldeals.auth.User
 
 // locations to search for config files that get merged into the main config
 // config files can either be Java properties files or ConfigSlurper scripts
@@ -115,6 +115,11 @@ grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'com.makkaldea
 grails.plugins.springsecurity.authority.className = 'com.makkaldeals.auth.Role'
 grails.plugins.springsecurity.rememberMe.persistent = true
 grails.plugins.springsecurity.rememberMe.persistentToken.domainClassName = 'com.makkaldeals.auth.PersistentLogin'
+
+//TODO REMOVE GRAILS SIMPLE BLOG ONCE DONE WITH POSTING
+grails.blog.author.evaluator = {
+    User.get(session.user.id).business.name;
+    };
 
 
 
