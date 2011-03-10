@@ -73,6 +73,7 @@ class RegisterController extends AbstractS2UiController {
                   lastName: command.lastName,
                   businessName: command.businessName,
                   category: command.category,
+				  subcategory: command.subcategory,
                   address: command.address,
                   city: command.city,
                   state: command.state,
@@ -124,6 +125,7 @@ class RegisterController extends AbstractS2UiController {
               lastName: command.lastName,
               businessName: command.businessName,
               category: command.category,
+			  subcategory: command.subcategory,
               address: command.address,
               city: command.city,
               state: command.state,
@@ -368,6 +370,7 @@ class RegisterCommand {
   String lastName;
   String businessName;
   String category;
+  String subcategory;
   String address;
   String city;
   String state;
@@ -386,6 +389,7 @@ class RegisterCommand {
     firstName validator : RegisterController.customerInfoValidator;
     businessName validator : RegisterController.customerInfoValidator;
     category validator : RegisterController.customerInfoValidator;
+	subcategory validator : RegisterController.customerInfoValidator;
     firstName validator : RegisterController.customerInfoValidator;
     address validator : RegisterController.customerInfoValidator;
     city validator : RegisterController.customerInfoValidator;

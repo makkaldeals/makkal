@@ -47,8 +47,24 @@
 		                   size='40' labelCode='user.lastName.label'/>
              <s2ui:textFieldRow name='businessName' bean="${command}" value="${command.businessName}"
 		                   size='40' labelCode='user.businessName.label'/>
-             <s2ui:textFieldRow name='category' bean="${command}" value="${command.category}"
-		                   size='40' labelCode='user.category.label'/>
+ 		     <tr class="prop">
+		     	<td valign="top" class="name">
+		     		<label for="category">${message(code: 'user.category.label', default: labelCodeDefault)}</label>
+		     	</td>
+		     	<td valign="top" class="value "> 
+		     		<g:select name='category' from="${['AU'] }" valueMessagePrefix='user.category.label'
+		     				optionKey="${command.category}" optionValue="${command.category}" labelCode='user.category.label' />
+		     	</td>
+ 			 </tr>
+ 			 <tr class="prop">
+		     	<td valign="top" class="name">
+		     		<label for="subcategory">${message(code: 'user.subcategory.label', default: labelCodeDefault)}</label>
+		     	</td>
+		     	<td valign="top" class="value ">
+		     		<g:select name='subcategory' from="${['AGS','APA','ARS','BSP','CD','CWD','GSS','MD','MR','OC','P','SM','SI','TW','TO'] }" valueMessagePrefix='user.subcategory.label'
+		     				optionKey="${command.subcategory}" optionValue="${command.subcategory}" labelCode='user.subcategory.label' />
+		     	</td>
+		     </tr>
 
              <s2ui:textFieldRow name='address' bean="${command}" value="${command.address}"
 		                   size='40' labelCode='user.address.label'/>
@@ -62,8 +78,15 @@
                                   size='40' labelCode='user.areacode.label' labelCodeDefault='Area Code'/>
 
        <g:if test="${params.role == Role.ROLE_CUSTOMER}">
-             <s2ui:textFieldRow name='country' bean="${command}" value="${command.country}"
-		                   size='40' labelCode='user.country.label'/>
+  			<tr class="prop">
+		     	<td valign="top" class="name">
+		     		<label for="country">${message(code: 'user.country.label', default: labelCodeDefault)}</label>
+		     	</td>
+		     	<td valign="top" class="value ">
+		     		<g:select name='country' from="${['US','IN'] }" valueMessagePrefix='user.country.label'
+		     				optionKey="${command.country}" optionValue="${command.country}" labelCode='user.country.label' />
+		     	</td>
+			</tr>	
              <s2ui:textFieldRow name='phone' bean="${command}" value="${command.phone}"
 		                   size='40' labelCode='user.phone.label'/>
              <s2ui:textFieldRow name='website' bean="${command}" value="${command.website}"
