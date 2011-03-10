@@ -83,8 +83,10 @@
 		     		<label for="country">${message(code: 'user.country.label', default: labelCodeDefault)}</label>
 		     	</td>
 		     	<td valign="top" class="value ">
-		     		<g:select name='country' from="${['US','IN'] }" valueMessagePrefix='user.country.label'
+		     		<!-- <g:select name='country' from="${['US','IN'] }" valueMessagePrefix='user.country.label'
 		     				optionKey="${command.country}" optionValue="${command.country}" labelCode='user.country.label' />
+		     		-->	
+		     		<g:countrySelect name="country" from="${['US','IN'] }" valueMessagePrefix="user.country.label" />
 		     	</td>
 			</tr>	
              <s2ui:textFieldRow name='phone' bean="${command}" value="${command.phone}"
