@@ -51,18 +51,18 @@
 		     	<td valign="top" class="name">
 		     		<label for="category">${message(code: 'user.category.label', default: labelCodeDefault)}</label>
 		     	</td>
-		     	<td valign="top" class="value "> 
-		     		<g:select name='command.category' from="${['AU'] }" valueMessagePrefix='user.category.label'
-		     				optionKey="${command.category}" optionValue="${command.category}" labelCode='user.category.label' />
+		     	<td valign="top" class="value ">
+		     		<g:select name='category' from="${['AU'] }" valueMessagePrefix='user.category.label'
+		     				  optionValue='${category}' labelCode='user.category.label' />
 		     	</td>
  			 </tr>
- 			 <tr class="prop">
+ 			<tr class="prop">
 		     	<td valign="top" class="name">
 		     		<label for="subcategory">${message(code: 'user.subcategory.label', default: labelCodeDefault)}</label>
 		     	</td>
 		     	<td valign="top" class="value ">
-		     		<g:select name='command.subcategory' from="${['AGS','APA','ARS','BSP','CD','CWD','GSS','MD','MR','OC','P','SM','SI','TW','TO'] }" valueMessagePrefix='user.subcategory.label'
-		     				optionKey="${command.subcategory}" optionValue="${command.subcategory}" labelCode='user.subcategory.label' />
+		     		<g:select name='subcategory' from="${['AGS','APA','ARS','BSP','CD','CWD','GSS','MD','MR','OC','P','SM','SI','TW','TO'] }" valueMessagePrefix='user.subcategory.label'
+		     				optionKey="${subcategory}" optionValue="${command.subcategory}" labelCode='user.subcategory.label' />
 		     	</td>
 		     </tr>
 
@@ -83,9 +83,9 @@
 		     		<label for="country">${message(code: 'user.country.label', default: labelCodeDefault)}</label>
 		     	</td>
 		     	<td valign="top" class="value ">
-		     		<g:countrySelect name="command.country" from="${['US','IN'] }" valueMessagePrefix="user.country.label" />
+		     		<g:countrySelect name="country" from="${['US','IN'] }" optionValue="${country}" valueMessagePrefix="user.country.label" />
 		     	</td>
-			</tr>	
+			</tr>
              <s2ui:textFieldRow name='phone' bean="${command}" value="${command.phone}"
 		                   size='40' labelCode='user.phone.label'/>
              <s2ui:textFieldRow name='website' bean="${command}" value="${command.website}"
