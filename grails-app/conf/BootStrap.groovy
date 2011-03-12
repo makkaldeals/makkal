@@ -28,88 +28,31 @@ class BootStrap {
   }
 
   def createTestData() {
+    def clientRole = Role.findByAuthority(Role.ROLE_CLIENT)
+    def customerRole = Role.findByAuthority(Role.ROLE_CUSTOMER)
+    String password = springSecurityService.encodePassword("makkaldeals");
 
-    String clientPwd = springSecurityService.encodePassword("client2011");
-    String customerPwd = springSecurityService.encodePassword("customer2011");
+    def u1 = User.build(email:'client1@makkaldeals.com' , password:password , enabled:true, accountLocked : false, areaCode : "33634");
+    UserRole.create(u1,clientRole,true);
 
-    def customer1 = Customer.create(
-                  email: "e.rajasekar@gmail.com",
-                  password: customerPwd,
-                  firstName: "Rajasekar",
-                  lastName: "Gmail",
-                  businessName: "business1",
-                  category: "category1",
-                  address: "address1",
-                  city: "Tampa",
-                  state: "FL",
-                  areaCode: "33634",
-                  country: "United States",
-                  phone: "111111111",
-                  accountLocked:false);
+    def b1 = Business.build();
+    def b2 = Business.build(name:b1.name,category:b1.category, city:'Miami' , areaCode:"45678");// same name as b1, but different city,areacode
+    def b3 = Business.build();
+    Map customers = [:];
+    customers.c1 = Customer.build(business:b1, password:password);
+    customers.c2 = Customer.build(business:b1, password:password);
+    customers.c3 = Customer.build(business:b2, password:password);
+    customers.c4 = Customer.build(business:b3, password:password);
+    def p11 = Post.build(author:customers.c1);
+    def p12 = Post.build(author:customers.c1);
+    def p21 = Post.build(author:customers.c2);
+    def p31 = Post.build(author:customers.c3);
+    def p41 = Post.build(author:customers.c4);
+    customers.values().each {  c->
+      UserRole.create(c, customerRole,true);
+    }
 
-     UserRole.create(customer1, Role.findByAuthority(Role.ROLE_CUSTOMER),true);
-
-     def customer2 = Customer.create(
-                  email: "customer2@makkaldeals.com",
-                  password: customerPwd,
-                  firstName: "Customer 2",
-                  lastName: "Gmail",
-                  businessName: "business1",
-                  category: "category2",
-                  address: "address1",
-                  city: "Miami",
-                  state: "FL",
-                  areaCode: "43634",
-                  country: "United States",
-                  phone: "22222222",
-                  accountLocked:false);
-
-     UserRole.create(customer2, Role.findByAuthority(Role.ROLE_CUSTOMER),true);
-
-     def customer3 = Customer.create(
-                  email: "customer3@makkaldeals.com",
-                  password: customerPwd,
-                  firstName: "Customer 3",
-                  lastName: "Gmail",
-                  businessName: "business2",
-                  category: "category2",
-                  address: "address1",
-                  city: "Tampa",
-                  state: "FL",
-                  areaCode: "33634",
-                  country: "United States",
-                  phone: "22222222",
-                  accountLocked:false);
-
-     UserRole.create(customer3, Role.findByAuthority(Role.ROLE_CUSTOMER),true);
-
-      def customer4 = Customer.create(
-                  email: "customer4@makkaldeals.com",
-                  password: customerPwd,
-                  firstName: "Customer 4",
-                  lastName: "Gmail",
-                  businessName: "business1",
-                  category: "category2",
-                  address: "address1",
-                  city: "Tampa",
-                  state: "FL",
-                  areaCode: "33635",
-                  country: "United States",
-                  phone: "22222222",
-                  accountLocked:false);
-
-     UserRole.create(customer4, Role.findByAuthority(Role.ROLE_CUSTOMER),true);
-
-     def client = new User(email: "e.rajasekar@makkaldeals.com" , password:clientPwd, enabled:true).save();
-
-     UserRole.create(client, Role.findByAuthority(Role.ROLE_CLIENT),true);
-
-     Date now = new Date();
-
-     def post = new Post(title:"title1" , content:"content1" , dateCreated:now, lastUpdated:now, published:true);
-     post.author = customer2;
-     post.save();
-
+   
   }
 
   def destroy = {

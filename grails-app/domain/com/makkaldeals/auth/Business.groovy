@@ -30,4 +30,8 @@ class Business {
     country blank: false;
     website nullable:true, url:true;
   }
+
+  public String toString(){
+    return "${name} , ${city} , ${areaCode}";
+  }
 }

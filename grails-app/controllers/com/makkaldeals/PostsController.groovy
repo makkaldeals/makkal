@@ -105,8 +105,6 @@ class PostsController {
       business  = Business.findAllByNameAndAreaCode(params.business, areaCode);
     }
 
-    log.info("Matching businesses ${business}");
-    
     //TODO implement pagination
     def posts = Post.withCriteria {
 

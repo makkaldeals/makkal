@@ -29,7 +29,7 @@ class Customer extends User {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append(firstName);
-    sb.append(" , " + business.name);
+    sb.append(" , " + business?.name);
     sb.append(" , " + phone);
 
   }
