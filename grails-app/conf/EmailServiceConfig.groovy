@@ -1,19 +1,18 @@
-security {
-	ui {
-		register {
-			emailBody = '''\
+email {
+  from = 'do.not.reply@localhost'
+  register {
+    body = '''\
 Hi ,<br/>
 <br/>
 You (or someone pretending to be you) created an account with this email address.<br/>
 <br/>
 If you made the request, please click <a href="$url">here</a> to finish the registration.
 '''
-			emailFrom = 'do.not.reply@localhost'
-			emailSubject = 'New Account registration with Makkal deals'
-		}
+    subject = 'New Account registration with Makkal deals'
+  }
 
-		forgotPassword {
-			emailBody = '''\
+  forgotPassword {
+    body = '''\
 Hi ,<br/>
 <br/>
 You (or someone pretending to be you) requested that your password be reset.<br/>
@@ -22,12 +21,11 @@ If you didn't make this request then ignore the email; no changes have been made
 <br/>
 If you did make the request, then click <a href="$url">here</a> to reset your password.
 '''
-			emailFrom = 'do.not.reply@localhost'
-			emailSubject = 'Password Reset for Makkal deals Account'
-		}
+    subject = 'Password Reset for Makkal deals Account'
+  }
 
-      approve {
-           emailBody = '''\
+  approve {
+    body = '''\
 Hi Admin ,<br/>
 <br/>
 $user.email has registered new customer account with Makkal Deals.
@@ -50,20 +48,18 @@ Please verify information provided by user below and click <a href="$url">here</
 </table>
 
 '''
-			emailFrom = 'do.not.reply@localhost'
-			emailSubject = 'New Customer registration with Makkal deals'
-		}
+    subject = 'New Customer registration with Makkal deals'
+  }
 
-      postConfirmation {
-			emailBody = '''\
+  postConfirmation {
+    body = '''\
 Hi $user.firstName,<br/>
 <br/>
 Your post is successfully posted to makkaldeals.<br/>
 <br/>
 If you would like to view your post, click this  <a href="$url">$url</a>.
 '''
-			emailFrom = 'do.not.reply@localhost'
-			emailSubject = 'Your post is published'
-		}
-	}
+    subject = 'Your post is published'
+  }
 }
+
