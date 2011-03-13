@@ -9,6 +9,7 @@ import com.makkaldeals.auth.Business
 class PostsController {
 
   def springSecurityService;
+  def emailService;
   
   def index = { redirect action: showPosts }
 
@@ -58,12 +59,14 @@ class PostsController {
       post.published = true
       if (post.save()) {
         post.parseTags(params.tags, ",")
+        emailService.sendPostConfirmation(post);
         redirect(action: 'showPosts');
       }
       else {
         render view: "createPost", model: [post: post]
       }
     }
+
 
   }
 

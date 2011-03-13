@@ -53,5 +53,17 @@ Please verify information provided by user below and click <a href="$url">here</
 			emailFrom = 'do.not.reply@localhost'
 			emailSubject = 'New Customer registration with Makkal deals'
 		}
+
+      postConfirmation {
+			emailBody = '''\
+Hi $user.firstName,<br/>
+<br/>
+Your post is successfully posted to makkaldeals.<br/>
+<br/>
+If you would like to view your post, click this  <a href="$url">$url</a>.
+'''
+			emailFrom = 'do.not.reply@localhost'
+			emailSubject = 'Your post is published'
+		}
 	}
 }

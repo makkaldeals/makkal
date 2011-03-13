@@ -3,20 +3,18 @@ package com.makkaldeals.auth
 
 import groovy.text.SimpleTemplateEngine
 
-import org.codehaus.groovy.grails.commons.ApplicationHolder as AH
 import org.codehaus.groovy.grails.plugins.springsecurity.NullSaltSource
 import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
 import org.codehaus.groovy.grails.plugins.springsecurity.ui.RegistrationCode
 import grails.plugins.springsecurity.ui.AbstractS2UiController
-import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH;
 
 
 class RegisterController extends AbstractS2UiController {
 
   static defaultAction = 'index'
 
-  def mailService
   def saltSource
+  def emailService;
 
   def index = {
     [command: new RegisterCommand()]
@@ -148,45 +146,14 @@ class RegisterController extends AbstractS2UiController {
 
   private void generateApproval(User user, String role, String targetUrl) {
 
-    def conf = SpringSecurityUtils.securityConfig;
-    String url = generateLink('approveRegistration', [role: role, email: user.email, targetUrl: targetUrl])
-
-    def body = conf.ui.approve.emailBody
-    if (body.contains('$')) {
-      body = evaluate(body, [user: user, url: url])
-    }
-    mailService.sendMail {
-      to CH.config.makkaldeals.user.admin.email
-      from conf.ui.approve.emailFrom
-      subject conf.ui.approve.emailSubject
-      html body.toString()
-    }
+    emailService.sendApproval(user,role,targetUrl);
     render view: 'index', model: [confirmationMessage: message(code: 'spring.security.ui.approval.sent')]
 
   }
 
   def approveRegistration = {
-
-    String email = params.email;
-    String role = params.role;
-    String targetUrl = params.targetUrl;
-
-    def registrationCode = new RegistrationCode(username: email).save()
-    String url = generateLink('verifyRegistration', [t: registrationCode.token, role: role, targetUrl: targetUrl])
-
-    def conf = SpringSecurityUtils.securityConfig;
-    def body = conf.ui.register.emailBody
-
-    if (body.contains('$')) {
-      body = evaluate(body, [url: url])
-    }
-    mailService.sendMail {
-      to email
-      from conf.ui.register.emailFrom
-      subject conf.ui.register.emailSubject
-      html body.toString()
-    }
-    render view: 'index', model: [confirmationMessage: message(code: 'spring.security.ui.register.sent', args: [email])]
+    emailService.sendVerifyRegistration(params.email, params.role, params.targetUrl)
+    render view: 'index', model: [confirmationMessage: message(code: 'spring.security.ui.register.sent', args: [params.email])]
   }
 
   def verifyRegistration = {
@@ -252,21 +219,7 @@ class RegisterController extends AbstractS2UiController {
       flash.error = message(code: 'spring.security.ui.forgotPassword.user.notFound')
       return
     }
-    def registrationCode = new RegistrationCode(username: user.email).save()
-    String url = generateLink('resetPassword', [t: registrationCode.token, targetUrl: params.targetUrl])
-
-    def conf = SpringSecurityUtils.securityConfig
-    def body = conf.ui.forgotPassword.emailBody
-    if (body.contains('$')) {
-      body = evaluate(body, [user: user, url: url])
-    }
-
-    mailService.sendMail {
-      to user.email
-      from conf.ui.forgotPassword.emailFrom
-      subject conf.ui.forgotPassword.emailSubject
-      html body.toString()
-    }
+    emailService.sendForgotPassword(user.email,params.targetUrl);
 
     [emailSent: true]
   }
