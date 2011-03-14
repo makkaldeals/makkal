@@ -15,6 +15,7 @@ class RegisterController extends AbstractS2UiController {
 
   def saltSource
   def emailService;
+  def customerService;
 
   def index = {
     [command: new RegisterCommand()]
@@ -32,7 +33,6 @@ class RegisterController extends AbstractS2UiController {
 
 
     def userClass = lookupUserClass();
-    def customerClass = lookupUserClass(Role.ROLE_CUSTOMER);
     def roleClass = lookupRoleClass();
     def userRoleClass = lookupUserRoleClass();
     def user = userClass.findByEmail(command.email);
@@ -64,7 +64,7 @@ class RegisterController extends AbstractS2UiController {
           userRoleClass.remove(user, clientRoleInstance, true);
           user.delete(flush:true);
           //create user as ROLE_CUSTOMER
-          user = customerClass.
+          user = customerService.
                   create(email: command.email,
                   password: password,
                   firstName: command.firstName,
@@ -116,7 +116,7 @@ class RegisterController extends AbstractS2UiController {
       }
       else if (role.equals(Role.ROLE_CUSTOMER)) {
 
-        user = customerClass.
+        user = customerService.
               create(email: command.email,
               password: password,
               firstName: command.firstName,
