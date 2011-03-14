@@ -11,6 +11,7 @@ class Business {
 
   String name;
   String category;
+  String subcategory;
   String address;
   String city;
   String state;
@@ -23,6 +24,7 @@ class Business {
 
     name blank:false;
     category blank:false;
+	subcategory blank:false;
     address blank: false;
     city blank: false;
     state blank: false;
