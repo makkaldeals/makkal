@@ -20,8 +20,8 @@ public enum AutomativeEnum implements SubcategoryEnum<AutomativeEnum> {
 	}
 
 	@Override
-	public AutomativeEnum[] subCategoryValues() {
-		// TODO Auto-generated method stub
-		return AutomativeEnum.values();
-	}	
+	public AutomativeEnum subCategory() {
+		return this;
+	}
+
 }

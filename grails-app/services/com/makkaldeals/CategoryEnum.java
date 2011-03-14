@@ -1,18 +1,18 @@
 package com.makkaldeals;
 
-import java.util.List;
-
-import com.makkaldeals.AutomativeEnum;
 public enum CategoryEnum { 
 	
-	AAE("Arts and Entertainment", AutomativeEnum.values()), AU("Automative", AutomativeEnum.values())	;
+	
+	
+	AAE("Arts and Entertainment", ArtsAndEntertainmentEnum.AP), AU("Automative", AutomativeEnum.AGS)	;
 	
 	private String description;
 	
-	private SubcategoryEnum<?>[] subCategory; 
+	private SubcategoryEnum<?> subCategory; 
 	
-	private CategoryEnum(String description, SubcategoryEnum<?>[] subcategory) {
+	private CategoryEnum(String description, SubcategoryEnum<?> subcategory) {
 		this.description = description;
+		
 		this.subCategory = subcategory;
 	}
 	
@@ -24,7 +24,7 @@ public enum CategoryEnum {
 		return category.description;
 	}
 
-	public SubcategoryEnum<?>[] getSubcategories(String category) {
+	public SubcategoryEnum<?> getSubcategories(String category) {
 		// TODO Auto-generated method stub
 		return subCategory;
 	}	
