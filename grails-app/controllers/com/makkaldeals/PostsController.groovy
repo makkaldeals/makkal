@@ -28,8 +28,6 @@ class PostsController {
 
   }
 
-
-
   @Secured(['ROLE_CUSTOMER', 'ROLE_ADMIN'])
   def createPost = {
     def post = new Post(request.method == 'POST' ? params['post'] : [:])
@@ -50,7 +48,7 @@ class PostsController {
   @Secured(['ROLE_CUSTOMER', 'ROLE_ADMIN'])
   def publishPost = {
 
-    //TODO: HANDLE SAVE BUTTON IN RICH TEXT EDITOR.
+    //TODO: HANDLE SAVE BUTTON IN RICH TEXT EDITOR (ckeditor.com).
     //TODO: IMPLEMENT IMAGE UPLOADING
     def post = Post.get(params.id) ?: new Post()
     Post.withTransaction {
