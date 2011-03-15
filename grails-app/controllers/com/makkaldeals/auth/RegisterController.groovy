@@ -7,6 +7,8 @@ import org.codehaus.groovy.grails.plugins.springsecurity.NullSaltSource
 import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
 import org.codehaus.groovy.grails.plugins.springsecurity.ui.RegistrationCode
 import grails.plugins.springsecurity.ui.AbstractS2UiController
+import grails.validation.ValidationException
+
 
 
 class RegisterController extends AbstractS2UiController {
@@ -62,28 +64,35 @@ class RegisterController extends AbstractS2UiController {
           //delete existing user with ROLE_CLIENT
           def clientRoleInstance = Role.findByAuthority(Role.ROLE_CLIENT);
           userRoleClass.remove(user, clientRoleInstance, true);
-          user.delete(flush:true);
+          user.delete(flush: true);
           //create user as ROLE_CUSTOMER
-          user = customerService.
-                  create(email: command.email,
-                  password: password,
-                  firstName: command.firstName,
-                  lastName: command.lastName,
-                  businessName: command.businessName,
-                  category: command.category,
-				  subcategory: command.subcategory,
-                  address: command.address,
-                  city: command.city,
-                  state: command.state,
-                  areaCode: command.areaCode,
-                  country: command.country,
-                  phone: command.phone,
-                  website: command.website,
-                  )
 
-          //since user was previously client, add ROLE_CLIENT
-          userRoleClass.create(user, clientRoleInstance);
-          generateApproval(user, role, params.targetUrl);
+          try {
+            user = customerService.
+                    create(email: command.email,
+                    password: password,
+                    firstName: command.firstName,
+                    lastName: command.lastName,
+                    businessName: command.businessName,
+                    category: command.category,
+                    subcategory: command.subcategory,
+                    address: command.address,
+                    city: command.city,
+                    state: command.state,
+                    areaCode: command.areaCode,
+                    country: command.country,
+                    phone: command.phone,
+                    website: command.website,
+            )
+
+            //since user was previously client, add ROLE_CLIENT
+            userRoleClass.create(user, clientRoleInstance);
+            generateApproval(user, role, params.targetUrl);
+          } catch (ValidationException ve) {
+            command.errors = ve.errors;
+            render(view: 'index', model: [command: command])
+          }
+
         }
         else {
           log.error("This should never happen");
@@ -103,37 +112,46 @@ class RegisterController extends AbstractS2UiController {
       if (role.equals(Role.ROLE_CLIENT)) {
 
         user = userClass.newInstance(email: command.email,
-              password: password,
-              areaCode: command.areaCode,
-              accountLocked: true,
-              enabled: true
-              )
-        if (!user.save()) {
+                password: password,
+                areaCode: command.areaCode,
+                accountLocked: true,
+                enabled: true
+        )
+        try {
+          user.save(failOnError: true);
+          chain(action: approveRegistration, params: [email: command.email, role: role, targetUrl: targetUrl])
+        }catch (ValidationException ve) {
           log.error("Error in saving user ${user.errors}")
+          command.errors = ve.errors;
+          render(view: 'index', model: [command: command])
         }
-        chain(action: approveRegistration, params: [email: command.email, role: role, targetUrl: targetUrl])
-
       }
       else if (role.equals(Role.ROLE_CUSTOMER)) {
 
-        user = customerService.
-              create(email: command.email,
-              password: password,
-              firstName: command.firstName,
-              lastName: command.lastName,
-              businessName: command.businessName,
-              category: command.category,
-			  subcategory: command.subcategory,
-              address: command.address,
-              city: command.city,
-              state: command.state,
-              areaCode: command.areaCode,
-              country: command.country,
-              phone: command.phone,
-              website: command.website,
-              )
+        try {
+          user = customerService.
+                  create(email: command.email,
+                  password: password,
+                  firstName: command.firstName,
+                  lastName: command.lastName,
+                  businessName: command.businessName,
+                  category: command.category,
+                  subcategory: command.subcategory,
+                  address: command.address,
+                  city: command.city,
+                  state: command.state,
+                  areaCode: command.areaCode,
+                  country: command.country,
+                  phone: command.phone,
+                  website: command.website,
+          );
 
-        generateApproval(user, role, targetUrl);
+          generateApproval(user, role, targetUrl);
+        } catch (ValidationException ve) {
+          command.errors = ve.errors;
+          render(view: 'index', model: [command: command])
+        }
+
       }
       else {
         log.error("Invalid role ${role}");
@@ -146,7 +164,7 @@ class RegisterController extends AbstractS2UiController {
 
   private void generateApproval(User user, String role, String targetUrl) {
 
-    emailService.sendApproval(user,role,targetUrl);
+    emailService.sendApproval(user, role, targetUrl);
     render view: 'index', model: [confirmationMessage: message(code: 'spring.security.ui.approval.sent')]
 
   }
@@ -198,7 +216,7 @@ class RegisterController extends AbstractS2UiController {
     flash.message = message(code: 'spring.security.ui.register.complete')
     log.info("verificaition complete redirecting to ${params.targetUrl} ");
 
-    redirect (controller:'login' , action:'authSuccess' , params:params);
+    redirect(controller: 'login', action: 'authSuccess', params: params);
   }
 
   def forgotPassword = {
@@ -219,7 +237,7 @@ class RegisterController extends AbstractS2UiController {
       flash.error = message(code: 'spring.security.ui.forgotPassword.user.notFound')
       return
     }
-    emailService.sendForgotPassword(user.email,params.targetUrl);
+    emailService.sendForgotPassword(user.email, params.targetUrl);
 
     [emailSent: true]
   }
@@ -296,7 +314,7 @@ class RegisterController extends AbstractS2UiController {
   }
 
   static final areaCodeValidator = {String areaCode, command ->
-    if (!areaCode.isInteger()) {
+    if (!areaCode?.isInteger()) {
       return 'registerCommand.areacode.error'
     }
   }
@@ -304,9 +322,9 @@ class RegisterController extends AbstractS2UiController {
 
   static final customerInfoValidator = { val, command ->
 
-    if (command.role.equals(Role.ROLE_CUSTOMER)){
-      if (val == null ||  val.isEmpty())  {
-        return "registerCommand.property.error" ;
+    if (command.role.equals(Role.ROLE_CUSTOMER)) {
+      if (val == null || val.isEmpty()) {
+        return "registerCommand.property.error";
       }
     }
   }
@@ -339,18 +357,18 @@ class RegisterCommand {
     email blank: false, email: true
     password blank: false, minSize: 8, maxSize: 64, validator: RegisterController.passwordValidator
     areaCode blank: false, validator: RegisterController.areaCodeValidator
-    firstName validator : RegisterController.customerInfoValidator;
-    businessName validator : RegisterController.customerInfoValidator;
-    category validator : RegisterController.customerInfoValidator;
-	subcategory validator : RegisterController.customerInfoValidator;
-    firstName validator : RegisterController.customerInfoValidator;
-    address validator : RegisterController.customerInfoValidator;
-    city validator : RegisterController.customerInfoValidator;
-    state validator : RegisterController.customerInfoValidator;
-    country validator : RegisterController.customerInfoValidator;
-    phone validator : RegisterController.customerInfoValidator;
-    website url:true
-    
+    firstName validator: RegisterController.customerInfoValidator;
+    businessName validator: RegisterController.customerInfoValidator;
+    category validator: RegisterController.customerInfoValidator;
+    subcategory validator: RegisterController.customerInfoValidator;
+    firstName validator: RegisterController.customerInfoValidator;
+    address validator: RegisterController.customerInfoValidator;
+    city validator: RegisterController.customerInfoValidator;
+    state validator: RegisterController.customerInfoValidator;
+    country validator: RegisterController.customerInfoValidator;
+    phone validator: RegisterController.customerInfoValidator;
+    website url: true
+
   }
 }
 

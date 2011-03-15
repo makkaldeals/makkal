@@ -24,7 +24,7 @@
       <br/>
       ${confirmationMessage}
 	</g:if>
-    
+
 	<g:else>
 
 	<br/>
@@ -62,7 +62,7 @@
 		     	</td>
 		     	<td valign="top" class="value ">
 		     		<g:select name='subcategory' from="${['AGS','APA','ARS','BSP','CD','CWD','GSS','MD','MR','OC','P','SM','SI','TW','TO'] }" valueMessagePrefix='user.subcategory.label'
-		     				optionKey="${subcategory}" optionValue="${command.subcategory}" labelCode='user.subcategory.label' />
+		     				optionKey="${subcategory}" optionValue="${subcategory}" labelCode='user.subcategory.label' />
 		     	</td>
 		     </tr>
 

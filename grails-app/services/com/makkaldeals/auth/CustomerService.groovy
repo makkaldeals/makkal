@@ -1,5 +1,6 @@
 package com.makkaldeals.auth
 
+
 /**
  * com.makkaldeals.auth
  *
@@ -9,9 +10,9 @@ package com.makkaldeals.auth
  */
 class CustomerService {
 
-    static transactional = true
+  static transactional = true
 
-    public Customer create(Map params) {
+  public Customer create(Map params) {
 
     Business business = Business.findByNameAndAreaCode(params.businessName, params.areaCode);
 
@@ -20,10 +21,8 @@ class CustomerService {
 
     //Look up existing business record before inserting
     if (!business) {
-      business = new Business(name: params.businessName, category: params.category, subcategory:params.subcategory, address: params.address, city: params.city, state: params.state, areaCode: params.areaCode, country: params.country, website: params.website);
-      if (!business.save()) {
-        log.error("Error in saving business ${business.errors}");
-      }
+      business = new Business(name: params.businessName, category: params.category, subcategory: params.subcategory, address: params.address, city: params.city, state: params.state, areaCode: params.areaCode, country: params.country, website: params.website);
+      business.save(failOnError :true);
     }
     else {
       log.warn("Adding customer to exisiting business ${business.name} found with area code ${business.areaCode}")
@@ -39,10 +38,7 @@ class CustomerService {
             phone: params.phone,
             accountLocked: (params.accountLocked != null) ? params.accountLocked : true,
             enabled: true);
-    if (!customer.save()) {
-      log.error("Error in saving user ${customer.errors}");
-    }
-
+    customer.save(failOnError :true);
     return customer;
 
   }
