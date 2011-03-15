@@ -20,7 +20,7 @@ class CustomerService {
 
     //Look up existing business record before inserting
     if (!business) {
-      business = new Business(name: params.businessName, category: params.category, address: params.address, city: params.city, state: params.state, areaCode: params.areaCode, country: params.country, website: params.website);
+      business = new Business(name: params.businessName, category: params.category, subcategory:params.subcategory, address: params.address, city: params.city, state: params.state, areaCode: params.areaCode, country: params.country, website: params.website);
       if (!business.save()) {
         log.error("Error in saving business ${business.errors}");
       }
