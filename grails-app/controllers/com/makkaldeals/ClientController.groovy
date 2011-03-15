@@ -16,7 +16,5 @@ class ClientController {
   @Secured(['ROLE_CLIENT' , 'ROLE_ADMIN'])
   def welcome = {
     render view:'welcome' ;
-
-
   }
 }
