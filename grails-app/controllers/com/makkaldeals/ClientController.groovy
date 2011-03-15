@@ -9,7 +9,6 @@ class ClientController {
   def springSecurityService;
 
   def index = {
-
     redirect(controller:'login' ,action:'index' , params:["targetUrl":"/client/welcome", "role":Role.ROLE_CLIENT])
   }
 
