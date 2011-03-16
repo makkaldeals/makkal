@@ -37,7 +37,7 @@ class BootStrap {
 
     def b1 = Business.build();
     def b2 = Business.build(name:b1.name,category:b1.category, city:'Miami' , areaCode:"45678");// same name as b1, but different city,areacode
-    def b3 = Business.build();
+    def b3 = Business.build(name:b1.name,category:b1.category, areaCode:"33635");
     Map customers = [:];
 
     customers.c0 = Customer.build(email:"e.rajasekar@makkaldeals.com" , business:b1, password:password);

@@ -19,7 +19,7 @@ import grails.util.GrailsUtil;
  */
 class EmailService implements InitializingBean{
 
-  static transactional = true
+  static transactional = false
   def mailService;
   def conf;
 

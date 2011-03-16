@@ -1,0 +1,78 @@
+package com.makkaldeals
+
+import com.makkaldeals.auth.Post
+import com.makkaldeals.auth.Customer
+import com.makkaldeals.auth.Business
+
+class PostService {
+
+  def emailService;
+  def springSecurityService;
+
+  static transactional = false;
+
+  public Post create(Map params) {
+    def post = Post.get(params.id) ?: new Post()
+    post.properties = params['post']
+    post.author = springSecurityService.currentUser;
+    post.published = true
+    if (post.save()) {
+      post.parseTags(params.tags, ",")
+      emailService.sendPostConfirmation(post);
+    }
+    return post;
+
+  }
+
+  public List<Post> findPostsByAuthor(String author) {
+    def _author = author ? Customer.findByEmail(author) : springSecurityService.currentUser;
+    List<Post> posts = Post.withCriteria {
+      eq 'author', _author
+      eq 'published', true
+      order "dateCreated", "desc"
+      cache true
+    }
+    return posts;
+  }
+
+  public List<Post> findPostsByTag(String tag) {
+    //def posts = Post.findAllByTag(params.tag.trim(), [max: 10, offset: params.offset, sort: "dateCreated", order: "desc"])
+    def posts = Post.findAllByTag(tag.trim(), [sort: "dateCreated", order: "desc"])
+    return posts.findAll { it.published };
+
+  }
+
+  public List<Post> findPostsByBusiness(Map params){
+    def business;
+    def city = params.city;
+    def areaCode = params.areaCode;
+    log.info("RAJA ${params}")
+
+    if (!city && !areaCode) {
+      business = Business.findAllByName(params.business);
+    }
+    else if (city && areaCode) {
+      business = Business.withCriteria {
+        ilike 'city', city
+        eq 'areaCode', areaCode
+      }
+    } else if (city) {
+      business = Business.findAllByNameAndCityIlike(params.business, city)
+    } else if (areaCode) {
+      business = Business.findAllByNameAndAreaCode(params.business, areaCode);
+    }
+    log.info("RAJA BUSINESS ${business}")
+    //TODO implement pagination
+    List<Post> posts = Post.withCriteria {
+
+      author {
+        'in'('business', business)
+      }
+      eq 'published', true
+      order "dateCreated", "desc"
+      cache true
+    }
+
+    return posts;
+  }
+}
