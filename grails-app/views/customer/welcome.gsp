@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 
-<%@ page import="com.makkaldeals.auth.User; com.makkaldeals.auth.Business" contentType="text/html;charset=UTF-8" %>
+<%@ page import="com.makkaldeals.auth.User; com.makkaldeals.Business" contentType="text/html;charset=UTF-8" %>
 <html>
   <head>
     <meta name='layout' content='register'/>

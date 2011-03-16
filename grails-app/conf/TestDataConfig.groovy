@@ -8,7 +8,7 @@ testDataConfig {
            accountLocked = false
            enabled = true;
          }
-         'com.makkaldeals.auth.Business' {
+         'com.makkaldeals.Business' {
            def i = 1;
            name = {-> "business${i}"} ;
            category = {-> "category${i++}"}
@@ -16,7 +16,7 @@ testDataConfig {
            state = "Florida";
            areaCode = "33634"
          }
-        'com.makkaldeals.auth.Post' {
+        'com.makkaldeals.Post' {
           def i=1;
           title = {-> "title${i}"};
           content = {-> "content${i++}"}

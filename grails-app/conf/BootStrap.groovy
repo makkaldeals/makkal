@@ -1,6 +1,8 @@
 import com.makkaldeals.auth.*;
 
-import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH;
+import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
+import com.makkaldeals.Post
+import com.makkaldeals.Business;
 
 class BootStrap {
 

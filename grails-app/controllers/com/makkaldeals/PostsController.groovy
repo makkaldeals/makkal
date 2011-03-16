@@ -1,10 +1,6 @@
 package com.makkaldeals
 
 import grails.plugins.springsecurity.Secured
-import com.makkaldeals.auth.Role
-import com.makkaldeals.auth.Customer
-import com.makkaldeals.auth.Post
-import com.makkaldeals.auth.Business
 
 class PostsController {
 

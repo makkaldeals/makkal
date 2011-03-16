@@ -1,6 +1,7 @@
-package com.makkaldeals.auth
+package com.makkaldeals
 
 import org.grails.taggable.*
+import com.makkaldeals.auth.Customer
 
 /**
  * com.makkaldeals.auth

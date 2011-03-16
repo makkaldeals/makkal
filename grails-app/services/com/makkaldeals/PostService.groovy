@@ -1,8 +1,6 @@
 package com.makkaldeals
 
-import com.makkaldeals.auth.Post
 import com.makkaldeals.auth.Customer
-import com.makkaldeals.auth.Business
 
 class PostService {
 
@@ -46,7 +44,6 @@ class PostService {
     def business;
     def city = params.city;
     def areaCode = params.areaCode;
-    log.info("RAJA ${params}")
 
     if (!city && !areaCode) {
       business = Business.findAllByName(params.business);
@@ -61,7 +58,7 @@ class PostService {
     } else if (areaCode) {
       business = Business.findAllByNameAndAreaCode(params.business, areaCode);
     }
-    log.info("RAJA BUSINESS ${business}")
+
     //TODO implement pagination
     List<Post> posts = Post.withCriteria {
 

@@ -2,7 +2,7 @@ package com.makkaldeals
 
 
 import groovy.text.SimpleTemplateEngine
-import com.makkaldeals.auth.Post
+
 import org.springframework.web.context.request.RequestContextHolder
 import org.codehaus.groovy.grails.plugins.springsecurity.ui.RegistrationCode
 import com.makkaldeals.auth.User

@@ -1,4 +1,4 @@
-package com.makkaldeals.auth
+package com.makkaldeals
 
 /**
  * com.makkaldeals.auth

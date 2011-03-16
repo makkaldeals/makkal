@@ -1,6 +1,8 @@
 package com.makkaldeals.auth
 
 import org.apache.commons.logging.LogFactory
+import com.makkaldeals.Post
+import com.makkaldeals.Business
 
 /**
  * com.makkaldeals.auth

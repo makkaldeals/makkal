@@ -1,5 +1,6 @@
 package com.makkaldeals.auth
 
+import com.makkaldeals.Business
 
 /**
  * com.makkaldeals.auth
