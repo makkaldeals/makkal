@@ -12,7 +12,8 @@ class PostsController {
   @Secured(['IS_AUTHENTICATED_REMEMBERED'])
   def showPosts = {
 
-    render(view: 'showPosts', model: [posts: postService.findPostsByAuthor(params.author)]);
+    def results =  postService.findPostsByAuthor(params);
+    render(view: 'showPosts', model: [posts:results]);
 
   }
 

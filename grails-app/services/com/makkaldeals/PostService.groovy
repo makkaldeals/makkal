@@ -1,6 +1,7 @@
 package com.makkaldeals
 
 import com.makkaldeals.auth.Customer
+import grails.orm.PagedResultList
 
 class PostService {
 
@@ -22,15 +23,18 @@ class PostService {
 
   }
 
-  public List<Post> findPostsByAuthor(String author) {
-    def _author = author ? Customer.findByEmail(author) : springSecurityService.currentUser;
-    List<Post> posts = Post.withCriteria {
+  public PagedResultList findPostsByAuthor(Map params) {
+    def _author = params.author ? Customer.findByEmail(params.author) : springSecurityService.currentUser;
+    params.max = params.max ?: 1;
+    def criteria = Post.createCriteria();
+    PagedResultList  results =  criteria.list(max:params.max, offset:params.offset) {
       eq 'author', _author
       eq 'published', true
       order "dateCreated", "desc"
       cache true
     }
-    return posts;
+
+    return results;
   }
 
   public List<Post> findPostsByTag(String tag) {

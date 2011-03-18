@@ -23,6 +23,12 @@
     <g:render template="/posts/showPostTempl" model="[post:post]"></g:render>
   </g:each>
 
+  <br/>
+
+  <div>
+  <g:paginate controller="posts" action="showPosts" total="${posts.totalCount}"/>
+
+  </div>
 
   </body>
 </html>
