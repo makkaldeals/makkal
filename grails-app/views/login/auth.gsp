@@ -118,7 +118,17 @@
 	     							</P>
 	     							<P>&nbsp;</P>
 	      							<p align="center">
-	      								<s2ui:submitButton elementId='loginButton' form='loginForm' messageCode='spring.security.ui.login.login'/>
+	      								<input type='submit' value='Log in' id='loginButton' class='s2ui_hidden_button' />
+		      								<script> 
+												$(document).ready(function() {
+													$("#loginButton").button();
+													$('#loginButton').bind('click', function() {
+													   document.forms.loginForm.submit();
+													});
+												
+												});
+											</script> 
+	      								
 	      								<s2ui:linkButton elementId='register' controller='register' params="${params}" messageCode='spring.security.ui.login.register'/>
 	        						</p>
     						</form>
