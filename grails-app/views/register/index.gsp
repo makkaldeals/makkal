@@ -1,3 +1,4 @@
+<%@page import="com.makkaldeals.CategoryTree"%>
 <%@ page import="com.makkaldeals.auth.Role" %>
 <head>
 	<meta name='layout' content='register'/>
@@ -52,7 +53,7 @@
 		     		<label for="category">${message(code: 'user.category.label', default: labelCodeDefault)}</label>
 		     	</td>
 		     	<td valign="top" class="value ">
-		     		<g:select name='category' from="${['AU'] }" valueMessagePrefix='user.category.label'
+		     		<g:select name='category' from="${com.makkaldeals.CategoryTree.Category.children()}" valueMessagePrefix='user.category.label'
 		     				  optionValue='${category}' labelCode='user.category.label' />
 		     	</td>
  			 </tr>
@@ -61,7 +62,7 @@
 		     		<label for="subcategory">${message(code: 'user.subcategory.label', default: labelCodeDefault)}</label>
 		     	</td>
 		     	<td valign="top" class="value ">
-		     		<g:select name='subcategory' from="${['AGS','APA','ARS','BSP','CD','CWD','GSS','MD','MR','OC','P','SM','SI','TW','TO'] }" valueMessagePrefix='user.subcategory.label'
+		     		<g:select name='subcategory' from="${com.makkaldeals.CategoryTree.AU.allChildren()}" valueMessagePrefix='user.subcategory.label'
 		     				optionKey="${subcategory}" optionValue="${subcategory}" labelCode='user.subcategory.label' />
 		     	</td>
 		     </tr>
@@ -100,12 +101,8 @@
     </br>
     <g:hiddenField name="role" value="${params.role}" />
     <g:hiddenField name="targetUrl" value="${params.targetUrl}" /> 
-	<!--  jcaptcha starts here -->
-		<jcaptcha:jpeg name="image" />
-			<br>
-			<g:textField name="response" value="" /><br>
-			<br>
-	<!--  jcaptcha ends here -->
+
+
  	<s2ui:submitButton elementId='create' form='registerForm' messageCode='spring.security.ui.register.submit'/>
 
 	</g:else>
