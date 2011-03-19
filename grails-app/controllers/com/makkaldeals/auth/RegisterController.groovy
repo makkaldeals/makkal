@@ -18,7 +18,7 @@ class RegisterController extends AbstractS2UiController {
   def saltSource
   def emailService;
   def customerService;
-
+  def jcaptchaService;
   def index = {
     [command: new RegisterCommand()]
   }
@@ -33,6 +33,11 @@ class RegisterController extends AbstractS2UiController {
       return
     }
 
+	if (!jcaptchaService.validateResponse("image", session.id, params.response)) {
+		flash.message= message(code: 'register.jcaptcha.error')
+		render view: 'index', model: [command: command]
+		return
+	}
 
     def userClass = lookupUserClass();
     def roleClass = lookupRoleClass();
