@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="css/ie.css" type="text/css" media="screen, projection">
     <![endif]-->
     <link rel="stylesheet" type="text/css" media="screen" href="css/grep.css" />
-	
+
 	<style type="text/css" media="screen">
 		#slider {
 			width: 410px; /*important to be same as image width */
@@ -79,19 +79,58 @@
 	</script>
 </head>
 <body>
+	
+	
     <div class="container">
         <div id="header" class="column span-24 last">
             <h1 class="column span-8 last">Grep Deals</h1>
             <div id="nav" class="column span-16 last">
                 <ul>
                     <li><a class="active" title="Grep Deals home" href="#">Home</a></li>
-					<li><a title="Signin" href="#">Sign in</a></li>
                     <li><a title="Contact Us" href="#">Contact Us</a></li>
                     <li><a title="About" href="#">About</a></li>
-                    <li><a title="How it Works" href="#">How it Works</a></li>  
+                    <li><a title="How it Works" href="#">How it Works</a></li>
                 </ul>
             </div>
-            <div id="mast" class="column span-24 last"><img alt="grep" src="images/rpm_guys.jpg" /></div>
+            <div id="mast" class="column span-24 last">
+    				<img  src="images/rpm_guys.jpg" />
+						<fieldset style="background:#dbdbdb; border:2px  #00f; margin:0;-moz-border-radius:5px;
+						border-radius: 5px;  -webkit-border-radius: 5px;">
+							<legend style="border:none; margin:0">&nbsp;</legend>
+							<form method="post"  action="https://twitter.com/sessions">
+      							<P align="center"><label for="username">email ID</label>&nbsp;&nbsp;&nbsp;&nbsp;<input name="username" type="text" size="35" value=""/></P>
+      							<P>&nbsp;</P>
+      							<P align="center"><label for="password">Password </label><input size="35" name="password" value="" type="password"/></P>
+      							<P>&nbsp;</P>
+      							<P align="center"><input name="remember_me" type="checkbox"/>
+      								<label for="remember">Remember me</label> | <a href="#">Forgot Password?</a>
+     							</P>
+     							<P>&nbsp;</P>
+      							<p align="center">
+											<input style="-moz-border-radius:4px;
+											-webkit-border-radius:4px;
+											background:#39d url('images/bg-btn-blue.png') repeat-x scroll 0 0;
+											border:1px solid #39D;
+											color:#fff;
+											text-shadow:0 -1px 0 #39d;
+											padding:4px 10px 5px;
+											font-size:11px;
+											margin:0 5px 0 0;
+											font-weight:bold;" value="Sign In"  type="submit"/>
+											<input style="-moz-border-radius:4px;
+											-webkit-border-radius:4px;
+											background:#39d url('images/bg-btn-blue.png') repeat-x scroll 0 0;
+											border:1px solid #39D;
+											color:#fff;
+											text-shadow:0 -1px 0 #39d;
+											padding:4px 10px 5px;
+											font-size:11px;
+											margin:0 5px 0 0;
+											font-weight:bold;" value="Create New Account"  type="submit"/>
+        							</p>
+    							</form>
+    					</fieldset>
+            </div>
             <div  id="subheader" class="column span-24 last"><h2>Grep Deals is the #1 online, midwest, <em>coupon</em> provider</h2></div>
         </div>
 
@@ -170,9 +209,9 @@
             <P>Blah blah blah enter some text here..enter more</P>
         </div>
     </div>
-	
-    <div id="footer">
+	<div id="footer">
         <p>Copyright &copy; Grep Deals, all rights reserved.</p>
     </div>
+    
 </body>
 </html>
