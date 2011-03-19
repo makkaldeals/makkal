@@ -32,7 +32,7 @@ class RegisterController extends AbstractS2UiController {
     }
 
 	if (!jcaptchaService.validateResponse("image", session.id, params.response)) {
-		flash.message= message(code: 'makkal.jcaptcha.error')
+		flash.message= message(code: 'register.jcaptcha.error')
 		render view: 'index', model: [command: command]
 		return
 	}
