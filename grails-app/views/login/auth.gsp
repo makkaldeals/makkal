@@ -108,7 +108,7 @@
 										<label for="email"><g:message code='user.email.label'/>: </label>
 										<input name="j_username" type="text" size="25" value=""/>
 										&nbsp;&nbsp;<label for="password"><g:message code='user.password.label'/>: </label>
-										<input size="20" name="j_password" value="" type="password"/>
+										<input size="15" name="j_password" value="" type="password"/>
 									</P>
 	      							
 	      							<P>&nbsp;</P>
