@@ -100,8 +100,12 @@
     </br>
     <g:hiddenField name="role" value="${params.role}" />
     <g:hiddenField name="targetUrl" value="${params.targetUrl}" /> 
-
-
+	<!--  jcaptcha starts here -->
+		<jcaptcha:jpeg name="image" />
+			<br>
+			<g:textField name="response" value="" /><br>
+			<br>
+	<!--  jcaptcha ends here -->
  	<s2ui:submitButton elementId='create' form='registerForm' messageCode='spring.security.ui.register.submit'/>
 
 	</g:else>
