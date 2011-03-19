@@ -110,7 +110,7 @@
 										&nbsp;&nbsp;<label for="password"><g:message code='user.password.label'/>: </label>
 										<input size="15" name="j_password" value="" type="password"/>
 									</P>
-	      							
+	      					 		
 	      							<P>&nbsp;</P>
 	      							<P align="center"><input name="${rememberMeParameter}" checked="checked" type="checkbox"/>      							
 	      								<label for='remember_me'><g:message code='spring.security.ui.login.rememberme'/></label> | 
