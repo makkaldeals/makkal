@@ -9,12 +9,13 @@
 
 <p/>
 
-
-<s2ui:form width='700' height='550' elementId='loginFormContainer'
+<div id="grepGroupbox" class="grep_group_form" style="margin:70px auto;"> 
+<!--  
+<s2ui:form width='400' height='275' elementId='loginFormContainer'
            titleCode='spring.security.ui.register.description' center='true'>
-
+-->
 <g:form action='register' name='registerForm'>
-
+<div class="formbody"> 
     <g:if test="${flash.message}">
        <div class="message">
               ${flash.message}
@@ -35,19 +36,19 @@
 
 
 		<s2ui:textFieldRow name='email' bean="${command}" value="${command.email}"
-		                   size='40' labelCode='user.email.label' labelCodeDefault='E-mail'/>
+		                   size='25' labelCode='user.email.label' labelCodeDefault='E-mail'/>
 
 		<s2ui:passwordFieldRow name='password' labelCode='user.password.label' bean="${command}"
-                             size='40' labelCodeDefault='Password' value="${command.password}"/>
+                             size='25' labelCodeDefault='Password' value="${command.password}"/>
 
 
         <g:if test="${params.role == Role.ROLE_CUSTOMER}">
              <s2ui:textFieldRow name='firstName' bean="${command}" value="${command.firstName}"
-		                   size='40' labelCode='user.firstName.label'/>
+		                   size='25' labelCode='user.firstName.label'/>
              <s2ui:textFieldRow name='lastName' bean="${command}" value="${command.lastName}"
-		                   size='40' labelCode='user.lastName.label'/>
+		                   size='25' labelCode='user.lastName.label'/>
              <s2ui:textFieldRow name='businessName' bean="${command}" value="${command.businessName}"
-		                   size='40' labelCode='user.businessName.label'/>
+		                   size='25' labelCode='user.businessName.label'/>
  		     <tr class="prop">
 		     	<td valign="top" class="name">
 		     		<label for="category">${message(code: 'user.category.label', default: labelCodeDefault)}</label>
@@ -68,15 +69,15 @@
 		     </tr>
 
              <s2ui:textFieldRow name='address' bean="${command}" value="${command.address}"
-		                   size='40' labelCode='user.address.label'/>
+		                   size='25' labelCode='user.address.label'/>
 
              <s2ui:textFieldRow name='city' bean="${command}" value="${command.city}"
-		                   size='40' labelCode='user.city.label'/>
+		                   size='25' labelCode='user.city.label'/>
              <s2ui:textFieldRow name='state' bean="${command}" value="${command.state}"
-		                   size='40' labelCode='user.state.label'/>
+		                   size='25' labelCode='user.state.label'/>
        </g:if>
        <s2ui:textFieldRow name='areaCode' bean="${command}" value="${command.areaCode}" 
-                                  size='40' labelCode='user.areacode.label' labelCodeDefault='Area Code'/>
+                                  size='25' labelCode='user.areacode.label' labelCodeDefault='Area Code'/>
 
        <g:if test="${params.role == Role.ROLE_CUSTOMER}">
   			<tr class="prop">
@@ -88,29 +89,44 @@
 		     	</td>
 			</tr>
              <s2ui:textFieldRow name='phone' bean="${command}" value="${command.phone}"
-		                   size='40' labelCode='user.phone.label'/>
+		                   size='25' labelCode='user.phone.label'/>
              <s2ui:textFieldRow name='website' bean="${command}" value="${command.website}"
-		                   size='40' labelCode='user.website.label'/>
+		                   size='25' labelCode='user.website.label'/>
 
        </g:if>
-
-
 	
 	</tbody>
 	</table>
-    </br>
+<table>
+<tr>
+<td width="75px"></td>
+<td align="right">
+	<jcaptcha:jpeg name="image" /> 
+</td>
+</tr>
+<tr>
+<td width="75px"></td>
+<td align="right" >
+	 	<g:textField name="response" value="" size='10'/>
+	 	</td>
+</tr>
+<tr>
+<td  colspan='2' align="center">
+
+ 	<s2ui:submitButton elementId='create' form='registerForm' messageCode='spring.security.ui.register.submit'/>
+ </td>	
+</tr>
+</table> 	
     <g:hiddenField name="role" value="${params.role}" />
     <g:hiddenField name="targetUrl" value="${params.targetUrl}" /> 
 
-
- 	<s2ui:submitButton elementId='create' form='registerForm' messageCode='spring.security.ui.register.submit'/>
-
 	</g:else>
-
+</div>
 </g:form>
-
+<!--  
 </s2ui:form>
-
+-->
+</div>
 <script>
 $(document).ready(function() {
 	$('#email').focus();
