@@ -52,6 +52,11 @@ class BootStrap {
     def p21 = Post.build(author:customers.c2);
     def p31 = Post.build(author:customers.c3);
     def p41 = Post.build(author:customers.c4);
+    p11.parseTags("a");
+    p12.parseTags("a");
+    p21.parseTags("b");
+    p31.parseTags("b");
+    p41.parseTags("c")
     customers.values().each {  c->
       UserRole.create(c, customerRole,true);
     }

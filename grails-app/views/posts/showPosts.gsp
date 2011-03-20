@@ -26,7 +26,7 @@
   <br/>
 
   <div>
-  <g:paginate controller="posts" action="showPosts" total="${posts.totalCount}"/>
+  <g:paginate controller="posts" action="${params.action}" params="${params}" total="${totalCount}"/>
 
   </div>
 
