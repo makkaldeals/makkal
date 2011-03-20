@@ -15,6 +15,8 @@
            titleCode='spring.security.ui.register.description' center='true'>
 -->
 <g:form action='register' name='registerForm'>
+
+<h1><g:message code='spring.security.ui.register.title'/></h1>
 <div class="formbody"> 
     <g:if test="${flash.message}">
        <div class="message">
@@ -107,13 +109,16 @@
 <tr>
 <td width="75px"></td>
 <td align="right" >
-	 	<g:textField name="response" value="" size='10'/>
+	 	<g:textField name="response" value="" size='25'/>
 	 	</td>
 </tr>
 <tr>
-<td  colspan='2' align="center">
-
+<td  colspan='2' width='100%' align="center">
+<!-- 
  	<s2ui:submitButton elementId='create' form='registerForm' messageCode='spring.security.ui.register.submit'/>
+ --> 	
+ 	<input type='submit' tabindex="2" value='Create Account' id='create_account' class='s2ui_hidden_button' />
+ 	
  </td>	
 </tr>
 </table> 	
@@ -128,8 +133,16 @@
 -->
 </div>
 <script>
+
+
 $(document).ready(function() {
 	$('#email').focus();
+
+	
+	$("#create_account").button();
+	$('#create_account').bind('click', function() {
+	   document.forms.registerForm.submit();
+	});
 });
 </script>
 
