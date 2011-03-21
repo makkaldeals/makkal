@@ -13,7 +13,7 @@ class PostsController {
   def showPosts = {
 
     def results =  postService.findPostsByAuthor(params);
-    render(view: 'showPosts', model: [posts:results]);
+    render(view: 'showPosts', model: [posts:results.list, totalCount:results.totalCount]);
 
   }
 
@@ -52,8 +52,8 @@ class PostsController {
   @Secured(['IS_AUTHENTICATED_REMEMBERED'])
   def postsByTag = {
     if (params.tag) {
-      //TODO implement pagination
-      render(view: 'showPosts', model: [posts: postService.findPostsByTag(params.tag)]);
+      def results =   postService.findPostsByTag(params);
+      render(view: 'showPosts', model: [posts: results.list, totalCount:results.totalCount]);
 
     }
     else {
@@ -64,9 +64,10 @@ class PostsController {
   @Secured(['IS_AUTHENTICATED_REMEMBERED'])
   def postsByBusiness = {
 
-    //TODO: Look for better way to do this query
-    
-    render(view: 'showPosts', model: [posts: postService.findPostsByBusiness(params)]);
+
+    def results =  postService.findPostsByBusiness(params);
+
+    render(view: 'showPosts', model: [posts:results.list, totalCount:results.totalCount]);
 
   }
 

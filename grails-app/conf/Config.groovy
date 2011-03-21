@@ -73,6 +73,9 @@ makkaldeals {
     admin.email = "admin@makkaldeals.com"
     admin.password = "makkaladmin"
   }
+  posts{
+    max.per.page=5;
+  }
 }
 
 // set per-environment serverURL stem for creating absolute links
