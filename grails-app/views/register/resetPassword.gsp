@@ -7,30 +7,34 @@
 
 <p/>
 
-<s2ui:form width='475' height='250' elementId='resetPasswordFormContainer'
-           titleCode='spring.security.ui.resetPassword.header' center='true'>
-
-	<g:form action='resetPassword' name='resetPasswordForm' autocomplete='off'>
+<div id="grepGroupbox" class="grep_group_form" style="margin:70px auto;">
+  <g:form action='resetPassword' name="resetPasswordForm" autocomplete='off'>
 	<g:hiddenField name='t' value='${token}'/>
-	<div class="sign-in">
-
-	<br/>
-	<h4><g:message code='spring.security.ui.resetPassword.description'/></h4>
-
-	<table>
-		<s2ui:passwordFieldRow name='password' labelCode='user.password.label' bean="${command}"
-                             labelCodeDefault='Password' value="${command?.password}"/>
-
-	</table>
-
-    <g:hiddenField name="targetUrl" value="${params.targetUrl}" /> 
-	<s2ui:submitButton elementId='reset' form='resetPasswordForm' messageCode='spring.security.ui.resetPassword.submit'/>
-
-	</div>
-	</g:form>
-
-	</div>
-</s2ui:form>
+    <h1><g:message code='spring.security.ui.resetPassword.header'/></h1>
+    <div class="formbody">	    
+		 <label for="password">
+		 	<s2ui:passwordFieldRow name='password' labelCode='user.password.label' bean="${command}" labelCodeDefault='Password' value="${command?.password}"/>
+		 </label>
+		<BR/><BR/>
+		 <label>
+	       <input type='submit' tabindex="2" value='Update my password' id='reset_submit' class='s2ui_hidden_button'/>
+		 </label>
+		 
+		 <g:hiddenField name="targetUrl" value="${params.targetUrl}"/>
+		 
+		 <script>
+				$(document).ready(function() {
+					
+					$("#reset").button();
+					$('#reset').bind('click', function() {
+					   document.forms.resetPasswordForm.submit();
+					});
+				
+				});
+		 </script>
+    </div>
+  </g:form>
+</div>
 
 <script>
 $(document).ready(function() {

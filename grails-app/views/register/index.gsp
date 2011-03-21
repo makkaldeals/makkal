@@ -97,31 +97,25 @@
 
        </g:if>
 	
+		<tr>
+			<td width="75px"></td>
+			<td align="right">
+				&nbsp;<jcaptcha:jpeg name="image" /> 
+			</td>
+			</tr>
+			<tr>
+			<td width="75px"></td>
+			<td align="right" >
+				<g:textField name="response" value="" size='25'/>
+			</td>
+		</tr>
+		<tr>
+			<td  colspan='2' width='100%' align="center">	
+			 	<input type='submit' tabindex="2" value='Create Account' id='create_account' class='s2ui_hidden_button' />
+			 </td>	
+		</tr>
 	</tbody>
-	</table>
-<table>
-<tr>
-<td width="75px"></td>
-<td align="right">
-	<jcaptcha:jpeg name="image" /> 
-</td>
-</tr>
-<tr>
-<td width="75px"></td>
-<td align="right" >
-	 	<g:textField name="response" value="" size='25'/>
-	 	</td>
-</tr>
-<tr>
-<td  colspan='2' width='100%' align="center">
-<!-- 
- 	<s2ui:submitButton elementId='create' form='registerForm' messageCode='spring.security.ui.register.submit'/>
- --> 	
- 	<input type='submit' tabindex="2" value='Create Account' id='create_account' class='s2ui_hidden_button' />
- 	
- </td>	
-</tr>
-</table> 	
+	</table>	
     <g:hiddenField name="role" value="${params.role}" />
     <g:hiddenField name="targetUrl" value="${params.targetUrl}" /> 
 
