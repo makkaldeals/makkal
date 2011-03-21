@@ -86,10 +86,10 @@
             <h1 class="column span-8 last">Grep Deals</h1>
             <div id="nav" class="column span-16 last">
                 <ul>
-                    <li><a class="active" title="Grep Deals home" href="#">Home</a></li>
-                    <li><a title="Contact Us" href="#">Contact Us</a></li>
-                    <li><a title="About" href="#">About</a></li>
-                    <li><a title="How it Works" href="#">How it Works</a></li>
+                    <li><g:link controller='login' action='index' title="Grep Deals home">Home</g:link></li>
+	                <li><g:link controller='login' action='contactus' title="Contact Us">Contact Us</g:link></li>
+	                <li><g:link controller='login' action='aboutus' title="About Us">About Us</g:link></li>
+	                 <li><g:link controller='login' action='howitworks' title="How it Works">How it Works</g:link></li>
                 </ul>
             </div>
             <div id="mast" class="column span-24 last">

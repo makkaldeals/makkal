@@ -38,7 +38,19 @@ class LoginController {
       redirect action: auth, params: params
     }
   }
-
+  
+  def aboutus = {
+	  render view: 'aboutus'	  
+  }
+  
+  def contactus = {
+	  render view: 'contactus'
+  }
+  
+  def howitworks = {
+	  render view: 'howitworks'
+  }
+  
   /**
    * Show the login page.
    */
