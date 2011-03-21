@@ -52,7 +52,6 @@ class PostsController {
   @Secured(['IS_AUTHENTICATED_REMEMBERED'])
   def postsByTag = {
     if (params.tag) {
-      //TODO implement pagination
       def results =   postService.findPostsByTag(params);
       render(view: 'showPosts', model: [posts: results.list, totalCount:results.totalCount]);
 
@@ -67,6 +66,7 @@ class PostsController {
 
 
     def results =  postService.findPostsByBusiness(params);
+
     render(view: 'showPosts', model: [posts:results.list, totalCount:results.totalCount]);
 
   }

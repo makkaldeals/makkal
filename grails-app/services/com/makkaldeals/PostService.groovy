@@ -48,7 +48,7 @@ class PostService implements InitializingBean {
     //def posts = Post.findAllByTag(params.tag.trim(), [max: 10, offset: params.offset, sort: "dateCreated", order: "desc"])
     //def posts = Post.findAllByTag(tag.trim(), [sort: "dateCreated", order: "desc"])
 
-    params.max = params.max ? Integer.parseInt(params.max): maxPostsPerPage;
+    params.max = params.max ? Integer.parseInt(params.max) : maxPostsPerPage;
     params.offset = params.offset ? Integer.parseInt(params.offset) : 0;
     String tag = params.tag.trim();
     def posts = Post.findAllByTagWithCriteria(tag) {
@@ -60,8 +60,17 @@ class PostService implements InitializingBean {
     }
     Map results = [:];
     results.list = posts;
-    //TODO: count shoud return only published posts
-    results.totalCount = Post.countByTag(tag);
+
+    String countByTagHQL = """
+       SELECT count(*)
+       FROM Post post
+                ,TagLink tagLink
+       WHERE post.id = tagLink.tagRef
+       AND tagLink.type = 'post'
+       AND tagLink.tag.name = :tag
+       AND post.published = true """
+
+    results.totalCount = Post.executeQuery(countByTagHQL, [tag: tag]).get(0);
 
     return results;
 
