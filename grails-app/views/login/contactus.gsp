@@ -37,7 +37,7 @@
 		      	Contact Us
 		      </h1> 
 			  <div class="formbody"> 
-			      	<P>blah blah here...</P>
+			      	<P>Please fill the form below so that we can reach you</P>
 			      	<P>Support address..or contact us..</P>
 			      	<BR/>
 			      	<P><B>Make some things bold..Just a place holder..feel free to edit this..</B></P>
