@@ -134,7 +134,7 @@
     						</form>
     					</fieldset>
             </div>
-            <div  id="subheader" class="column span-24 last"><h2>Grep Deals is the #1 online, midwest, <em>coupon</em> provider</h2></div>
+            <div  id="subheader" class="column span-24 last"><h2>Grep Deals is coming soon</h2></div>
         </div>
 
 		<P>&nbsp;</P>
