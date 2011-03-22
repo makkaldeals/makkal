@@ -37,10 +37,18 @@
 		      	Contact Us
 		      </h1> 
 			  <div class="formbody"> 
-			      	<P>blah blah here...</P>
-			      	<P>Support address..or contact us..</P>
+			      	<P>Please fill the form below so that we can reach you</P>
+			      	<P>First Name</P>
+                    <P>Last Name</P>
+                    <P>Email</P>
+                    <P>Phone Number</P>
+                    <P>City</P>
+                    <P>State</P>
+                    <P>Zipcode</P>
+                    <P>Reason for contacting</P>
+
 			      	<BR/>
-			      	<P><B>Make some things bold..Just a place holder..feel free to edit this..</B></P>
+
 			  </div> 
 	    </form>  
     </div>
