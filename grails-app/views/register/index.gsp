@@ -2,22 +2,57 @@
 <%@ page import="com.makkaldeals.auth.Role" %>
 <head>
 	<meta name='layout' content='register'/>
+    <g:javascript library="prototype" />
 	<title><g:message code='spring.security.ui.register.title'/></title>
+    <g:javascript>
+
+function updateSubcategories(e) {
+
+    // The response comes back as a bunch-o-JSON
+    var subcategories = eval("(" + e.responseText + ")") // evaluate JSON
+
+    if (subcategories) {
+        var subategorySelect = document.getElementById('subcategory');
+
+        // Clear all previous options
+        var l = subategorySelect.length;
+
+        while (l > 0) {
+            l--;
+            subategorySelect.remove(l);
+        }
+
+        //  Rebuild the select
+        for (var i=0; i < subcategories.length; i++) {
+           var subcategory = subcategories[i];
+           var opt = document.createElement('option');
+           opt.text = subcategory;
+           opt.value = subcategory;
+           try {
+               subategorySelect.add(opt, null) ;// standards compliant; doesn't work in IE
+           } catch(ex) {
+               subategorySelect.add(opt); // IE only
+           }
+       }
+    }
+}
+
+</g:javascript>
 </head>
 
 <body>
 
 <p/>
 
-<div id="grepGroupbox" class="grep_group_form" style="margin:70px auto;"> 
-<!--  
+<div id="grepGroupbox" class="grep_group_form" style="margin:70px auto;">
+<!--
 <s2ui:form width='400' height='275' elementId='loginFormContainer'
            titleCode='spring.security.ui.register.description' center='true'>
 -->
 <g:form action='register' name='registerForm'>
 
 <h1><g:message code='spring.security.ui.register.title'/></h1>
-<div class="formbody"> 
+<div class="formbody">
     <g:if test="${flash.message}">
        <div class="message">
               ${flash.message}
@@ -56,8 +91,16 @@
 		     		<label for="category">${message(code: 'user.category.label', default: labelCodeDefault)}</label>
 		     	</td>
 		     	<td valign="top" class="value ">
-		     		<g:select name='category' from="${CategoryTree.Category.children()}" valueMessagePrefix='user.category.label'
-		     				  optionValue='${category}' labelCode='user.category.label' />
+		     		<g:select name='category' from="${CategoryTree.Category.children()}"
+                              valueMessagePrefix='user.category.label'
+		     				  optionValue='${category}' labelCode='user.category.label'
+                              onchange="${remoteFunction(
+                                         controller:'register',
+                                         action:'ajaxGetSubcategories',
+                                         params:'\'name=\' + this.value',
+                                         onComplete:'updateSubcategories(e)')}"
+
+                     />
 		     	</td>
  			 </tr>
  			<tr class="prop">
@@ -65,7 +108,7 @@
 		     		<label for="subcategory">${message(code: 'user.subcategory.label', default: labelCodeDefault)}</label>
 		     	</td>
 		     	<td valign="top" class="value ">
-		     		<g:select name='subcategory' from="${CategoryTree.AU.allChildren()}" valueMessagePrefix='user.subcategory.label'
+		     		<g:select name='subcategory'  
 		     				optionKey="${subcategory}" optionValue="${subcategory}" labelCode='user.subcategory.label' />
 		     	</td>
 		     </tr>
@@ -78,7 +121,7 @@
              <s2ui:textFieldRow name='state' bean="${command}" value="${command.state}"
 		                   size='25' labelCode='user.state.label'/>
        </g:if>
-       <s2ui:textFieldRow name='areaCode' bean="${command}" value="${command.areaCode}" 
+       <s2ui:textFieldRow name='areaCode' bean="${command}" value="${command.areaCode}"
                                   size='25' labelCode='user.areacode.label' labelCodeDefault='Area Code'/>
 
        <g:if test="${params.role == Role.ROLE_CUSTOMER}">
@@ -96,11 +139,11 @@
 		                   size='25' labelCode='user.website.label'/>
 
        </g:if>
-	
+
 		<tr>
 			<td width="75px"></td>
 			<td align="right">
-				&nbsp;<jcaptcha:jpeg name="image" /> 
+				&nbsp;<jcaptcha:jpeg name="image" />
 			</td>
 			</tr>
 			<tr>
@@ -110,19 +153,19 @@
 			</td>
 		</tr>
 		<tr>
-			<td  colspan='2' width='100%' align="center">	
+			<td  colspan='2' width='100%' align="center">
 			 	<input type='submit' tabindex="2" value='Create Account' id='create_account' class='s2ui_hidden_button' />
-			 </td>	
+			 </td>
 		</tr>
 	</tbody>
-	</table>	
+	</table>
     <g:hiddenField name="role" value="${params.role}" />
-    <g:hiddenField name="targetUrl" value="${params.targetUrl}" /> 
+    <g:hiddenField name="targetUrl" value="${params.targetUrl}" />
 
 	</g:else>
 </div>
 </g:form>
-<!--  
+<!--
 </s2ui:form>
 -->
 </div>
@@ -132,12 +175,19 @@
 $(document).ready(function() {
 	$('#email').focus();
 
-	
+
 	$("#create_account").button();
 	$('#create_account').bind('click', function() {
 	   document.forms.registerForm.submit();
 	});
 });
 </script>
+<g:javascript>
+   // This is called when the page loads to initialize subcategories
+   var categorySelect = document.getElementById('category');
+   var selectedCategory = categorySelect.options[categorySelect.selectedIndex];
+   ${remoteFunction(controller:"register", action:"ajaxGetSubcategories", params:"'name=' + selectedCategory.value", onComplete:"updateSubcategories(e)")}
+
+</g:javascript>
 
 </body>
