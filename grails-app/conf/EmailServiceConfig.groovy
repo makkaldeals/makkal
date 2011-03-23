@@ -38,6 +38,7 @@ Please verify information provided by user below and click <a href="$url">here</
 <tr> <td> Lsst Name </td> <td> $user.lastName </tr>
 <tr> <td> Business Name </td> <td> $user.business.name </tr>
 <tr> <td> Category </td> <td> $user.business.category </tr>
+<tr> <td> Sub Category </td> <td> $user.business.subcategory </tr>
 <tr> <td> Address </td> <td> $user.business.address </tr>
 <tr> <td> City </td> <td> $user.business.city </tr>
 <tr> <td> State </td> <td> $user.business.state </tr>

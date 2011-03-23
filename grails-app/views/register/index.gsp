@@ -1,4 +1,4 @@
-<%@page import="com.makkaldeals.consts.CategoryTree"%>
+<%@ page import="com.makkaldeals.consts.CategoryTree"%>
 <%@ page import="com.makkaldeals.auth.Role" %>
 <head>
 	<meta name='layout' content='register'/>
@@ -56,7 +56,7 @@
 		     		<label for="category">${message(code: 'user.category.label', default: labelCodeDefault)}</label>
 		     	</td>
 		     	<td valign="top" class="value ">
-		     		<g:select name='category' from="${com.makkaldeals.CategoryTree.Category.children()}" valueMessagePrefix='user.category.label'
+		     		<g:select name='category' from="${CategoryTree.Category.children()}" valueMessagePrefix='user.category.label'
 		     				  optionValue='${category}' labelCode='user.category.label' />
 		     	</td>
  			 </tr>
@@ -65,7 +65,7 @@
 		     		<label for="subcategory">${message(code: 'user.subcategory.label', default: labelCodeDefault)}</label>
 		     	</td>
 		     	<td valign="top" class="value ">
-		     		<g:select name='subcategory' from="${com.makkaldeals.CategoryTree.AU.allChildren()}" valueMessagePrefix='user.subcategory.label'
+		     		<g:select name='subcategory' from="${CategoryTree.AU.allChildren()}" valueMessagePrefix='user.subcategory.label'
 		     				optionKey="${subcategory}" optionValue="${subcategory}" labelCode='user.subcategory.label' />
 		     	</td>
 		     </tr>
