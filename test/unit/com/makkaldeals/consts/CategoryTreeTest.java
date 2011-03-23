@@ -13,39 +13,39 @@ public class CategoryTreeTest {
 	@Test
 	public void testAllCategories() {
 		List<String> expectedCategories = new ArrayList<String>();
-		expectedCategories.add(CategoryTree.AU.toString());
+		expectedCategories.add(CategoryTree.Automotive.toString());
+		expectedCategories.add(CategoryTree.FinancialServices.toString());
 
-		assertEquals("Categories", expectedCategories.toString(), CategoryTree.Category.children().toString());
+		assertEquals("Categories and FinancialServices", expectedCategories.toString(), CategoryTree.Category.children().toString());
 	}
 
 	
 	@Test
 	public void testAutomotiveCode() {
-		assertEquals("Code for Automative Category", "AU", CategoryTree.AU.toString());
-		System.out.println(CategoryTree.Category.children().toString());
+		assertEquals("Code for Automative Category", "Automotive", CategoryTree.Automotive.toString());
+
 	}
 	
 	@Test
 	public void testAutomotiveSubcategories() {
 		List<String> expectedSubCategories = new ArrayList<String>();
-		expectedSubCategories.add(CategoryTree.AGS.toString());
-		expectedSubCategories.add(CategoryTree.APA.toString());
-		expectedSubCategories.add(CategoryTree.ARS.toString());		
-		expectedSubCategories.add(CategoryTree.BSP.toString());		
-		expectedSubCategories.add(CategoryTree.CD.toString());	
-		expectedSubCategories.add(CategoryTree.CWD.toString());		
-		expectedSubCategories.add(CategoryTree.GSS.toString());		
-		expectedSubCategories.add(CategoryTree.MD.toString());	
-		expectedSubCategories.add(CategoryTree.MR.toString());		
-		expectedSubCategories.add(CategoryTree.OC.toString());	
-		expectedSubCategories.add(CategoryTree.P.toString());		
-		expectedSubCategories.add(CategoryTree.SM.toString());
-		expectedSubCategories.add(CategoryTree.SI.toString());			
-		expectedSubCategories.add(CategoryTree.TW.toString());		
-		expectedSubCategories.add(CategoryTree.TO.toString());		
-		
-		
-		List<? extends CategoryTree> actualSubCategories = CategoryTree.AU.allChildren();
+		expectedSubCategories.add(CategoryTree.AutoGlassServices.toString());
+		expectedSubCategories.add(CategoryTree.AutoRepairServices.toString());
+		expectedSubCategories.add(CategoryTree.AutoPartsAccessories.toString());		
+		expectedSubCategories.add(CategoryTree.BodyShopsPainting.toString());		
+		expectedSubCategories.add(CategoryTree.CarDealers.toString());	
+		expectedSubCategories.add(CategoryTree.CarWashDetailing.toString());		
+		expectedSubCategories.add(CategoryTree.GasServicesStations.toString());		
+		expectedSubCategories.add(CategoryTree.MotorcycleDealers.toString());	
+		expectedSubCategories.add(CategoryTree.MotorcycleRepair.toString());		
+		expectedSubCategories.add(CategoryTree.OilChange.toString());	
+		expectedSubCategories.add(CategoryTree.Parking.toString());		
+		expectedSubCategories.add(CategoryTree.ScootersAndMopeds.toString());
+		expectedSubCategories.add(CategoryTree.StereoInstallation.toString());			
+		expectedSubCategories.add(CategoryTree.TiresAndWheels.toString());		
+		expectedSubCategories.add(CategoryTree.Towing.toString());		
+	
+		List<? extends CategoryTree> actualSubCategories = CategoryTree.Automotive.allChildren();
 		
 		assertEquals("Children for Automobile ",expectedSubCategories.toString(), actualSubCategories.toString());
 	}	
