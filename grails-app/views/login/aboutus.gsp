@@ -37,10 +37,14 @@
 		      	About Us
 		      </h1> 
 			  <div class="formbody"> 
-			      	<P>Hi, type some thing here..give support address..latter we can construct a form page.</P>
-			      	<P>Which will contain some text area and their email address.</P>
+			      	<P>Grep deals is committed to provide good auto deals to customers and good business to clients</P>
+			      	<P>Thousands of subscribers are enjoying autodeals through grepdeals and hundreds of dealers are providing good deals to the subscribers</P>
+			      	<p>Grep deal is one of the fastest growing site in North America</p>
+			      	<p>We respect your privacy and we will not give your email address to any other commercial activity</p>
+			      	<P>For support, please send email to support@grepdeals.com</P>
 			      	<BR/>
-			      	<P><B>Make some things bold..Just a place holder..feel free to edit this..</B></P>
+			      	<P>Our mission is to <B>make all happy</B></P>
+			      	<P></P>
 			  </div> 
 	    </form>  
     </div>
