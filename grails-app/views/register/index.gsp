@@ -1,4 +1,4 @@
-<%@page import="com.makkaldeals.CategoryTree"%>
+<%@page import="com.makkaldeals.consts.CategoryTree"%>
 <%@ page import="com.makkaldeals.auth.Role" %>
 <head>
 	<meta name='layout' content='register'/>

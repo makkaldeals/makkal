@@ -1,4 +1,4 @@
-package com.makkaldeals;
+package com.makkaldeals.consts;
 
 import java.util.ArrayList;
 import java.util.Collections;
