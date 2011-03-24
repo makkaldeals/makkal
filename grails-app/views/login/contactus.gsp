@@ -36,6 +36,12 @@
         <h1>
             Contact Us
         </h1>
+        <g:if test='${confirmationMessage}'>
+            <br/>
+            <font color="red">${confirmationMessage}</font>
+            <br/>
+        </g:if>
+
         <div class="formbody">
             <P>Please fill the form below so that we can reach you</P>
             <table>

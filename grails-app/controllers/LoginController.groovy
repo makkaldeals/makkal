@@ -148,6 +148,7 @@ class LoginController {
             render view: 'contactus', model: [command: command]
             return
         }
+        render view: 'contactus', model: [command: new ContactUsCommand(), confirmationMessage: message(code: 'spring.security.ui.contactus.sent')]
 
     }
 
