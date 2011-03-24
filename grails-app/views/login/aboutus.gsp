@@ -20,8 +20,10 @@
 	                <ul>
 	                    <li><g:link controller='login' action='index' title="Grep Deals home">Home</g:link></li>
 	                   	<li><g:link controller='login' action='contactus' title="Contact Us">Contact Us</g:link></li>
-	                   	<li><g:link controller='login' action='aboutus' title="About Us">About Us</g:link></li>
-	                   	<li><g:link controller='login' action='howitworks' title="How it Works">How it Works</g:link></li>
+	                   	<li><g:link controller='customer' action='index' title="Customer Login">Customer Login</g:link></li>
+	                   	<sec:ifLoggedIn>
+							<li><g:link controller='logout' action='index' title="Logout">Logout</g:link></li>
+						</sec:ifLoggedIn>
 	                </ul>
 	            </div>
 	            <div id="mast" class="column span-24 last">
@@ -42,11 +44,15 @@
 			      	<BR/>
 			      	<P><B>Make some things bold..Just a place holder..feel free to edit this..</B></P>
 			  </div> 
-	    </form>  
+	    </form>   
     </div>
     
     <div id="footer">
-    	<p>Copyright &copy; Grep Deals, all rights reserved.</p>
+	    <P align="center">
+	    	<g:link controller='login' action='howitworks' title="How it Works" style="color: #fff;text-decoration: none;padding: 15px;">How it Works</g:link>
+		    <g:link controller='login' action='aboutus' title="About Us" style="color: #fff;text-decoration: none;padding: 15px;">About Us</g:link>
+	    </P>
+	    <p>Copyright &copy; Grep Deals, all rights reserved.</p>
 	</div>
   </body> 
 </html>

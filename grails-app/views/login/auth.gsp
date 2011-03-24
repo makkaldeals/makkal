@@ -10,7 +10,7 @@
     <![endif]-->
     <link rel="stylesheet" type="text/css" media="screen" href="/makkaldeals/css/grep.css" />
 
-	<style type="text/css" media="screen">
+	<style type="text/css" media="screen"> 
 	
 		#slider {
 			width: 410px; /*important to be same as image width */
@@ -86,10 +86,13 @@
             <h1 class="column span-8 last">Grep Deals</h1>
             <div id="nav" class="column span-16 last">
                 <ul>
+                	
                     <li><g:link controller='login' action='index' title="Grep Deals home">Home</g:link></li>
 	                <li><g:link controller='login' action='contactus' title="Contact Us">Contact Us</g:link></li>
-	                <li><g:link controller='login' action='aboutus' title="About Us">About Us</g:link></li>
-	                 <li><g:link controller='login' action='howitworks' title="How it Works">How it Works</g:link></li>
+	                <li><g:link controller='customer' action='index' title="Customer Login">Customer Login</g:link></li>
+	                <sec:ifLoggedIn>
+						<li><g:link controller='logout' action='index' title="Logout">Logout</g:link></li>
+					</sec:ifLoggedIn>
                 </ul>
             </div>
             <div id="mast" class="column span-24 last">
@@ -102,36 +105,38 @@
 							           <g:message code="${flash.message}"/>
 							      </div>
 							</g:if>
-							<form action='${postUrl}' method='post' id="loginForm" name="loginForm" autocomplete='off'>
-							    <g:hiddenField name="spring-security-redirect" value="/login/authSuccess?targetUrl=${params.targetUrl}" />
-									<P>
-										<label for="email"><g:message code='user.email.label'/>: </label>
-										<input name="j_username" type="text" size="25" value=""/>
-										&nbsp;&nbsp;<label for="password"><g:message code='user.password.label'/>: </label>
-										<input size="15" name="j_password" value="" type="password"/>
-									</P>
-	      					 		
-	      							<P>&nbsp;</P>
-	      							<P align="center"><input name="${rememberMeParameter}" checked="checked" type="checkbox"/>      							
-	      								<label for='remember_me'><g:message code='spring.security.ui.login.rememberme'/></label> | 
-	      								<g:link controller='register' params="${params}" action='forgotPassword'><g:message code='spring.security.ui.login.forgotPassword'/></g:link>
-	     							</P>
-	     							<P>&nbsp;</P>
-	      							<p align="center">
-	      								<input type='submit' value='Log in' id='loginButton' class='s2ui_hidden_button' />
-		      								<script> 
-												$(document).ready(function() {
-													$("#loginButton").button();
-													$('#loginButton').bind('click', function() {
-													   document.forms.loginForm.submit();
+							<!--<sec:ifNotLoggedIn>-->
+								<form action='${postUrl}' method='post' id="loginForm" name="loginForm" autocomplete='off'>
+								    <g:hiddenField name="spring-security-redirect" value="/login/authSuccess?targetUrl=${params.targetUrl}" />
+										<P>
+											<label for="email"><g:message code='user.email.label'/>: </label>
+											<input name="j_username" type="text" size="25" value=""/>
+											&nbsp;&nbsp;<label for="password"><g:message code='user.password.label'/>: </label>
+											<input size="15" name="j_password" value="" type="password"/>
+										</P>
+		      					 		
+		      							<P>&nbsp;</P>
+		      							<P align="center"><input name="${rememberMeParameter}" checked="checked" type="checkbox"/>      							
+		      								<label for='remember_me'><g:message code='spring.security.ui.login.rememberme'/></label> | 
+		      								<g:link controller='register' params="${params}" action='forgotPassword'><g:message code='spring.security.ui.login.forgotPassword'/></g:link>
+		     							</P>
+		     							<P>&nbsp;</P>
+		      							<p align="center">
+		      								<input type='submit' value='Log in' id='loginButton' class='s2ui_hidden_button' />
+			      								<script> 
+													$(document).ready(function() {
+														$("#loginButton").button();
+														$('#loginButton').bind('click', function() {
+														   document.forms.loginForm.submit();
+														});
+													
 													});
-												
-												});
-											</script> 
-	      								
-	      								<s2ui:linkButton elementId='register' controller='register' params="${params}" messageCode='spring.security.ui.login.register'/>
-	        						</p>
-    						</form>
+												</script> 
+		      								
+		      								<s2ui:linkButton elementId='register' controller='register' params="${params}" messageCode='spring.security.ui.login.register'/>
+		        						</p>
+	    							</form>
+	    						<!--</sec:ifNotLoggedIn>-->
     					</fieldset>
             </div>
             <div  id="subheader" class="column span-24 last"><h2>Grep Deals is coming soon</h2></div>
@@ -213,7 +218,11 @@
         </div>
     </div>
 	<div id="footer">
-        <p>Copyright &copy; Grep Deals, all rights reserved.</p>
+        <P align="center">
+    		<g:link controller='login' action='howitworks' title="How it Works" style="color: #fff;text-decoration: none;padding: 15px;">How it Works</g:link>
+	    	<g:link controller='login' action='aboutus' title="About Us" style="color: #fff;text-decoration: none;padding: 15px;">About Us</g:link>
+    	</P>
+        <p>Copyright &copy; Grep Deals, all rights reserved.</p>    	
     </div>
   <script>
 	$(document).ready(function() {
@@ -223,5 +232,6 @@
 	<s2ui:initCheckboxes/>
 
 </script>  
+
 </body>
 </html>
