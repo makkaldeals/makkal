@@ -30,6 +30,8 @@ class LoginController {
   /**
    * Default action; redirects to 'defaultTargetUrl' if logged in, /login/auth otherwise.
    */
+  def emailService;
+
   def index = {
     if (springSecurityService.isLoggedIn()) {
       if (params.targetUrl){
@@ -143,11 +145,12 @@ class LoginController {
   }
 
     def sendContactus = {  ContactUsCommand command ->
-        System.out.println(params)
+
         if (command.hasErrors()) {
             render view: 'contactus', model: [command: command]
             return
         }
+        emailService.contactUs(params.firstName, params.lastName,params.email,params.phoneNumber,params.reasonToContact)
         render view: 'contactus', model: [command: new ContactUsCommand(), confirmationMessage: message(code: 'spring.security.ui.contactus.sent')]
 
     }
@@ -163,10 +166,6 @@ class ContactUsCommand {
     String email;
     String phoneNumber;
     String reasonToContact;
-
-
-
-
 
     static constraints = {
 

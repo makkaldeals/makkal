@@ -57,7 +57,8 @@
                 <s2ui:textFieldRow name='reasonToContact' bean="${command}" value="${command.reasonToContact}"
                         size='25' labelCode='user.reasonToContact.label'/>
                 <tr>
-                    <td colspan='2' width='100%' align='center'>
+                    <td/>
+                    <td align='center'>
                         <input type='submit' tabindex="1" value='Submit'/>
                     </td>
 

@@ -62,5 +62,25 @@ If you would like to view your post, click this  <a href="$url">$url</a>.
 '''
     subject = 'Your post is published'
   }
+
+    contactUs {
+        body = '''\
+Hi Admin ,<br/>
+<br/>
+$firstName $lastName has sent the contact information.
+<br/>
+<br/>
+<table>
+<tr> <td> First Name </td> <td> $firstName  </td> </tr>
+<tr> <td> Lsst Name </td> <td> $lastName  </td> </tr>
+<tr> <td> Email </td> <td> $email </tr>
+<tr> <td> Phone </td> <td> $phoneNumber </td> </tr>
+<tr> <td> Reason to contact </td> <td> $reasonToContact </td></tr>
+</table>
+
+'''
+        subject = 'User submitted contact information'
+    }
+
 }
 
