@@ -37,14 +37,14 @@
 		      	About Us
 		      </h1> 
 			  <div class="formbody"> 
-			      	<P>Grep deals is committed to provide good auto deals to customers and good business to clients</P>
-			      	<P>Thousands of subscribers are enjoying autodeals through grepdeals and hundreds of dealers are providing good deals to the subscribers</P>
-			      	<p>Grep deal is one of the fastest growing site in North America</p>
-			      	<p>We respect your privacy and we will not give your email address to any other commercial activity</p>
-			      	<P>For support, please send email to support@grepdeals.com</P>
+			      	<P align="left">Grepdeals is committed to provide good auto deals to subscribers from autodealers of USA</P>
+			      	<P align="left">Thousands of subscribers are enjoying autodeals through grepdeals and hundreds of dealers are providing good deals to the subscribers</P>
+			      	<p align="left">Grepdeals is one of the fastest growing online deals website in North America</p>
+			      	<p align="left">We respect your privacy and we will not give or use your email address to any other commercial activity</p>
+			      	<P align="left">You can reach us through <B>admin@grepdeals.com</B></P>
 			      	<BR/>
-			      	<P>Our mission is to <B>make all happy</B></P>
-			      	<P></P>
+			      	<P align="left">Our mission is to <B>make all happy</B></P>
+			      	
 			  </div> 
 	    </form>  
     </div>
