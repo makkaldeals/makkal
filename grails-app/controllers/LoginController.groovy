@@ -49,7 +49,7 @@ class LoginController {
   }
   
   def contactus = {
-	  render view: 'contactus'
+       [command: new ContactUsCommand()]
   }
   
   def howitworks = {
@@ -142,5 +142,39 @@ class LoginController {
     }
   }
 
+    def sendContactus = {  ContactUsCommand command ->
+        System.out.println(params)
+        if (command.hasErrors()) {
+            render view: 'contactus', model: [command: command]
+            return
+        }
 
+    }
+
+
+}
+
+class ContactUsCommand {
+
+
+    String firstName;
+    String lastName;
+    String email;
+    String phoneNumber;
+    String reasonToContact;
+
+
+
+
+
+    static constraints = {
+
+        email blank: false, email: true
+        firstName blank: false, maxSize: 50;
+        lastName blank: false, maxSize: 50;
+        phoneNumber blank: false
+        reasonToContact blank: false, maxSize: 50;
+
+
+    }
 }
