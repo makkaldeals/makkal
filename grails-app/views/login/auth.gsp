@@ -4,11 +4,11 @@
 <head>
     <title><g:message code='spring.security.ui.login.title'/></title>    
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel="stylesheet" type="text/css" media="screen" href="/makkaldeals/css/screen.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/grepdeals/css/screen.css" />
     <!--[if IE]>
-        <link rel="stylesheet" href="/makkaldeals/css/ie.css" type="text/css" media="screen, projection">
+        <link rel="stylesheet" href="/grepdeals/css/ie.css" type="text/css" media="screen, projection">
     <![endif]-->
-    <link rel="stylesheet" type="text/css" media="screen" href="/makkaldeals/css/grep.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/grepdeals/css/grep.css" />
 
 	<style type="text/css" media="screen"> 
 	
@@ -59,7 +59,7 @@
 		ul { list-style-type: none;}
 	</style>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-	<script type="text/javascript" src="/makkaldeals/js/s3Slider.js"></script>
+	<script type="text/javascript" src="/grepdeals/js/s3Slider.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('#slider').s3Slider({
@@ -96,7 +96,7 @@
                 </ul>
             </div>
             <div id="mast" class="column span-24 last">
-    				<img  src="/makkaldeals/images/rpm_guys.jpg" />
+    				<img  src="/grepdeals/images/rpm_guys.jpg" />
 						<fieldset style="background:#dbdbdb; border:2px  #00f; margin:0;-moz-border-radius:5px;
 						border-radius: 5px;  -webkit-border-radius: 5px;">
 							<legend style="border:none; margin:0">&nbsp;</legend>
@@ -164,23 +164,23 @@
 						<div id="slider" valign="bottom">
 							<ul id="sliderContent">
 								<li class="sliderImage">
-									<a href=""><img src="/makkaldeals/images/410/1.jpg" alt="1" /></a>
+									<a href=""><img src="/grepdeals/images/410/1.jpg" alt="1" /></a>
 									<span class="top"><strong>Title text 1</strong><br />Content text...</span>
 								</li>
 								<li class="sliderImage">
-									<a href=""><img src="/makkaldeals/images/410/2.jpg" alt="2" /></a>
+									<a href=""><img src="/grepdeals/images/410/2.jpg" alt="2" /></a>
 									<span class="top"><strong>Title text 2</strong><br />Content text...Content text...Content text...Content text...Content text...Content text...Content text...Content text...Content text...Content text...Content text...</span>
 								</li>
 								<li class="sliderImage">
-									<img src="/makkaldeals/images/410/3.jpg" alt="3" />
+									<img src="/grepdeals/images/410/3.jpg" alt="3" />
 									<span class="bottom"><strong>Title text 2</strong><br />Content text...</span>
 								</li>
 								<li class="sliderImage">
-									<img src="/makkaldeals/images/410/4.jpg" alt="4" />
+									<img src="/grepdeals/images/410/4.jpg" alt="4" />
 									<span class="bottom"><strong>Title text 2</strong><br />Content text...</span>
 								</li>
 								<li class="sliderImage">
-									<img src="/makkaldeals/images/410/5.jpg" alt="5" />
+									<img src="/grepdeals/images/410/5.jpg" alt="5" />
 									<span class="top"><strong>Title text 2</strong><br />Content text...</span>
 								</li>
 								<div class="clear sliderImage"></div>
