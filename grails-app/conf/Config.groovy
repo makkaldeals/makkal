@@ -70,8 +70,8 @@ grails.exceptionresolver.params.exclude = ['password']
 
 makkaldeals {
   user {
-    admin.email = "admin@makkaldeals.com"
-    admin.password = "makkaladmin"
+    admin.email = "admin@grepdeals.com"
+    admin.password = "grepadmin2011"
   }
   posts{
     max.per.page=5;
