@@ -8,6 +8,8 @@ import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
 import org.codehaus.groovy.grails.plugins.springsecurity.ui.RegistrationCode
 import grails.plugins.springsecurity.ui.AbstractS2UiController
 import grails.validation.ValidationException
+import com.makkaldeals.consts.CategoryTree
+import grails.converters.JSON
 
 
 
@@ -285,6 +287,12 @@ class RegisterController extends AbstractS2UiController {
     redirect uri: params.targetUrl;
   }
 
+  def ajaxGetSubcategories = {
+    CategoryTree parent = CategoryTree.valueOf(params.name);
+    def subcategories = parent.allChildren().collect {message(code:"user.subcategory.label.${it.name}")}
+    render subcategories as JSON;
+
+  }
 
   protected Class<?> lookupUserClass(String role) {
     if (role.equals(Role.ROLE_CUSTOMER)) {

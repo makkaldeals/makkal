@@ -10,6 +10,7 @@ import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
 import org.springframework.beans.factory.InitializingBean
 import grails.util.GrailsUtil;
 
+
 /**
  * com.makkaldeals
  *
@@ -114,5 +115,17 @@ class EmailService implements InitializingBean{
 
   }
 
+    public void contactUs(String firstName, String lastName, String email, String phoneNumber, String reasonToContact) {
 
+        def body = conf.email.contactUs.body
+        if (body.contains('$')) {
+            body = evaluate(body, [firstName: firstName, lastName: lastName, email: email, phoneNumber: phoneNumber, reasonToContact: reasonToContact])
+        }
+        mailService.sendMail {
+            to CH.config.makkaldeals.user.admin.email
+            from conf.email.from
+            subject conf.email.contactUs.subject
+            html body.toString()
+        }
+    }
 }

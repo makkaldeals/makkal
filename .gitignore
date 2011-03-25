@@ -12,6 +12,7 @@ out/
 
 #ignore log files
 logs/
+*\.log
 
 *\.bak
 *MakkalDb.*

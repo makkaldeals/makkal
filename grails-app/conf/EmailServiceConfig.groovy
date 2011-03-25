@@ -8,7 +8,7 @@ You (or someone pretending to be you) created an account with this email address
 <br/>
 If you made the request, please click <a href="$url">here</a> to finish the registration.
 '''
-    subject = 'New Account registration with Makkal deals'
+    subject = 'New Account registration with grepdeals'
   }
 
   forgotPassword {
@@ -21,14 +21,14 @@ If you didn't make this request then ignore the email; no changes have been made
 <br/>
 If you did make the request, then click <a href="$url">here</a> to reset your password.
 '''
-    subject = 'Password Reset for Makkal deals Account'
+    subject = 'Password Reset for grepdeals Account'
   }
 
   approve {
     body = '''\
 Hi Admin ,<br/>
 <br/>
-$user.email has registered new customer account with Makkal Deals.
+$user.email has registered new customer account with grepdeals.
 <br/>
 Please verify information provided by user below and click <a href="$url">here</a> to approve his registration.
 <br/>
@@ -38,6 +38,7 @@ Please verify information provided by user below and click <a href="$url">here</
 <tr> <td> Lsst Name </td> <td> $user.lastName </tr>
 <tr> <td> Business Name </td> <td> $user.business.name </tr>
 <tr> <td> Category </td> <td> $user.business.category </tr>
+<tr> <td> Sub Category </td> <td> $user.business.subcategory </tr>
 <tr> <td> Address </td> <td> $user.business.address </tr>
 <tr> <td> City </td> <td> $user.business.city </tr>
 <tr> <td> State </td> <td> $user.business.state </tr>
@@ -48,18 +49,38 @@ Please verify information provided by user below and click <a href="$url">here</
 </table>
 
 '''
-    subject = 'New Customer registration with Makkal deals'
+    subject = 'New Customer registration with grepdeals'
   }
 
   postConfirmation {
     body = '''\
 Hi $user.firstName,<br/>
 <br/>
-Your post is successfully posted to makkaldeals.<br/>
+Your post is successfully posted to grepdeals.<br/>
 <br/>
 If you would like to view your post, click this  <a href="$url">$url</a>.
 '''
     subject = 'Your post is published'
   }
+
+    contactUs {
+        body = '''\
+Hi Admin ,<br/>
+<br/>
+$firstName $lastName has sent the contact information.
+<br/>
+<br/>
+<table>
+<tr> <td> First Name </td> <td> $firstName  </td> </tr>
+<tr> <td> Lsst Name </td> <td> $lastName  </td> </tr>
+<tr> <td> Email </td> <td> $email </tr>
+<tr> <td> Phone </td> <td> $phoneNumber </td> </tr>
+<tr> <td> Reason to contact </td> <td> $reasonToContact </td></tr>
+</table>
+
+'''
+        subject = 'User submitted contact information'
+    }
+
 }
 
