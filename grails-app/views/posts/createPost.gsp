@@ -12,10 +12,22 @@
   <meta name='layout' content='register'/>
   <resource:richTextEditor type="full" />
   <title>Makkal deals customer</title>
+  <ckeditor:resources />
+  <g:javascript>
+  
+	function ckeditorFileBrowserItemSelected(path) {
+		// do whatever you want with path
+		alert(path);
+	}
+
+  </g:javascript>
 </head>
+
+
 <body>
 
 <div id="createPost">
+
   <h1>
     <g:if test="${post.id}">
       <g:message code="post.edit.title" default="Edit Post"></g:message>
@@ -23,8 +35,8 @@
     <g:else>
       <g:message code="post.create.title" default="Create Post"></g:message>
     </g:else>
-
   </h1>
+  <ckeditor:fileBrowser fileBrowser="ofm" >Open file browser</ckeditor:fileBrowser>
   <g:renderErrors bean="${post}"></g:renderErrors>
   <g:form name="createPostForm" controller="posts" action="publishPost" >
     <g:if test="${post.id}">
