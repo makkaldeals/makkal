@@ -17,7 +17,7 @@ environments {
            // url = "jdbc:hsqldb:mem:devDB"
 
           dbCreate = "create-drop"
-	      url = "jdbc:hsqldb:file:devMakkalDb;shutdown=true"
+	      url = "jdbc:hsqldb:file:devgrepdealsDb;shutdown=true"
           //uncomment next line to log sqls
           //logSql = true ;
         }

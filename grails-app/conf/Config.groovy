@@ -3,7 +3,7 @@ import java.awt.Font
 
 import org.apache.log4j.DailyRollingFileAppender
 
-import com.makkaldeals.auth.User
+import com.grepdeals.auth.User
 import com.octo.captcha.component.image.backgroundgenerator.GradientBackgroundGenerator
 import com.octo.captcha.component.image.color.SingleColorGenerator
 import com.octo.captcha.component.image.fontgenerator.RandomFontGenerator
@@ -68,7 +68,7 @@ grails.spring.bean.packages = []
 // request parameters to mask when logging exceptions
 grails.exceptionresolver.params.exclude = ['password']
 
-makkaldeals {
+grepdeals {
   user {
     admin.email = "admin@grepdeals.com"
     admin.password = "grepadmin2011"
@@ -128,12 +128,12 @@ log4j = {
 
 
 // Added by the Spring Security Core plugin:
-grails.plugins.springsecurity.userLookup.userDomainClassName = 'com.makkaldeals.auth.User'
+grails.plugins.springsecurity.userLookup.userDomainClassName = 'com.grepdeals.auth.User'
 grails.plugins.springsecurity.userLookup.usernamePropertyName = 'email'
-grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'com.makkaldeals.auth.UserRole'
-grails.plugins.springsecurity.authority.className = 'com.makkaldeals.auth.Role'
+grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'com.grepdeals.auth.UserRole'
+grails.plugins.springsecurity.authority.className = 'com.grepdeals.auth.Role'
 grails.plugins.springsecurity.rememberMe.persistent = true
-grails.plugins.springsecurity.rememberMe.persistentToken.domainClassName = 'com.makkaldeals.auth.PersistentLogin'
+grails.plugins.springsecurity.rememberMe.persistentToken.domainClassName = 'com.grepdeals.auth.PersistentLogin'
 
 //TODO REMOVE GRAILS SIMPLE BLOG ONCE DONE WITH POSTING
 grails.blog.author.evaluator = {

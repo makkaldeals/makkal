@@ -10,7 +10,7 @@
 <html>
   <head>
     <meta name='layout' content='register'/>
-    <title>Makkal deals customer</title>
+    <title>Grepdeals customer</title>
   </head>
   <body>
   <div >

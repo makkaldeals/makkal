@@ -1,8 +1,8 @@
-package com.makkaldeals.auth
+package com.grepdeals
 
 import grails.test.*
 
-class CustomerServiceTests extends GrailsUnitTestCase {
+class PostServiceTests extends GrailsUnitTestCase {
     protected void setUp() {
         super.setUp()
     }

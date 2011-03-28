@@ -1,18 +1,18 @@
-package com.makkaldeals
+package com.grepdeals
 
 
 import groovy.text.SimpleTemplateEngine
 
 import org.springframework.web.context.request.RequestContextHolder
 import org.codehaus.groovy.grails.plugins.springsecurity.ui.RegistrationCode
-import com.makkaldeals.auth.User
+import com.grepdeals.auth.User
 import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
 import org.springframework.beans.factory.InitializingBean
 import grails.util.GrailsUtil;
 
 
 /**
- * com.makkaldeals
+ * com.grepdeals
  *
  * Created on Mar 12, 2011 . 07:04:46 PM
  * @Author E. Rajasekar
@@ -77,7 +77,7 @@ class EmailService implements InitializingBean{
       body = evaluate(body, [user: user, url: url])
     }
     mailService.sendMail {
-      to CH.config.makkaldeals.user.admin.email
+      to CH.config.grepdeals.user.admin.email
       from conf.email.from
       subject conf.email.approve.subject
       html body.toString()
@@ -122,7 +122,7 @@ class EmailService implements InitializingBean{
             body = evaluate(body, [firstName: firstName, lastName: lastName, email: email, phoneNumber: phoneNumber, reasonToContact: reasonToContact])
         }
         mailService.sendMail {
-            to CH.config.makkaldeals.user.admin.email
+            to CH.config.grepdeals.user.admin.email
             from conf.email.from
             subject conf.email.contactUs.subject
             html body.toString()

@@ -1,8 +1,8 @@
-import com.makkaldeals.auth.*;
+import com.grepdeals.auth.*;
 
 import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
-import com.makkaldeals.Post
-import com.makkaldeals.Business;
+import com.grepdeals.Post
+import com.grepdeals.Business;
 
 class BootStrap {
 
@@ -16,7 +16,7 @@ class BootStrap {
 
   def createDefaultUsersAndRoles() {
 
-    String password = springSecurityService.encodePassword(CH.config.makkaldeals.user.admin.password);
+    String password = springSecurityService.encodePassword(CH.config.grepdeals.user.admin.password);
 
     def roleAdmin = Role.findByAuthority(Role.ROLE_ADMIN) ?: new Role(authority: Role.ROLE_ADMIN).save();
 
@@ -24,7 +24,7 @@ class BootStrap {
 
     Role.findByAuthority(Role.ROLE_CUSTOMER) ?: new Role(authority: Role.ROLE_CUSTOMER).save();
 
-    def admin = new User(email: CH.config.makkaldeals.user.admin.email, password: password, enabled: true).save();
+    def admin = new User(email: CH.config.grepdeals.user.admin.email, password: password, enabled: true).save();
 
     UserRole.create(admin, roleAdmin, true);
   }
@@ -32,9 +32,9 @@ class BootStrap {
   def createTestData() {
     def clientRole = Role.findByAuthority(Role.ROLE_CLIENT)
     def customerRole = Role.findByAuthority(Role.ROLE_CUSTOMER)
-    String password = springSecurityService.encodePassword("makkaldeals");
+    String password = springSecurityService.encodePassword("grepdeals");
 
-    def u1 = User.build(email:'client1@makkaldeals.com' , password:password , enabled:true, accountLocked : false, areaCode : "33634");
+    def u1 = User.build(email:'client1@grepdeals.com' , password:password , enabled:true, accountLocked : false, areaCode : "33634");
     UserRole.create(u1,clientRole,true);
 
     def b1 = Business.build();
@@ -42,7 +42,7 @@ class BootStrap {
     def b3 = Business.build(name:b1.name,category:b1.category, areaCode:"33635");
     Map customers = [:];
 
-    customers.c0 = Customer.build(email:"e.rajasekar@makkaldeals.com" , business:b1, password:password);
+    customers.c0 = Customer.build(email:"e.rajasekar@grepdeals.com" , business:b1, password:password);
     customers.c1 = Customer.build(business:b1, password:password);
     customers.c2 = Customer.build(business:b1, password:password);
     customers.c3 = Customer.build(business:b2, password:password);

@@ -10,7 +10,7 @@
 <html>
   <head>
     <meta name='layout' content='register'/>
-    <title>Makkal deals client</title>
+    <title>Grepdeals client</title>
   </head>
   <body>
 

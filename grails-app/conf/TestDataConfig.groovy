@@ -1,14 +1,14 @@
 testDataConfig {
     sampleData {
-         'com.makkaldeals.auth.Customer' {
+         'com.grepdeals.auth.Customer' {
            def i = 1;
-           email = {-> "customer${i}@makkaldeals.com"};
+           email = {-> "customer${i}@grepdeals.com"};
            firstName = {-> "customer${i++}"}
            password = "customer2011"
            accountLocked = false
            enabled = true;
          }
-         'com.makkaldeals.Business' {
+         'com.grepdeals.Business' {
            def i = 1;
            name = {-> "business${i}"} ;
            category = {-> "category${i++}"}
@@ -16,7 +16,7 @@ testDataConfig {
            state = "Florida";
            areaCode = "33634"
          }
-        'com.makkaldeals.Post' {
+        'com.grepdeals.Post' {
           def i=1;
           title = {-> "title${i}"};
           content = {-> "content${i++}"}

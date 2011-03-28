@@ -1,9 +1,9 @@
-package com.makkaldeals.auth
+package com.grepdeals.auth
 
-import com.makkaldeals.Business
+import com.grepdeals.Business
 
 /**
- * com.makkaldeals.auth
+ * com.grepdeals.auth
  *
  * Created on Mar 13, 2011 . 11:10:46 PM
  * @Author E. Rajasekar

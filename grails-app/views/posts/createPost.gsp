@@ -11,7 +11,7 @@
 <head>
   <meta name='layout' content='register'/>
   <resource:richTextEditor type="full" />
-  <title>Makkal deals customer</title>
+  <title>Grepdeals customer</title>
   <ckeditor:resources />
   <g:javascript>
   

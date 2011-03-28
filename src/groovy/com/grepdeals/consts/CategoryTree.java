@@ -1,4 +1,4 @@
-package com.makkaldeals.consts;
+package com.grepdeals.consts;
 
 import java.util.ArrayList;
 import java.util.Collections;

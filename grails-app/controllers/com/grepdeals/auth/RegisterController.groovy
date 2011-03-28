@@ -1,4 +1,4 @@
-package com.makkaldeals.auth
+package com.grepdeals.auth
 
 
 import groovy.text.SimpleTemplateEngine
@@ -8,7 +8,7 @@ import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
 import org.codehaus.groovy.grails.plugins.springsecurity.ui.RegistrationCode
 import grails.plugins.springsecurity.ui.AbstractS2UiController
 import grails.validation.ValidationException
-import com.makkaldeals.consts.CategoryTree
+import com.grepdeals.consts.CategoryTree
 import grails.converters.JSON
 
 
@@ -296,7 +296,7 @@ class RegisterController extends AbstractS2UiController {
 
   protected Class<?> lookupUserClass(String role) {
     if (role.equals(Role.ROLE_CUSTOMER)) {
-      grailsApplication.getDomainClass("com.makkaldeals.auth.Customer").clazz
+      grailsApplication.getDomainClass("com.grepdeals.auth.Customer").clazz
     }
     else {
       return super.lookupUserClass();

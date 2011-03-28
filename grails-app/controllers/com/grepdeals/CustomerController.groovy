@@ -1,7 +1,7 @@
-package com.makkaldeals
+package com.grepdeals
 
 import grails.plugins.springsecurity.Secured
-import com.makkaldeals.auth.Role
+import com.grepdeals.auth.Role
 
 
 class CustomerController {

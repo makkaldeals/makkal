@@ -1,5 +1,5 @@
-<%@ page import="com.makkaldeals.consts.CategoryTree"%>
-<%@ page import="com.makkaldeals.auth.Role" %>
+<%@ page import="com.grepdeals.consts.CategoryTree"%>
+<%@ page import="com.grepdeals.auth.Role" %>
 <head>
 	<meta name='layout' content='register'/>
     <g:javascript library="prototype" />

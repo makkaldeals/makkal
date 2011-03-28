@@ -1,4 +1,4 @@
-package com.makkaldeals
+package com.grepdeals
 
 import grails.plugins.springsecurity.Secured
 

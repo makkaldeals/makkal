@@ -1,6 +1,6 @@
-package com.makkaldeals
+package com.grepdeals
 
-import com.makkaldeals.auth.Customer
+import com.grepdeals.auth.Customer
 import grails.orm.PagedResultList
 import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
 import org.springframework.beans.factory.InitializingBean
@@ -14,7 +14,7 @@ class PostService implements InitializingBean {
   static transactional = false;
 
   void afterPropertiesSet() {
-    maxPostsPerPage = CH.config.makkaldeals.posts.max.per.page;
+    maxPostsPerPage = CH.config.grepdeals.posts.max.per.page;
   }
 
   public Post create(Map params) {

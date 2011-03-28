@@ -1,10 +1,10 @@
-package com.makkaldeals
+package com.grepdeals
 
 import org.grails.taggable.*
-import com.makkaldeals.auth.Customer
+import com.grepdeals.auth.Customer
 
 /**
- * com.makkaldeals.auth
+ * com.grepdeals.auth
  *
  * Created on Mar 7, 2011 . 4:45:46 PM
  * @Author E. Rajasekar

@@ -1,11 +1,11 @@
-package com.makkaldeals.auth
+package com.grepdeals.auth
 
 import org.apache.commons.logging.LogFactory
-import com.makkaldeals.Post
-import com.makkaldeals.Business
+import com.grepdeals.Post
+import com.grepdeals.Business
 
 /**
- * com.makkaldeals.auth
+ * com.grepdeals.auth
  *
  * Created on Mar 5, 2011 . 4:45:46 PM
  * @Author E. Rajasekar

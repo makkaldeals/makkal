@@ -1,7 +1,7 @@
-package com.makkaldeals
+package com.grepdeals
 
 /**
- * com.makkaldeals.auth
+ * com.grepdeals.auth
  *
  * Created on Mar 5, 2011 . 4:45:46 PM
  * @Author E. Rajasekar

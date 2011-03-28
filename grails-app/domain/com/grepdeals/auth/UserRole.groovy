@@ -1,4 +1,4 @@
-package com.makkaldeals.auth
+package com.grepdeals.auth
 
 import org.apache.commons.lang.builder.HashCodeBuilder
 

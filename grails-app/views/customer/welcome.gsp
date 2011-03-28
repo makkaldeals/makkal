@@ -6,11 +6,11 @@
   To change this template use File | Settings | File Templates.
 --%>
 
-<%@ page import="com.makkaldeals.auth.User; com.makkaldeals.Business" contentType="text/html;charset=UTF-8" %>
+<%@ page import="com.grepdeals.auth.User; com.grepdeals.Business" contentType="text/html;charset=UTF-8" %>
 <html>
   <head>
     <meta name='layout' content='register'/>
-    <title>Makkal deals customer</title>
+    <title>Grepdeals customer</title>
   </head>
   <body>
 
