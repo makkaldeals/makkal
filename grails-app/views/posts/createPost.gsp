@@ -10,15 +10,28 @@
 <html>
 <head>
   <meta name='layout' content='register'/>
-  <resource:richTextEditor type="full" />
   <title>Grepdeals customer</title>
   <ckeditor:resources />
   <g:javascript>
-  
-	function ckeditorFileBrowserItemSelected(path) {
-		// do whatever you want with path
-		alert(path);
-	}
+
+    CKEDITOR.on('dialogDefinition', function(ev){
+        var dialogName = ev.data.name;
+        var dialogDefinition = ev.data.definition; 
+        if (dialogName == 'flash'){
+            var infotab = dialogDefinition.getContents('info');
+            var f = dialogDefinition.onOk;
+            dialogDefinition.onOk = function(ev) {
+                var cur = this.getContentElement('info', 'src').getValue();
+                var newurl = cur.replace('youtube.com/watch?v=', 'youtube.com/v/');
+                if (cur != newurl) {
+                    this.getContentElement('info', 'src').setValue(newurl);
+                };
+                f.apply(this, [ev]);  //change here
+           }
+        }
+    })
+
+
 
   </g:javascript>
 </head>
@@ -36,7 +49,6 @@
       <g:message code="post.create.title" default="Create Post"></g:message>
     </g:else>
   </h1>
-  <ckeditor:fileBrowser fileBrowser="ofm" >Open file browser</ckeditor:fileBrowser>
   <g:renderErrors bean="${post}"></g:renderErrors>
   <g:form name="createPostForm" controller="posts" action="publishPost" >
     <g:if test="${post.id}">
@@ -51,8 +63,13 @@
     <p>
     <label for="post.content"><g:message code="post.content.label" default="Content:"/></label> <br>
 
-    <!-- <g:textArea name="post.content" value="${post.content}" rows="5" cols="50"/>  -->
-     <richui:richTextEditor name="post.content" value="${post.content}" width="525" />
+    <!-- <g:textArea name="post.content" value="${post.content}" rows="5" cols="50"/>
+     <richui:richTextEditor name="post.content" value="${post.content}" width="525" /> -->
+    <ckeditor:editor name="post.content" height="400px" width="80%" >
+    ${post.content}
+    </ckeditor:editor>
+
+
 
     </p>
     <p>
