@@ -61,13 +61,16 @@
     </p>
 
     <p>
-    <label for="post.content"><g:message code="post.content.label" default="Content:"/></label> <br>
+   
 
+    <label for="post.content"><g:message code="post.content.label" default="Content:"/></label> <br>
+    
     <!-- <g:textArea name="post.content" value="${post.content}" rows="5" cols="50"/>
      <richui:richTextEditor name="post.content" value="${post.content}" width="525" /> -->
-    <ckeditor:editor name="post.content" height="400px" width="80%" >
+    <ckeditor:editor name="post.content" height="400px" width="80%"  filebrowserImageBrowseUrl="/grepdeals/customer/welcome" filebrowserImageUploadUrl="/grepdeals/image/upload" filebrowserUploadUrl="/grepdeals/image/upload" >
     ${post.content}
     </ckeditor:editor>
+
 
 
 
