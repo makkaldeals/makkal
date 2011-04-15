@@ -2,7 +2,7 @@ package com.grepdeals
 
 import grails.test.*
 
-class ImageControllerTests extends ControllerUnitTestCase {
+class MediaServiceTests extends GrailsUnitTestCase {
     protected void setUp() {
         super.setUp()
     }

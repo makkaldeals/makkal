@@ -67,7 +67,8 @@
     
     <!-- <g:textArea name="post.content" value="${post.content}" rows="5" cols="50"/>
      <richui:richTextEditor name="post.content" value="${post.content}" width="525" /> -->
-    <ckeditor:editor name="post.content" height="400px" width="80%"  filebrowserImageBrowseUrl="/grepdeals/customer/welcome" filebrowserImageUploadUrl="/grepdeals/image/upload" filebrowserUploadUrl="/grepdeals/image/upload" >
+    <!-- FIXME url's should not have grepdeals -->
+    <ckeditor:editor name="post.content" height="400px" width="80%"  filebrowserImageBrowseUrl="/grepdeals/customer/welcome" filebrowserImageUploadUrl="/grepdeals/media/uploadImage" filebrowserUploadUrl="/grepdeals/media/uploadImage" >
     ${post.content}
     </ckeditor:editor>
 

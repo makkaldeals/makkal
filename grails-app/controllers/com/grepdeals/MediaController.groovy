@@ -1,5 +1,6 @@
 package com.grepdeals
 
+import grails.plugins.springsecurity.Secured
 
 /**
  * com.grepdeals
@@ -8,13 +9,16 @@ package com.grepdeals
  * @Author E. Rajasekar
  *
  */
-class ImageController {
+class MediaController {
 
     def index = { }
+    def mediaService;
 
-    def upload = {
+    @Secured(['ROLE_CUSTOMER', 'ROLE_ADMIN'])
+    def uploadImage = {
       log.info("${params}");
-      String imgUrl="https://lh6.googleusercontent.com/_WfNIF9XHe5M/TQRN24VmPvI/AAAAAAAADds/TG8zYf7c4uI/s720/IMG_0160.JPG";
+
+      String imgUrl = mediaService.uploadImage(params.upload);
       render """<script type='text/javascript' language='javascript'>
                   window.parent.CKEDITOR.tools.callFunction('${params.CKEditorFuncNum}', '${imgUrl}')
               </script>""" ;
