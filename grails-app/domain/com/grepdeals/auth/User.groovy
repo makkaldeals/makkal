@@ -1,5 +1,6 @@
 package com.grepdeals.auth
 
+import com.grepdeals.UserCategory;
 class User {
 
 	String email
@@ -9,6 +10,8 @@ class User {
 	boolean accountLocked
 	boolean passwordExpired
     String areaCode
+	
+	static hasMany = [categories: UserCategory];
 
 	static constraints = {
 		email blank: false, unique: true
