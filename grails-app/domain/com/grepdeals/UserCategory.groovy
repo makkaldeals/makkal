@@ -4,7 +4,7 @@ import com.grepdeals.auth.User;
 
 class UserCategory {
 	
-	static belongsTo = [author:User]
+	String email
 	
-	String categories;
+	List<String> categories
 }

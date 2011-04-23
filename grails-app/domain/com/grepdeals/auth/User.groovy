@@ -12,8 +12,8 @@ class User {
     String areaCode
 	String facebookId
 	String facebookPassword
+	UserCategory userCategories;
 	
-	static hasMany = [categories: UserCategory];
 
 	static constraints = {
 		email blank: false, unique: true
