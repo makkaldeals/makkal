@@ -10,6 +10,8 @@ class User {
 	boolean accountLocked
 	boolean passwordExpired
     String areaCode
+	String facebookId
+	String facebookPassword
 	
 	static hasMany = [categories: UserCategory];
 
