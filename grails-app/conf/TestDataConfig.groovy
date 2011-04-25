@@ -4,7 +4,6 @@ testDataConfig {
            def i = 1;
            email = {-> "customer${i}@grepdeals.com"};
            firstName = {-> "customer${i++}"}
-           password = "customer2011"
            accountLocked = false
            enabled = true;
          }

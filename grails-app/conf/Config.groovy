@@ -76,6 +76,10 @@ grepdeals {
   posts{
     max.per.page=5;
   }
+  image {
+    max.upload.size = 1600;
+    picasa.feedUrl = "https://picasaweb.google.com/data/feed/api/user/${grepdeals.user.admin.email}";
+  }
 }
 
 // set per-environment serverURL stem for creating absolute links
@@ -120,7 +124,7 @@ log4j = {
            'grails.buildtestdata.DomainInstanceBuilder'
 
     root {
-        info 'stdout', 'makkalDealsServerLog'
+        info 'stdout', 'grepDealsServerLog'
         additivity = true
     }
 
