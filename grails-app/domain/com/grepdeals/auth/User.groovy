@@ -1,5 +1,6 @@
 package com.grepdeals.auth
 
+import com.grepdeals.UserCategory;
 class User {
 
 	String email
@@ -9,6 +10,10 @@ class User {
 	boolean accountLocked
 	boolean passwordExpired
     String areaCode
+	String facebookId
+	String facebookPassword
+	UserCategory userCategories;
+	
 
 	static constraints = {
 		email blank: false, unique: true
