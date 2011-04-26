@@ -3,6 +3,8 @@ import com.grepdeals.auth.*;
 import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
 import com.grepdeals.Post
 import com.grepdeals.Business;
+import com.grepdeals.UserCategory;
+
 import grails.util.Environment;
 
 class BootStrap {
@@ -28,6 +30,13 @@ class BootStrap {
     def admin = new User(email: CH.config.grepdeals.user.admin.email, password: password, enabled: true).save();
 
     UserRole.create(admin, roleAdmin, true);
+	
+	System.out.println("In creating UserCategory");
+	UserCategory.create(admin, "AU");
+	UserCategory.create(admin, "BU");
+	UserCategory.create(admin, "CU");
+	
+	System.out.println("User Categories are --- "+UserCategory.getCategories(admin).toString());
   }
 
   def createTestData() {

@@ -12,8 +12,6 @@ class User {
     String areaCode
 	String facebookId
 	String facebookPassword
-	UserCategory userCategories;
-	
 
 	static constraints = {
 		email blank: false, unique: true
