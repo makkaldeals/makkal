@@ -1,13 +1,10 @@
 package com.grepdeals
 
-import java.util.Set;
+import java.util.Set
 
 import org.apache.commons.lang.builder.HashCodeBuilder
 
-import com.grepdeals.auth.Role;
 import com.grepdeals.auth.User
-import com.grepdeals.auth.UserRole;
-import com.grepdeals.consts.CategoryTree;
 
 class UserCategory {
 	
@@ -45,7 +42,7 @@ class UserCategory {
 	}
 	
 	static Set<String> getCategories(User user) {
-		UserCategory.findAllByUser(user).collect { it.user} as Set
+		UserCategory.findAllByUser(user).collect { it.category} as Set
 	}
 
 
