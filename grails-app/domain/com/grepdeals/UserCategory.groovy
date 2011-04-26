@@ -1,12 +1,12 @@
 package com.grepdeals
 
-import java.util.Set
+import java.io.Serializable
 
 import org.apache.commons.lang.builder.HashCodeBuilder
 
 import com.grepdeals.auth.User
 
-class UserCategory {
+class UserCategory implements Serializable {
 	
 	User user
 	
@@ -29,7 +29,9 @@ class UserCategory {
 	}
 	
 	static UserCategory create(User user, String category, boolean flush = false) {
-		new UserCategory(user: user, category: category).save(flush: flush, insert: true)
+		System.out.println("User = " +user.getEmail()+", category = "+category);
+		UserCategory userCate = new UserCategory(user: user, category: category).save(flush: flush, insert: true)
+		System.out.println("UserCategory "+userCate);
 	}
 
 	static boolean remove(User user, String category, boolean flush = false) {
@@ -45,5 +47,9 @@ class UserCategory {
 		UserCategory.findAllByUser(user).collect { it.category} as Set
 	}
 
+	static mapping = {
+		id composite: ['category', 'user']
+		version false
+	}
 
 }

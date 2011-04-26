@@ -13,7 +13,7 @@ class BootStrap {
 
   def init = {servletContext ->
     createDefaultUsersAndRoles();
-    createTestData();
+    //createTestData();
 
   }
 
@@ -31,10 +31,10 @@ class BootStrap {
 
     UserRole.create(admin, roleAdmin, true);
 	
-	System.out.println("In creating UserCategory");
-	UserCategory.create(admin, "AU");
-	UserCategory.create(admin, "BU");
-	UserCategory.create(admin, "CU");
+	System.out.println("Admin "+admin);
+	UserCategory.create(admin, "AU", true);
+	UserCategory.create(admin, "BU", true);
+	UserCategory.create(admin, "CU", true);
 	
 	System.out.println("User Categories are --- "+UserCategory.getCategories(admin).toString());
   }

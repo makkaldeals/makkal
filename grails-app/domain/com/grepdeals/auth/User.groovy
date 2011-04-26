@@ -16,7 +16,9 @@ class User {
 	static constraints = {
 		email blank: false, unique: true
 		password blank: false
-        areaCode nullable:true;
+        areaCode nullable:true
+		facebookId nullable:true
+		facebookPassword nullable:true;
 	}
 
 	static mapping = {
