@@ -1,4 +1,5 @@
 import com.grepdeals.auth.*;
+import com.grepdeals.consts.CategoryTree;
 
 import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
 import com.grepdeals.Post
@@ -31,12 +32,24 @@ class BootStrap {
 
     UserRole.create(admin, roleAdmin, true);
 	
-	System.out.println("Admin "+admin);
-	UserCategory.create(admin, "AU", true);
-	UserCategory.create(admin, "BU", true);
-	UserCategory.create(admin, "CU", true);
+	//UserCategory.create(admin, CategoryTree.Automotive, true);
+	//UserCategory.create(admin, CategoryTree.AutoGlassServices, true);
+	//UserCategory.create(admin, CategoryTree.AutoPartsAccessories, true);
 	
-	System.out.println("User Categories are --- "+UserCategory.getCategories(admin).toString());
+	admin.addCategory(CategoryTree.Automotive);
+	admin.addCategory(CategoryTree.AutoGlassServices);
+	admin.addCategory(CategoryTree.AutoPartsAccessories);
+	
+	System.out.println("User Categories are --- "+admin.getCategories());
+	
+	admin.removeCategory(CategoryTree.Automotive)
+	
+	System.out.println("User Categories after removing one --- "+admin.getCategories());
+	
+	admin.removeAllCategories()
+	
+	System.out.println("User Categories after removing all  --- "+admin.getCategories());
+	
   }
 
   def createTestData() {

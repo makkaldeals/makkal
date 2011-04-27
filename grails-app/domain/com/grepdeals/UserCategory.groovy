@@ -4,51 +4,49 @@ import java.io.Serializable
 
 import org.apache.commons.lang.builder.HashCodeBuilder
 
-import com.grepdeals.auth.User
+import com.grepdeals.consts.CategoryTree
 
 class UserCategory implements Serializable {
 	
-	User user
+	String email
 	
-	String category
+	CategoryTree category
 	
 	boolean equals(other) {
 		if (!(other instanceof UserCategory)) {
 			return false
 		}
 
-		other.user?.id == user?.id &&
+		other.email?.id == email?.id &&
 			other.category?.id == category?.id
 	}
 
 	int hashCode() {
 		def builder = new HashCodeBuilder()
-		if (user) builder.append(user.id)
+		if (email) builder.append(email.id)
 		if (category) builder.append(category.id)
 		builder.toHashCode()
 	}
 	
-	static UserCategory create(User user, String category, boolean flush = false) {
-		System.out.println("User = " +user.getEmail()+", category = "+category);
-		UserCategory userCate = new UserCategory(user: user, category: category).save(flush: flush, insert: true)
-		System.out.println("UserCategory "+userCate);
+	static UserCategory create(String email, CategoryTree category, boolean flush = false) {
+		 new UserCategory(email: email, category: category.toString()).save(flush: flush, insert: true)
 	}
 
-	static boolean remove(User user, String category, boolean flush = false) {
-		UserCategory instance = UserCategory.findByUserAndCategory(user, category)
+	static boolean remove(String email, CategoryTree category, boolean flush = false) {
+		UserCategory instance = UserCategory.findByEmailAndCategory(email, category)
 		instance ? instance.delete(flush: flush) : false
 	}
 
-	static void removeAll(User user) {
-		executeUpdate 'DELETE FROM UserCategory WHERE user=:user', [user: user]
+	static void removeAll(String email) {
+		executeUpdate 'DELETE FROM UserCategory WHERE email=:email', [email: email]
 	}
 	
-	static Set<String> getCategories(User user) {
-		UserCategory.findAllByUser(user).collect { it.category} as Set
+	static Set<CategoryTree> getCategories(String email) {
+		UserCategory.findAllByEmail(email).collect { it.category} as Set
 	}
 
 	static mapping = {
-		id composite: ['category', 'user']
+		id composite: ['category', 'email']
 		version false
 	}
 
