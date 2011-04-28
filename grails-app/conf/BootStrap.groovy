@@ -32,23 +32,23 @@ class BootStrap {
 
     UserRole.create(admin, roleAdmin, true);
 	
-	//UserCategory.create(admin, CategoryTree.Automotive, true);
-	//UserCategory.create(admin, CategoryTree.AutoGlassServices, true);
-	//UserCategory.create(admin, CategoryTree.AutoPartsAccessories, true);
+	UserCategory.create(admin, CategoryTree.Automotive, true);
+	UserCategory.create(admin, CategoryTree.AutoGlassServices, true);
+	UserCategory.create(admin, CategoryTree.AutoPartsAccessories, true);
 	
-	admin.addCategory(CategoryTree.Automotive);
-	admin.addCategory(CategoryTree.AutoGlassServices);
-	admin.addCategory(CategoryTree.AutoPartsAccessories);
+	//admin.addCategory(CategoryTree.Automotive);
+	//admin.addCategory(CategoryTree.AutoGlassServices);
+	//admin.addCategory(CategoryTree.AutoPartsAccessories);
 	
-	System.out.println("User Categories are --- "+admin.getCategories());
+	System.out.println("User Categories are --- "+UserCategory.getCategories(admin));
 	
-	admin.removeCategory(CategoryTree.Automotive)
+	UserCategory.remove(admin, CategoryTree.Automotive, true)
 	
-	System.out.println("User Categories after removing one --- "+admin.getCategories());
+	System.out.println("User Categories after removing one --- "+UserCategory.getCategories(admin));
 	
-	admin.removeAllCategories()
+	UserCategory.removeAll(admin)
 	
-	System.out.println("User Categories after removing all  --- "+admin.getCategories());
+	System.out.println("User Categories after removing all  --- "+UserCategory.getCategories(admin));
 	
   }
 

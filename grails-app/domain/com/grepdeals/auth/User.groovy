@@ -32,20 +32,17 @@ class User {
 		UserRole.findAllByUser(this).collect { it.role } as Set
 	}
 
-	void addCategory(CategoryTree category) {
-		UserCategory.create(this.email, category, true)
+
+/*	static Set<CategoryTree> getCategories() {
+		return UserCategory.getCategories(this)
 	}
 	
-	Set<CategoryTree> getCategories() {
-		return UserCategory.getCategories(this.email)
-	}
-	
-	void removeCategory(CategoryTree category) {
-		UserCategory.remove(this.email, category, true)
+	static void removeCategory(CategoryTree category) {
+		UserCategory.remove(this, category, true)
 	}
    
-	void removeAllCategories() {
-		UserCategory.removeAll(this.email)
+	static void removeAllCategories() {
+		UserCategory.removeAll(this)
 	}
-	
+	*/
 }

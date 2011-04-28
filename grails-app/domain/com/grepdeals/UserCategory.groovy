@@ -4,11 +4,12 @@ import java.io.Serializable
 
 import org.apache.commons.lang.builder.HashCodeBuilder
 
+import com.grepdeals.auth.User
 import com.grepdeals.consts.CategoryTree
 
 class UserCategory implements Serializable {
 	
-	String email
+	User user
 	
 	CategoryTree category
 	
@@ -17,36 +18,36 @@ class UserCategory implements Serializable {
 			return false
 		}
 
-		other.email?.id == email?.id &&
+		other.user?.id == user?.id &&
 			other.category?.id == category?.id
 	}
 
 	int hashCode() {
 		def builder = new HashCodeBuilder()
-		if (email) builder.append(email.id)
+		if (user) builder.append(user.id)
 		if (category) builder.append(category.id)
 		builder.toHashCode()
 	}
 	
-	static UserCategory create(String email, CategoryTree category, boolean flush = false) {
-		 new UserCategory(email: email, category: category.toString()).save(flush: flush, insert: true)
+	static UserCategory create(User user, CategoryTree category, boolean flush = false) {
+		 new UserCategory(user: user, category: category.toString()).save(flush: flush, insert: true)
 	}
 
-	static boolean remove(String email, CategoryTree category, boolean flush = false) {
-		UserCategory instance = UserCategory.findByEmailAndCategory(email, category)
+	static boolean remove(User user, CategoryTree category, boolean flush = false) {
+		UserCategory instance = UserCategory.findByUserAndCategory(user, category)
 		instance ? instance.delete(flush: flush) : false
 	}
 
-	static void removeAll(String email) {
-		executeUpdate 'DELETE FROM UserCategory WHERE email=:email', [email: email]
+	static void removeAll(User user) {
+		executeUpdate 'DELETE FROM UserCategory WHERE user=:user', [user: user]
 	}
 	
-	static Set<CategoryTree> getCategories(String email) {
-		UserCategory.findAllByEmail(email).collect { it.category} as Set
+	static Set<CategoryTree> getCategories(User user) {
+		UserCategory.findAllByUser(user).collect { it.category} as Set
 	}
 
 	static mapping = {
-		id composite: ['category', 'email']
+		id composite: ['category', 'user']
 		version false
 	}
 
