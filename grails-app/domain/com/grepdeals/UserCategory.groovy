@@ -13,6 +13,12 @@ class UserCategory implements Serializable {
 	
 	CategoryTree category
 	
+	static constraints = {
+		user(blank: false)
+		category(blank: false)
+	}
+
+	
 	boolean equals(other) {
 		if (!(other instanceof UserCategory)) {
 			return false
