@@ -18,9 +18,10 @@ class UserCategoryTest extends GrailsUnitTestCase {
 
 	void testWithBlankUser() {
 		mockForConstraintsTests(UserCategory)
-		def userCategory = new UserCategory(user:"", category: CategoryTree.AutoGlassServices )
+		def userCategory = new UserCategory(user: "", category: CategoryTree.AutoGlassServices )
 		assertFalse userCategory.validate()
 		assertEquals 1, userCategory.errors.errorCount
+		println userCategory.errors
 		assertEquals "nullable", userCategory.errors["user"]
 	}
 	
@@ -48,8 +49,32 @@ class UserCategoryTest extends GrailsUnitTestCase {
 		
 		mockDomain(User , [admin])
 		
-		def adminCategory = new UserCategory(admin, CategoryTree.AutoGlassServices)
+		def adminCategory1 = new UserCategory(user: admin, category: CategoryTree.AutoGlassServices)
+		def adminCategory2 = new UserCategory(user: admin, category: CategoryTree.Automotive)
 		
-		assertEquals "riazmohideen@grepdeals.com", adminCategory.getUser().email
+		mockDomain(UserCategory, [adminCategory1, adminCategory2])
+		
+		assertTrue("Should have AutoGlassServices category ", admin.categories.contains(CategoryTree.AutoGlassServices))
+		
+			
+		assertTrue("Should have Automotive category ", admin.categories.contains(CategoryTree.Automotive))
 	}
+	
+	void testGetCategory() {
+		def admin = new User(email: "riazmohideen@grepdeals.com", password: "justpass")
+		
+		mockDomain(User , [admin])
+		
+		def adminCategory1 = new UserCategory(user: admin, category: CategoryTree.AutoGlassServices)
+		def adminCategory2 = new UserCategory(user: admin, category: CategoryTree.Automotive)
+		
+		mockDomain(UserCategory, [adminCategory1, adminCategory2])
+		
+		Set<CategoryTree> expectedCategories = new HashSet<CategoryTree> ()
+		expectedCategories.add CategoryTree.AutoGlassServices
+		expectedCategories.add CategoryTree.Automotive
+		
+		assertEquals expectedCategories, UserCategory.getCategories(admin)
+	}
+	
 }
