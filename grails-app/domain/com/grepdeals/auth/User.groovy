@@ -33,16 +33,20 @@ class User {
 	}
 
 
-/*	static Set<CategoryTree> getCategories() {
+	Set<CategoryTree> getCategories() {
 		return UserCategory.getCategories(this)
 	}
 	
-	static void removeCategory(CategoryTree category) {
-		UserCategory.remove(this, category, true)
+	void removeCategory(CategoryTree category) {
+		UserCategory.remove(this, category, true);
 	}
    
-	static void removeAllCategories() {
-		UserCategory.removeAll(this)
+	void removeAllCategories() {
+		UserCategory.removeAll(this);
 	}
-	*/
+
+    void addCategory(CategoryTree category){
+      UserCategory.create(this,category, true);
+    }
+
 }
