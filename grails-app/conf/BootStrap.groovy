@@ -14,7 +14,7 @@ class BootStrap {
 
   def init = {servletContext ->
     createDefaultUsersAndRoles();
-    //createTestData();
+    createTestData();
 
   }
 
@@ -40,15 +40,15 @@ class BootStrap {
 	//admin.addCategory(CategoryTree.AutoGlassServices);
 	//admin.addCategory(CategoryTree.AutoPartsAccessories);
 	
-	System.out.println("User Categories are --- "+UserCategory.getCategories(admin));
+	//System.out.println("User Categories are --- "+UserCategory.getCategories(admin));
 	
 	UserCategory.remove(admin, CategoryTree.Automotive, true)
 	
-	System.out.println("User Categories after removing one --- "+UserCategory.getCategories(admin));
+	//System.out.println("User Categories after removing one --- "+UserCategory.getCategories(admin));
 	
 	UserCategory.removeAll(admin)
 	
-	System.out.println("User Categories after removing all  --- "+UserCategory.getCategories(admin));
+	//System.out.println("User Categories after removing all  --- "+UserCategory.getCategories(admin));
 	
   }
 
