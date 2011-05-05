@@ -32,23 +32,6 @@ class BootStrap {
 
     UserRole.create(admin, roleAdmin, true);
 	
-	/*UserCategory.create(admin, CategoryTree.Automotive, true);
-	UserCategory.create(admin, CategoryTree.AutoGlassServices, true);
-	UserCategory.create(admin, CategoryTree.AutoPartsAccessories, true); */
-	
-	admin.addCategory(CategoryTree.Automotive);
-	admin.addCategory(CategoryTree.AutoGlassServices);
-	admin.addCategory(CategoryTree.AutoPartsAccessories);
-	
-	System.out.println("User Categories are --- "+UserCategory.getCategories(admin));
-	
-	UserCategory.remove(admin, CategoryTree.Automotive, true)
-	
-	//System.out.println("User Categories after removing one --- "+UserCategory.getCategories(admin));
-	
-	UserCategory.removeAll(admin)
-	
-	//System.out.println("User Categories after removing all  --- "+UserCategory.getCategories(admin));
 	
   }
 
