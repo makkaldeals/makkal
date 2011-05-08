@@ -71,7 +71,7 @@ grails.exceptionresolver.params.exclude = ['password']
 grepdeals {
   user {
     admin.email = "admin@grepdeals.com"
-    admin.password = "grepadmin2011"
+    admin.password = "grepdeals2011"
   }
   posts{
     max.per.page=5;
@@ -145,7 +145,7 @@ grails.blog.author.evaluator = {
     };
 
 ckeditor {
-	config = "/js/myckconfig.js"
+	config = "/js/ckconfig.gsp"
 		skipAllowedItemsCheck = false
 	defaultFileBrowser = "ofm"
 	upload {

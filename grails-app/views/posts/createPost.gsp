@@ -12,50 +12,7 @@
   <meta name='layout' content='register'/>
   <title>Grepdeals customer</title>
   <ckeditor:resources/>
-  <g:javascript>
-
-    CKEDITOR.on('dialogDefinition', function(ev) {
-      var dialogName = ev.data.name;
-      var dialogDefinition = ev.data.definition;
-
-
-      if (dialogName == 'flash') {
-        dialogDefinition.removeContents('advanced');
-        dialogDefinition.removeContents('properties');
-        dialogDefinition.removeContents('Upload');
-        var infotab = dialogDefinition.getContents('info');
-        var f = dialogDefinition.onOk;
-        dialogDefinition.onOk = function(ev) {
-          var cur = this.getContentElement('info', 'src').getValue();
-          var newurl = cur.replace('youtube.com/watch?v=', 'youtube.com/v/');
-          if (cur != newurl) {
-            this.getContentElement('info', 'src').setValue(newurl);
-          }
-          ;
-          f.apply(this, [ev]);  //change here
-        }
-      }
-      else if (dialogName == 'image') {
-        dialogDefinition.removeContents('advanced');
-        dialogDefinition.removeContents('Link');
-        var imageInfoTab = dialogDefinition.getContents('info');
-        imageInfoTab.remove('txtAlt');
-
-      }
-      else if (dialogName == 'link') {
-          
-          dialogDefinition.removeContents('upload');
-          dialogDefinition.removeContents('advanced');
-          var linkInfoTab = dialogDefinition.getContents('info');
-          linkInfoTab.remove('browse');
-          linkInfoTab.remove('linkType');
-          
-        }
-    })
-
-
-
-  </g:javascript>
+  <g:javascript src="ckeditor/ckcustomizations.js" />
 </head>
 
 
@@ -88,8 +45,9 @@
 
       <!-- <g:textArea name="post.content" value="${post.content}" rows="5" cols="50"/>
       <richui:richTextEditor name="post.content" value="${post.content}" width="525"/> -->
+
       <!-- FIXME url's should not have grepdeals -->
-      <ckeditor:editor name="post.content" height="400px" width="80%" filebrowserImageBrowseUrl="" filebrowserBrowseUrl="" filebrowserFlashBrowseUrl="" filebrowserImageUploadUrl="/grepdeals/media/uploadImage" filebrowserUploadUrl="/grepdeals/media/uploadImage">
+      <ckeditor:editor toolbar="custom" name="post.content"  height="400px" width="80%" filebrowserImageBrowseUrl="" filebrowserBrowseUrl="" filebrowserFlashBrowseUrl="" filebrowserImageUploadUrl="/grepdeals/media/uploadImage" filebrowserUploadUrl="/grepdeals/media/uploadImage">
         ${post.content}
       </ckeditor:editor>
 
