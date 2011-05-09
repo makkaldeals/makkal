@@ -8,14 +8,17 @@
 
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
-  <head>
+<head>
     <meta name='layout' content='register'/>
     <title>Grepdeals client</title>
-  </head>
-  <body>
+</head>
+<body>
 
-  Welcome ${session.user.email} ! , Area code : ${session.user.areaCode}  , Role : ${session.user.getAuthorities()}
+Welcome ${session.user.email} ! , Area code : ${session.user.areaCode}  , Role : ${session.user.getAuthorities()}
 
+<g:each var="post" in="${posts}">
+    <g:render template="/posts/showPostTempl" model="[post:post]"></g:render>
+</g:each>
 
-  </body>
+</body>
 </html>
