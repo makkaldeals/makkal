@@ -48,6 +48,7 @@
 	                   	<li><g:link controller='customer' action='index' title="Customer Login">Customer Login</g:link></li>
 	                   	<sec:ifLoggedIn>
 							<li><g:link controller='logout' action='index' title="Logout">Logout</g:link></li>
+							<li><g:link controller='settings' action='index' title="Settings">Settings</g:link></li>
 						</sec:ifLoggedIn>
 	                </ul>
 	            </div>

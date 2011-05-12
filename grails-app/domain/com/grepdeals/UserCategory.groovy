@@ -18,7 +18,6 @@ class UserCategory implements Serializable {
 		category(blank: false)
 	}
 
-	
 	boolean equals(other) {
 		if (!(other instanceof UserCategory)) {
 			return false
