@@ -4,5 +4,5 @@ class SettingsController {
 
     static navigation = true;
 
-	def index = { render view: 'settings' }
+	def index = { render view: '/settings/settings' }
 }

@@ -18,6 +18,12 @@ class UrlMappings {
       action = 'index'
     }
 
+	"/settings" {
+		controller = 'settings'
+		action = 'settings'
+	  }
+  
+
     name postsByTag : "/posts/tagged/$tag"(controller:"posts", action:"postsByTag")
 
     name postsByBusiness : "/$business"(controller:"posts", action:"postsByBusiness")

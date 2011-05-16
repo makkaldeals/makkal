@@ -12,7 +12,13 @@
     <link rel="stylesheet" type="text/css" media="screen" href="${resource(dir: 'css', file: 'grep_form.css')}"/>
 </head>
 <body>
+  <%
+    def user = session.user;
+    if (!user.isAttached()){
+      user.attach();
+    }
 
+  %>
 <div class="container">
     <div id="header" class="column span-24 last">
         <h1 class="column span-8 last">Grep Deals</h1>
@@ -48,10 +54,10 @@
             <P>You can provide the facebook credentials below</P>
             <table>
                 <tbody>
-                <s2ui:textFieldRow name='facebookId' bean="${command}" value="${command.facebookId}"
+                <s2ui:textFieldRow name='facebookId' bean="${user}" value="${user.facebookId}"
                         size='25' labelCode='user.facebookId.label'/>
-                <s2ui:textFieldRow name='facebookPass' bean="${command}" value="${command.facebookPassword}"
-                        size='25' labelCode='user.facebookPassword.label'/>
+                <s2ui:textFieldRow name='facebookPass' bean="${user}" value="${user.facebookPassword}"
+                        size='15' labelCode='user.facebookPassword.label'/>
                 <tr>
                     <td/>
                     <td align='center'>

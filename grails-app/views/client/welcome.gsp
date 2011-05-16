@@ -21,7 +21,6 @@ Welcome ${session.user.email} ! , Area code : ${session.user.areaCode}  , Role :
 
 <g:each var="post" status="i" in="${posts}">
     <div>
-
         <richui:tabView id="tabView${i}">
             <richui:tabLabels>
                 <richui:tabLabel selected="true" title="${post.author.business.name}"/>
