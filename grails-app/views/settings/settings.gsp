@@ -39,11 +39,9 @@
     </div>
 </div>
 
-<div id="grepGroupbox" class="grep_group_form" style="margin:60px auto;">
+<div id="grepGroupbox" class="grep_group_form" style="margin:40px auto;">
     <g:form action="sendContactus">
-        <h1>
-            Settings
-        </h1>
+        <h1>Settings</h1>
         <g:if test='${confirmationMessage}'>
             <br/>
             <font color="red">${confirmationMessage}</font>
@@ -58,13 +56,17 @@
                         size='25' labelCode='user.facebookId.label'/>
                 <s2ui:passwordFieldRow name='facebookPass' bean="${user}" value="${user.facebookPassword}"
                         size='25' labelCode='user.facebookPassword.label'/>
+				<tr> </td> </tr>
+
                 <tr>
                     <td/>
-                    <td align='center'>
-                        <input type='submit' tabindex="1" value='Submit'/>
-                    </td>
-
-                </tr>
+                    
+					<tr>
+						<td  colspan='2' width='100%' align="center">
+						 	<input type='submit' tabindex="2" value='Submit' id='submit' class='s2ui_hidden_button' />
+						 </td>
+					</tr>
+               </tr>
 
                 </tbody>
             </table>
