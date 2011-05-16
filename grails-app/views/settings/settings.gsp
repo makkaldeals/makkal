@@ -56,8 +56,8 @@
                 <tbody>
                 <s2ui:textFieldRow name='facebookId' bean="${user}" value="${user.facebookId}"
                         size='25' labelCode='user.facebookId.label'/>
-                <s2ui:textFieldRow name='facebookPass' bean="${user}" value="${user.facebookPassword}"
-                        size='15' labelCode='user.facebookPassword.label'/>
+                <s2ui:passwordFieldRow name='facebookPass' bean="${user}" value="${user.facebookPassword}"
+                        size='25' labelCode='user.facebookPassword.label'/>
                 <tr>
                     <td/>
                     <td align='center'>
