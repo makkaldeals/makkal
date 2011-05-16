@@ -40,8 +40,8 @@
  -->
  <div class="container"> 
 	        <div id="header" class="column span-24 last">
-	            <h1 class="column span-8 last">Grep Deals</h1>
-	            <div id="nav" class="column span-16 last">
+	            <h1 class="column span-6 last">Grep Deals</h1>
+	            <div id="nav" class="column span-24 last">
 	                <ul>
 	                    <li><g:link controller='login' action='index' title="Grep Deals home">Home</g:link></li>
 	                   	<li><g:link controller='login' action='contactus' title="Contact Us">Contact Us</g:link></li>
@@ -52,10 +52,7 @@
 						</sec:ifLoggedIn>
 	                </ul>
 	            </div>
-	            <div id="mast" class="column span-24 last">
-	    			<img  src="/grepdeals/images/rpm_guys.jpg" />
-	            </div>
-	            <div  id="subheader" class="column span-24 last"><h2>Grep Deals is coming soon</h2></div>
+	            
 	        </div>
 	 </div> 
 
