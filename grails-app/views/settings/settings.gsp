@@ -76,9 +76,9 @@
 
 				<td valign="top" class="value ">
 				<g:select name="Selected-Categories" size=25
-          from="${user.getCategories()}"
+          from="${CategoryTree.Category.allChildren()}"
           value="${user.getCategories()}"
-          optionKey="id" 
+           
           multiple="true" />
           </td>
           </tr>
