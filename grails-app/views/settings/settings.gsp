@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html>
+<%@ page import="com.grepdeals.consts.CategoryTree"%>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Settings</title>
@@ -57,7 +56,32 @@
                 <s2ui:passwordFieldRow name='facebookPass' bean="${user}" value="${user.facebookPassword}"
                         size='25' labelCode='user.facebookPassword.label'/>
 				<tr> </td> </tr>
+				<tr>
+				<td valign="top" class="name">
+		     		<label for="AllCategory">${message(code: 'user.allcategory.label', default: labelCodeDefault)}</label>
+		     	</td>
 
+				<td valign="top" class="value ">
+				<g:select name="Selected-Categories" size=25
+          from="${CategoryTree.Category.allChildren()}"
+          value="${CategoryTree.Category.allChildren()}"
+          
+          multiple="true" />
+          </td>
+          </tr>				
+				<tr>
+				<td valign="top" class="name">
+		     		<label for="SelectedCategory">${message(code: 'user.selectedcategory.label', default: labelCodeDefault)}</label>
+		     	</td>
+
+				<td valign="top" class="value ">
+				<g:select name="Selected-Categories" size=25
+          from="${user.getCategories()}"
+          value="${user.getCategories()}"
+          optionKey="id" 
+          multiple="true" />
+          </td>
+          </tr>
                 <tr>
                     <td/>
                     
@@ -83,4 +107,3 @@
 	    <p>Copyright &copy; Grep Deals, all rights reserved.</p>
 	</div>
 </body>
-</html>
