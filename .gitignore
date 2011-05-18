@@ -17,5 +17,6 @@ logs/
 *\.bak
 *devgrepdealsDb.*
 web-app/uploads
+*\.hprof
 
 
