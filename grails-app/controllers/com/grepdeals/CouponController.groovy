@@ -116,18 +116,27 @@ class CouponController {
 	
 	
 		  def generateCoupon = {
+			  println "${params.pdfId}"
 			  //TODO get the coupon data from service call
+			  
+			  def post = Post.get(params.pdfId);
+			  
+			  
 			  def couponData = new CouponData();
-			  couponData.companyName = "DealCompany"
-			  couponData.companyAddrLine1="ABC apartment"
-			  couponData.companyAddrLine2= "#232"
-			  couponData.companyCity="Omaha"
-			  couponData.companyState="NE"
-			  couponData.companyPin="68117"
+			  couponData.companyName = post.author.business.name
+			  couponData.companyAddrLine1=post.author.business.address
+//			  couponData.companyAddrLine2= "#232"
+			  couponData.companyCity=post.author.business.city
+			  couponData.companyState=post.author.business.state
+			  couponData.companyPin=post.author.business.areaCode
+			  //TODO
+			  // Generated coupon id has to be here
 			  couponData.couponId="ABDCCoupone123"
-			  couponData.customerFirstName="Gang of "
-			  couponData.customerLastName="Five"
-			  couponData.companyPhone="123-123-4345"
+			  couponData.customerFirstName=post.author.firstName
+			  couponData.customerLastName=post.author.lastName
+			  couponData.companyPhone=post.author.phone
+			  // TODO
+			  // expiration data has to be here
 			  couponData.couponExpirationDate = "12/12/2011"
 			  return ['data':couponData]
 			

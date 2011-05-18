@@ -30,6 +30,7 @@ Welcome ${session.user.email} ! , Area code : ${session.user.areaCode}  , Role :
             <richui:tabContents>
                 <richui:tabContent>
                     ${post.title}
+                     <g:pdfLink pdfController="coupon" pdfAction="generateCoupon" pdfId="${post.id}">Print</g:pdfLink>
                 </richui:tabContent>
 
                 <richui:tabContent>
