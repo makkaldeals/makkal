@@ -14,18 +14,23 @@ import com.grepdeals.auth.Customer
 class Post implements Taggable{
 
     static belongsTo = [author:Customer]
+    public static final int SUBJECT_MAX_SIZE = 1500;
 
     String title;
+    String subject;
     String content;
-
+    
     Date dateCreated;
 	Date lastUpdated;
+    Date expiresOn;
 
     boolean published;
 
 	static constraints = {
-		title blank:false
-		content blank:false
+		title blank:false;
+        subject (blank:false, maxSize: SUBJECT_MAX_SIZE);
+    	content blank:false;
+        expiresOn (nullable:true);
     }
 	static mapping = {
 		content type:"text"

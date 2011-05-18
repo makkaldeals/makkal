@@ -13,6 +13,14 @@
   <title>Grepdeals customer</title>
   <ckeditor:resources/>
   <g:javascript src="ckeditor/ckcustomizations.js" />
+ 
+  <g:javascript type="text/javascript">
+    $(function() {
+            $( "#expiresOn" ).datepicker();
+        });
+
+  </g:javascript>
+
 </head>
 
 
@@ -40,6 +48,12 @@
     </p>
 
     <p>
+      <label for="post.subject"><g:message code="post.subject.label" default="Subject:"/></label>
+      <g:textField size="1500" name="post.subject" value="${post.subject}"/>
+
+    </p>
+
+    <p>
 
       <label for="post.content"><g:message code="post.content.label" default="Content:"/></label> <br>
 
@@ -52,6 +66,12 @@
       </ckeditor:editor>
 
     </p>
+
+    <p>
+      <label for="expiresOn"><g:message code="post.expiresOn.label" default="Expires On:"/></label>
+      <g:textField name="expiresOn" value="${post.expiresOn}"/>
+    </p>
+
     <p>
       <label for="tags"><g:message code="post.tags.label" default="Tags:"/></label>
       <g:textField size="50" name="tags" value="${post.tags.join(',')}"/>

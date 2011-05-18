@@ -5,11 +5,13 @@
   Time: 7:50:47 PM
   To change this template use File | Settings | File Templates.
 --%>
+
 <div>
   <p><b>Title:
   <g:link controller="posts" action="showPost" params="[id:post.id]">${post.title}</g:link>
   </b>
   </p>
+  <p>${post.subject}</p>
   <p>${post.content}</p>
   <p>
     Posted by

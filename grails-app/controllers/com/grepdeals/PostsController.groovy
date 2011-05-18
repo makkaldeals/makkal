@@ -37,9 +37,6 @@ class PostsController {
   @Secured(['ROLE_CUSTOMER', 'ROLE_ADMIN'])
   def publishPost = {
 
-    //TODO: HANDLE SAVE BUTTON IN RICH TEXT EDITOR (ckeditor.com).
-    //TODO: IMPLEMENT IMAGE UPLOADING
-
     Post post = postService.create(params);
     if (!post.hasErrors()) {
       redirect(action: 'showPosts');

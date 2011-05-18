@@ -7,16 +7,18 @@
 
 <resource:include components="richTextEditor" autoComplete="[skin: 'default']" />
 
+
 <link rel="shortcut icon" href="${resource(dir:'images',file:'favicon.ico')}" type="image/x-icon"/>
 
 <g:javascript library='jquery' plugin='jquery' />
 <g:javascript src='jquery/jquery.jgrowl.js'/>
 <g:javascript src='jquery/jquery.checkbox.js'/>
 <g:javascript src='spring-security-ui.js'/>
+<jqui:resources />
 
 <link rel="stylesheet" media="screen" href="${resource(dir:'css',file:'reset.css')}"/>
 <link rel="stylesheet" media="screen" href="${resource(dir:'css',file:'spring-security-ui.css')}"/>
-<jqui:resources />
+
 <link rel="stylesheet" media="screen" href="${resource(dir:'css/smoothness',file:'jquery-ui-1.8.2.custom.css',plugin:'spring-security-ui')}"/>
 <link rel="stylesheet" media="screen" href="${resource(dir:'css',file:'jquery.jgrowl.css')}"/>
 <link rel="stylesheet" media="screen" href="${resource(dir:'css',file:'jquery.safari-checkbox.css')}"/>
@@ -27,6 +29,7 @@
     <![endif]-->
  <link rel="stylesheet" type="text/css" media="screen" href="${resource(dir:'css',file:'grep.css')}" />   
  <link rel="stylesheet" type="text/css" media="screen" href="${resource(dir:'css',file:'grep_form.css')}" />
+  <!-- TODO clean up nav plugin -->
 <nav:resources/>
 <g:layoutHead/>
 
