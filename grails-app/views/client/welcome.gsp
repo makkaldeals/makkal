@@ -9,41 +9,51 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
+    <link rel="stylesheet" type="text/css" media="screen" href="/grepdeals/css/tab-menu.css"/>
+
     <meta name='layout' content='register'/>
     <title>Grepdeals client</title>
-    <resource:tabView/>
     <resource:tabView skin="default"/>
 
 </head>
 <body>
+<table>
 
-Welcome ${session.user.email} ! , Area code : ${session.user.areaCode}  , Role : ${session.user.getAuthorities()}
+    <tr>
 
-<g:each var="post" status="i" in="${posts}">
-    <div>
-        <richui:tabView id="tabView${i}">
-            <richui:tabLabels>
-                <richui:tabLabel selected="true" title="${post.author.business.name}"/>
-                <richui:tabLabel title="Deal Details"/>
-            </richui:tabLabels>
+        <div class="tabmenu">
+            <h3><a href="#">Today's deals</a></h3>
+            <h3><a href="#">Old deals</a></h3>
+        </div>
 
-            <richui:tabContents>
-                <richui:tabContent>
-                    ${post.title}
-                     <g:pdfLink pdfController="coupon" pdfAction="generateCoupon" pdfId="${post.id}">Print</g:pdfLink>
-                </richui:tabContent>
+        <div class="tabcontent">
+            <g:each var="post" status="i" in="${posts}">
+                <richui:tabView id="tabView${i}">
+                    <richui:tabLabels>
+                        <richui:tabLabel selected="true" title="${post.author.business.name}"/>
+                        <richui:tabLabel title="Deal Details"/>
+                    </richui:tabLabels>
 
-                <richui:tabContent>
-                    ${post.content}
-                </richui:tabContent>
+                    <richui:tabContents>
+                        <richui:tabContent>
+                            ${post.title}
+                        </richui:tabContent>
 
-            </richui:tabContents>
-        </richui:tabView>
-        <br/>
+                        <richui:tabContent>
+                            ${post.content}
+                        </richui:tabContent>
 
-    </div>
+                    </richui:tabContents>
+                </richui:tabView>
+                <br/>
 
-</g:each>
+            </g:each>
+
+        </div>
+    </tr>
+</table>
 
 </body>
 </html>
+
+

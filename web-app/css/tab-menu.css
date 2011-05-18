@@ -1,0 +1,17 @@
+
+        .tabcontent {
+            border: 0px solid;
+            text-align: left;
+            width: 60%;
+            float: left;
+        }
+
+
+        .tabmenu {
+            border: 0px solid;
+            text-align: center;
+            width: 10%;
+            float: left;
+            clear: left;
+        }
+
