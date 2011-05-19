@@ -4,6 +4,7 @@ import com.grepdeals.auth.Customer
 import grails.orm.PagedResultList
 import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
 import org.springframework.beans.factory.InitializingBean
+import com.grepdeals.util.DateUtil
 
 class PostService implements InitializingBean {
 
@@ -130,7 +131,7 @@ class PostService implements InitializingBean {
         def criteria = Post.createCriteria();
         PagedResultList results = criteria.list(max: maxPostsPerPage, offset: params.offset) {
             eq 'published', true
-            gt "dateCreated", getToday()
+            gt "dateCreated", DateUtil.getToday()
             order "dateCreated", "desc"
             cache true
         }
@@ -143,7 +144,7 @@ class PostService implements InitializingBean {
         def criteria = Post.createCriteria();
         PagedResultList results = criteria.list(max: maxPostsPerPage, offset: params.offset) {
             eq 'published', true
-            le "dateCreated", new Date() - 1
+            le "dateCreated", DateUtil.getToday()
             order "dateCreated", "desc"
             cache true
         }
@@ -152,22 +153,5 @@ class PostService implements InitializingBean {
     }
 
 
-    public static Date getToday() {
-        return setMidnight(new Date())
-    }
-
-    public static Date getTomorrow() {
-        return (getToday() + 1) as Date
-    }
-
-    public static Date setMidnight(Date theDate) {
-        Calendar cal = Calendar.getInstance()
-        cal.setTime(theDate)
-        cal.set(Calendar.HOUR_OF_DAY, 0)
-        cal.set(Calendar.MINUTE, 0)
-        cal.set(Calendar.SECOND, 0)
-        cal.set(Calendar.MILLISECOND, 0)
-        cal.getTime()
-    }
 
 }
