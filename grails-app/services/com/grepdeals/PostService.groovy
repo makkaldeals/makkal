@@ -21,10 +21,8 @@ class PostService implements InitializingBean {
     public Post create(Map params) {
         def post = Post.get(params.id) ?: new Post()
         post.properties = params['post']
-        post.expiresOn = new GregorianCalendar(Integer.parseInt(params.expiresOn_year), Integer.parseInt(params.expiresOn_month) - 1, Integer.parseInt(params.expiresOn_day)).getTime();
+        post.expiresOn = DateUtil.convertFromJqueryFormat(params.expiresOn);
         post.author = springSecurityService.currentUser;
-        //fixme
-        log.info("RAJA ${post.expiresOn}")
         post.published = true
         if (post.save()) {
             post.parseTags(params.tags, ",")

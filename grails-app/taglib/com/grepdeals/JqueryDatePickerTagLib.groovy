@@ -29,7 +29,7 @@ class JqueryDatePickerTagLib {
 //If you want to customize using the jQuery UI events add an if block an attribute as follows
     if (minDate != null) {
       out.println ","
-      out.println "minDate: ${minDate}"
+      out.println "minDate: \"${minDate}\""
     }
 
 
@@ -41,9 +41,9 @@ class JqueryDatePickerTagLib {
       out.println "}"
     }
 
-    out.println "});"
+   out.println "});"
    if (value != null){
-      out.println "\$(\"#${name}\").val(\"05/23/2011\");";
+      out.println "\$(\"#${name}\").val(\"${value}\");";
     }
     out.println "})</script>"
 

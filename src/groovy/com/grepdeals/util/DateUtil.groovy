@@ -1,5 +1,8 @@
 package com.grepdeals.util
 
+import java.text.SimpleDateFormat
+import java.sql.Timestamp
+
 /**
  * Created by IntelliJ IDEA.
  * User: arthi
@@ -9,21 +12,41 @@ package com.grepdeals.util
  */
 final class DateUtil {
 
-    public static Date getToday() {
-        return setMidnight(new Date())
-    }
+  private static final SimpleDateFormat JQUERY_DATE_FORMAT = new SimpleDateFormat("MM/dd/yy");
 
-    public static Date getTomorrow() {
-        return (getToday() + 1) as Date
-    }
+  public static Date getToday() {
+    return setMidnight(new Date())
+  }
 
-    public static Date setMidnight(Date theDate) {
-        Calendar cal = Calendar.getInstance()
-        cal.setTime(theDate)
-        cal.set(Calendar.HOUR_OF_DAY, 0)
-        cal.set(Calendar.MINUTE, 0)
-        cal.set(Calendar.SECOND, 0)
-        cal.set(Calendar.MILLISECOND, 0)
-        cal.getTime()
+  public static Date getTomorrow() {
+    return (getToday() + 1) as Date
+  }
+
+  public static Date setMidnight(Date theDate) {
+    Calendar cal = Calendar.getInstance()
+    cal.setTime(theDate)
+    cal.set(Calendar.HOUR_OF_DAY, 0)
+    cal.set(Calendar.MINUTE, 0)
+    cal.set(Calendar.SECOND, 0)
+    cal.set(Calendar.MILLISECOND, 0)
+    cal.getTime()
+  }
+
+  public static String convertToJqueryFormat(Date date) {
+    return date ? JQUERY_DATE_FORMAT.format(date) : null;
+  }
+
+  public static String convertTimestampToJqueryFormat(Timestamp timestamp) {
+    if (timestamp) {
+      Calendar cal = new GregorianCalendar();
+      cal.setTimeInMillis(((java.sql.Timestamp) timestamp).getTime());
+      return JQUERY_DATE_FORMAT.format(cal.getTime());
+    } else {
+      return null;
     }
+  }
+
+  public static Date convertFromJqueryFormat(String dateString){
+     return JQUERY_DATE_FORMAT.parse(dateString);
+  }
 }

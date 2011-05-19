@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page import="com.grepdeals.util.DateUtil" contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
   <meta name='layout' content='register'/>
@@ -57,9 +57,6 @@
 
       <label for="post.content"><g:message code="post.content.label" default="Content:"/></label> <br>
 
-      <!-- <g:textArea name="post.content" value="${post.content}" rows="5" cols="50"/>
-      <richui:richTextEditor name="post.content" value="${post.content}" width="525"/> -->
-
       <!-- FIXME url's should not have grepdeals -->
       <ckeditor:editor toolbar="custom" name="post.content"  height="400px" width="80%" filebrowserImageBrowseUrl="" filebrowserBrowseUrl="" filebrowserFlashBrowseUrl="" filebrowserImageUploadUrl="/grepdeals/media/uploadImage" filebrowserUploadUrl="/grepdeals/media/uploadImage">
         ${post.content}
@@ -69,7 +66,7 @@
 
     <p>
       <label for="expiresOn"><g:message code="post.expiresOn.label" default="Expires On:"/></label>
-      <g:jqDatePicker name="expiresOn" value="${post.expiresOn}"/>
+      <g:jqDatePicker name="expiresOn" value="${DateUtil.convertTimestampToJqueryFormat(post.expiresOn)}" minDate="${DateUtil.convertToJqueryFormat(new Date())}"/>
     </p>
 
     <p>
