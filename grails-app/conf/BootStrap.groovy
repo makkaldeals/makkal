@@ -1,12 +1,11 @@
-import com.grepdeals.auth.*;
-import com.grepdeals.consts.CategoryTree;
+import grails.util.Environment
 
 import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
-import com.grepdeals.Post
-import com.grepdeals.Business;
-import com.grepdeals.UserCategory;
 
-import grails.util.Environment;
+import com.grepdeals.Business
+import com.grepdeals.Post
+import com.grepdeals.auth.*
+import com.grepdeals.consts.CategoryTree
 
 class BootStrap {
 
@@ -47,6 +46,8 @@ class BootStrap {
 
       def u1 = User.build(email: 'client1@grepdeals.com', password: password, enabled: true, accountLocked: false, areaCode: "33634");
       UserRole.create(u1, clientRole, true);
+	  u1.addCategory(CategoryTree.AutoGlassServices)
+	  u1.addCategory(CategoryTree.Automotive)
 
       def b1 = Business.build();
       def b2 = Business.build(name: b1.name, category: b1.category, city: 'Miami', areaCode: "45678");// same name as b1, but different city,areacode
