@@ -22,8 +22,8 @@
     <tr>
 
         <div class="tabmenu">
-            <h3><a href="#">Today's deals</a></h3>
-            <h3><a href="#">Old deals</a></h3>
+            <h3><a href="welcome">Today's deals</a></h3>
+            <h3><a href="oldPosts">Old deals</a></h3>
         </div>
 
         <div class="tabcontent">
@@ -37,6 +37,7 @@
                     <richui:tabContents>
                         <richui:tabContent>
                             ${post.title}
+
                         </richui:tabContent>
 
                         <richui:tabContent>
@@ -52,6 +53,8 @@
         </div>
     </tr>
 </table>
+
+
 
 </body>
 </html>

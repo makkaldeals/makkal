@@ -125,4 +125,49 @@ class PostService implements InitializingBean {
 
         return results;
     }
+
+    public PagedResultList findTodayPosts(Map params) {
+        def criteria = Post.createCriteria();
+        PagedResultList results = criteria.list(max: maxPostsPerPage, offset: params.offset) {
+            eq 'published', true
+            gt "dateCreated", getToday()
+            order "dateCreated", "desc"
+            cache true
+        }
+
+        return results;
+    }
+
+
+    public PagedResultList findOldPosts(Map params) {
+        def criteria = Post.createCriteria();
+        PagedResultList results = criteria.list(max: maxPostsPerPage, offset: params.offset) {
+            eq 'published', true
+            le "dateCreated", new Date() - 1
+            order "dateCreated", "desc"
+            cache true
+        }
+
+        return results;
+    }
+
+
+    public static Date getToday() {
+        return setMidnight(new Date())
+    }
+
+    public static Date getTomorrow() {
+        return (getToday() + 1) as Date
+    }
+
+    public static Date setMidnight(Date theDate) {
+        Calendar cal = Calendar.getInstance()
+        cal.setTime(theDate)
+        cal.set(Calendar.HOUR_OF_DAY, 0)
+        cal.set(Calendar.MINUTE, 0)
+        cal.set(Calendar.SECOND, 0)
+        cal.set(Calendar.MILLISECOND, 0)
+        cal.getTime()
+    }
+
 }

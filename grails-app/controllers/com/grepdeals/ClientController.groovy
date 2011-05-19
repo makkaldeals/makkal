@@ -19,11 +19,21 @@ class ClientController {
 
     @Secured(['ROLE_CLIENT', 'ROLE_ADMIN'])
     def welcome = {
-        //  render view: 'welcome';
-        def results = postService.findAllPosts(params);
+        def results = postService.findTodayPosts(params);
         render(view: 'welcome', model: [posts: results.list, totalCount: results.totalCount]);
 
 
     }
+
+       @Secured(['ROLE_CLIENT', 'ROLE_ADMIN'])
+    def oldPosts = {
+        def results = postService.findOldPosts(params);
+        render(view: 'welcome', model: [posts: results.list, totalCount: results.totalCount]);
+
+
+    }
+
+
+
 
 }
