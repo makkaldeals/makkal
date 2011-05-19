@@ -37,6 +37,8 @@
     <g:each status="i" var="tag" in="${post.tags}">
       <g:link mapping="postsByTag" params="[tag:tag]">${tag}</g:link><g:if test="${i<post.tags.size()-1}">,</g:if>
     </g:each>
+    <br>
+    Expires On : ${post.expiresOn} 
   </p>
   <hr>
 

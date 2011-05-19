@@ -37,6 +37,7 @@ class PostsController {
   @Secured(['ROLE_CUSTOMER', 'ROLE_ADMIN'])
   def publishPost = {
 
+    log.info(params);
     Post post = postService.create(params);
     if (!post.hasErrors()) {
       redirect(action: 'showPosts');

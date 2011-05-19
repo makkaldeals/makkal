@@ -14,12 +14,12 @@
   <ckeditor:resources/>
   <g:javascript src="ckeditor/ckcustomizations.js" />
  
-  <g:javascript type="text/javascript">
+  <!-- <g:javascript type="text/javascript">
     $(function() {
             $( "#expiresOn" ).datepicker();
         });
 
-  </g:javascript>
+  </g:javascript> -->
 
 </head>
 
@@ -69,7 +69,7 @@
 
     <p>
       <label for="expiresOn"><g:message code="post.expiresOn.label" default="Expires On:"/></label>
-      <g:textField name="expiresOn" value="${post.expiresOn}"/>
+      <g:jqDatePicker name="expiresOn" value="${post.expiresOn}"/>
     </p>
 
     <p>
