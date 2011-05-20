@@ -7,6 +7,7 @@ class JqueryDatePickerTagLib {
     def name = attrs.name //The name attribute is required for the tag to work seamlessly with grails
     def id = attrs.id ?: name
     def minDate = attrs.minDate
+    def maxDate = attrs.maxDate
     def showDay = attrs.showDay
     def value = attrs.value
 
@@ -30,6 +31,11 @@ class JqueryDatePickerTagLib {
     if (minDate != null) {
       out.println ","
       out.println "minDate: \"${minDate}\""
+    }
+
+    if (maxDate != null) {
+      out.println ","
+      out.println "maxDate: \"${maxDate}\""
     }
 
 

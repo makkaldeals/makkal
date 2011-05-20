@@ -14,7 +14,7 @@
 <g:javascript src='jquery/jquery.jgrowl.js'/>
 <g:javascript src='jquery/jquery.checkbox.js'/>
 <g:javascript src='spring-security-ui.js'/>
-<jqui:resources />
+<jqui:resources/> 
 
 <link rel="stylesheet" media="screen" href="${resource(dir:'css',file:'reset.css')}"/>
 <link rel="stylesheet" media="screen" href="${resource(dir:'css',file:'spring-security-ui.css')}"/>

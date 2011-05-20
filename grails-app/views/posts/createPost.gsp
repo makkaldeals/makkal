@@ -6,21 +6,15 @@
   To change this template use File | Settings | File Templates.
 --%>
 
-<%@ page import="com.grepdeals.util.DateUtil" contentType="text/html;charset=UTF-8" %>
+<%@ page import="org.codehaus.groovy.grails.commons.ConfigurationHolder; com.grepdeals.util.DateUtil" contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
   <meta name='layout' content='register'/>
   <title>Grepdeals customer</title>
   <ckeditor:resources/>
   <g:javascript src="ckeditor/ckcustomizations.js" />
- 
-  <!-- <g:javascript type="text/javascript">
-    $(function() {
-            $( "#expiresOn" ).datepicker();
-        });
-
-  </g:javascript> -->
-
+  <!-- TODO: this should not hard code grepdeals -->
+  <jqui:resources plugin="" themeCss="/grepdeals/jquery-ui/themes/ui-lightness/jquery-ui-1.8.13.custom.css" />
 </head>
 
 
@@ -66,7 +60,7 @@
 
     <p>
       <label for="expiresOn"><g:message code="post.expiresOn.label" default="Expires On:"/></label>
-      <g:jqDatePicker name="expiresOn" value="${DateUtil.convertTimestampToJqueryFormat(post.expiresOn)}" minDate="${DateUtil.convertToJqueryFormat(new Date())}"/>
+      <g:jqDatePicker name="expiresOn" value="${DateUtil.convertTimestampToJqueryFormat(post.expiresOn)}" minDate="${DateUtil.convertToJqueryFormat(new Date())}" maxDate="${ConfigurationHolder.config.grepdeals.posts.expiresOn.maxDuration}"/>
     </p>
 
     <p>
