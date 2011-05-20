@@ -1,9 +1,12 @@
 package com.grepdeals
 
 import grails.plugins.springsecurity.Secured;
+import com.grepdeals.auth.UserService;
 
 class SettingsController {
 
+	def userService
+	
     static navigation = true;
 
 	def index = {
@@ -15,4 +18,12 @@ class SettingsController {
     def showSettings = {
       render view:'settings';
     }
+	
+	@Secured(['ROLE_CLIENT', 'ROLE_ADMIN'])
+	def updateSettings = {
+  
+	  //log.info(params);
+	  userService.update(params)
+	  render view:'settings';
+	}
 }

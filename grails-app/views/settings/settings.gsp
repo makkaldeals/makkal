@@ -88,7 +88,7 @@ function fnMoveItems(lstbxFrom,lstbxTo)
 
 	<div id="grepGroupbox" class="grep_group_form"
 		style="margin: 40px auto;">
-		<g:form action="sendContactus">
+		<g:form action="userSettings" controller="settings" action="updateSettings">
 			<h1>Settings</h1>
 			<g:if test='${confirmationMessage}'>
 				<br />
@@ -102,6 +102,7 @@ function fnMoveItems(lstbxFrom,lstbxTo)
 				<P>You can provide the facebook credentials below</P>
 				<table>
 					<tbody>
+						<g:hiddenField name="id" value="${user.id}"/>
 						<s2ui:textFieldRow name='facebookId' bean="${user}"
 							value="${user.facebookId}" size='25'
 							labelCode='user.facebookId.label' />
