@@ -32,12 +32,13 @@
                     <richui:tabLabels>
                         <richui:tabLabel selected="true" title="${post.author.business.name}"/>
                         <richui:tabLabel title="Deal Details"/>
+
                     </richui:tabLabels>
 
                     <richui:tabContents>
                         <richui:tabContent>
                             ${post.title}
-
+                            <g:pdfLink pdfController="coupon" pdfAction="generateCoupon" pdfId="${post.id}">Print</g:pdfLink>
                         </richui:tabContent>
 
                         <richui:tabContent>
