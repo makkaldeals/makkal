@@ -1,6 +1,6 @@
 package com.grepdeals.auth
 
-
+import com.grepdeals.auth.User
 /**
  * com.grepdeals.auth
  *
@@ -10,12 +10,15 @@ package com.grepdeals.auth
  */
 class UserService {
 
-  def springSecurityService;
+  def springSecurityService
+  
+  
   static transactional = true
 
-  public User update(Map params) {
-	System.out.println(params.id);
-	//TODO how to get the user object to update?
+  public void update(Map params) {
+	//def  user1 = springSecurityService.currentUser
+	//System.out.println(params.id);
+		//TODO how to get the user object to update?
 	//System.out.println(params.Assigned-Categories);
 	//for(String category : params.Assigned-Categories) {
 	//	System.out.println(category)
