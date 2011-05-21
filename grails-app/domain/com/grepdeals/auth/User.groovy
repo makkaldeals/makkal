@@ -48,5 +48,9 @@ class User {
     void addCategory(CategoryTree category){
       UserCategory.create(this,category, true);
     }
+	
+	boolean hasCategory(CategoryTree category) {
+		return this.getCategories().contains(category)
+	}
 
 }

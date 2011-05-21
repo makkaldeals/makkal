@@ -1,6 +1,7 @@
 package com.grepdeals.auth
 
 import com.grepdeals.auth.User
+import com.grepdeals.consts.CategoryTree
 /**
  * com.grepdeals.auth
  *
@@ -16,12 +17,23 @@ class UserService {
   static transactional = true
 
   public void update(Map params) {
-	//def  user1 = springSecurityService.currentUser
-	//System.out.println(params.id);
-		//TODO how to get the user object to update?
-	//System.out.println(params.Assigned-Categories);
-	//for(String category : params.Assigned-Categories) {
-	//	System.out.println(category)
-	//}
+	  
+	def  user1 = springSecurityService.currentUser
+	user1.facebookId = params.facebookId
+	user1.facebookPassword = params.facebookPass
+	//user1.removeAllCategories()
+	
+	def categories = params.AssignedCategories
+	
+	categories.each { category ->
+		System.out.println("Categories : "+category);
+		//user1.addCategory(CategoryTree.valueOf(category))
+	}
+	
+	user1.save()
+	log.info(user1.errors)
+	def updatedUser = User.get(user1.id)
+	log.info(updatedUser.getCategories())
+
   }
 }

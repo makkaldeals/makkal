@@ -51,10 +51,11 @@ function fnMoveItems(lstbxFrom,lstbxTo)
 </head>
 <body>
 	<%
+	
     def user = session.user;
-    if (!user.isAttached()){
-      user.attach();
-    }
+ //   if (!user.isAttached()){
+ //     user.attach();
+  //  }
 
   %>
 	<div class="container">
@@ -102,7 +103,6 @@ function fnMoveItems(lstbxFrom,lstbxTo)
 				<P>You can provide the facebook credentials below</P>
 				<table>
 					<tbody>
-						<g:hiddenField name="id" value="${user.id}"/>
 						<s2ui:textFieldRow name='facebookId' bean="${user}"
 							value="${user.facebookId}" size='25'
 							labelCode='user.facebookId.label' />
@@ -118,18 +118,18 @@ function fnMoveItems(lstbxFrom,lstbxTo)
 							</label></td>
 
 							<td valign="top" class="value "><g:select
-									name="Assigned-Categories" size=25
+									name="AssignedCategories" size=25
 									from="${user.getCategories()}" value="${user.getCategories()}"
 									multiple="true" /></td>
 						</tr>
 						<tr>
 							<td width='100%' align="Left"><input
 								type='button' tabindex="2" value='Remove Categories' id='move2'
-								class='s2ui_hidden_button' onclick = "fnMoveItems('Assigned-Categories','All-Categories')">
+								class='s2ui_hidden_button' onclick = "fnMoveItems('AssignedCategories','All-Categories')">
 							</td>						
 							<td width='100%' align="Right"><input
 								type='button' tabindex="2" value='Assign Categories' id='move1'
-								class='s2ui_hidden_button' onclick = "fnMoveItems('All-Categories','Assigned-Categories')"></td>
+								class='s2ui_hidden_button' onclick = "fnMoveItems('All-Categories','AssignedCategories')"></td>
 
 								
 						</tr>
