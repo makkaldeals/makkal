@@ -76,6 +76,7 @@ grepdeals {
   posts{
     max.per.page=5;
     expiresOn.maxDuration = "+1m"; //a number of days from today ('y' for years, 'm' for months, 'w' for weeks, 'd' for days, e.g. '+1m +1w')
+    expiresOn.defaultDurationInDays = 7;
   }
   image {
     max.upload.size = 1600;

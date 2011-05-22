@@ -13,8 +13,7 @@
   <title>Grepdeals customer</title>
   <ckeditor:resources/>
   <g:javascript src="ckeditor/ckcustomizations.js" />
-  <!-- TODO: this should not hard code grepdeals -->
-  <jqui:resources plugin="" themeCss="/grepdeals/jquery-ui/themes/ui-lightness/jquery-ui-1.8.13.custom.css" />
+  <jqui:resources themeCss="${resource(dir:'jquery-ui/themes/ui-lightness' , file:'jquery-ui-1.8.13.custom.css')}" />
 </head>
 
 
@@ -37,13 +36,13 @@
     </g:if>
     <p>
       <label for="post.title"><g:message code="post.title.label" default="Title:"/></label>
-      <g:textField size="50" name="post.title" value="${post.title}"/>
+      <g:textField size="150" name="post.title" value="${post.title}"/>
 
     </p>
 
     <p>
       <label for="post.subject"><g:message code="post.subject.label" default="Subject:"/></label>
-      <g:textField size="1500" name="post.subject" value="${post.subject}"/>
+      <g:textField size="150" name="post.subject" value="${post.subject}"/>
 
     </p>
 
@@ -51,8 +50,7 @@
 
       <label for="post.content"><g:message code="post.content.label" default="Content:"/></label> <br>
 
-      <!-- FIXME url's should not have grepdeals -->
-      <ckeditor:editor toolbar="custom" name="post.content"  height="400px" width="80%" filebrowserImageBrowseUrl="" filebrowserBrowseUrl="" filebrowserFlashBrowseUrl="" filebrowserImageUploadUrl="/grepdeals/media/uploadImage" filebrowserUploadUrl="/grepdeals/media/uploadImage">
+      <ckeditor:editor toolbar="custom" name="post.content"  height="400px" width="80%" filebrowserImageBrowseUrl="" filebrowserBrowseUrl="" filebrowserFlashBrowseUrl="" filebrowserImageUploadUrl="${createLink(controller:'media' , action:'uploadImage')}" filebrowserUploadUrl="${createLink(controller:'media' , action:'uploadImage')}">
         ${post.content}
       </ckeditor:editor>
 
@@ -60,7 +58,7 @@
 
     <p>
       <label for="expiresOn"><g:message code="post.expiresOn.label" default="Expires On:"/></label>
-      <g:jqDatePicker name="expiresOn" value="${DateUtil.convertTimestampToJqueryFormat(post.expiresOn)}" minDate="${DateUtil.convertToJqueryFormat(new Date())}" maxDate="${ConfigurationHolder.config.grepdeals.posts.expiresOn.maxDuration}"/>
+      <g:jqDatePicker name="expiresOn" value="${post?.expiresOn ? DateUtil.convertTimestampToJqueryFormat(post.expiresOn) : DateUtil.getDefaultExpiresOn()}" minDate="${DateUtil.convertToJqueryFormat(new Date())}" maxDate="${ConfigurationHolder.config.grepdeals.posts.expiresOn.maxDuration}"/>
     </p>
 
     <p>

@@ -2,6 +2,7 @@ package com.grepdeals.util
 
 import java.text.SimpleDateFormat
 import java.sql.Timestamp
+import org.codehaus.groovy.grails.commons.ConfigurationHolder  as CH;
 
 /**
  * Created by IntelliJ IDEA.
@@ -48,5 +49,10 @@ final class DateUtil {
 
   public static Date convertFromJqueryFormat(String dateString){
      return JQUERY_DATE_FORMAT.parse(dateString);
+  }
+
+  public static String getDefaultExpiresOn(){
+     Date today = getToday();
+     return convertToJqueryFormat(today + CH.config.grepdeals.posts.expiresOn.defaultDurationInDays);
   }
 }
