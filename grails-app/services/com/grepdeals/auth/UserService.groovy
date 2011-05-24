@@ -1,7 +1,7 @@
 package com.grepdeals.auth
 
-import com.grepdeals.auth.User
-import com.grepdeals.consts.CategoryTree
+import com.grepdeals.consts.CategoryTree;
+
 /**
  * com.grepdeals.auth
  *
@@ -21,13 +21,14 @@ class UserService {
 	def  user1 = springSecurityService.currentUser
 	user1.facebookId = params.facebookId
 	user1.facebookPassword = params.facebookPass
-	//user1.removeAllCategories()
-	
+	user1.removeAllCategories()
 	def categories = params.AssignedCategories
 	
+	System.out.println("Category Size "+categories.size());
+	
 	categories.each { category ->
-		System.out.println("Categories : "+category);
-		//user1.addCategory(CategoryTree.valueOf(category))
+		System.out.println("Adding this Category : "+category);
+		user1.addCategory(CategoryTree.valueOf(category))
 	}
 	
 	user1.save()

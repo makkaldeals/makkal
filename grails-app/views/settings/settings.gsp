@@ -40,23 +40,40 @@ function fnMoveItems(lstbxFrom,lstbxTo)
    newOption.text = varFromBox.options[varFromBox.options.selectedIndex].text; 
    newOption.value = varFromBox.options[varFromBox.options.selectedIndex].value; 
    varToBox.options[varToBox.length] = newOption; //Append the item in Target Listbox
-
+   varToBox.options[varToBox.length].selected = true;
    varFromBox.remove(varFromBox.options.selectedIndex); //Remove the item from Source Listbox 
 
   } 
  }
  return false; 
 }
+
+function fnArrangeCategories() {
+	 var varFromBox = document.all("AssignedCategories");
+ 	 var varToBox = document.all("All-Categories"); 
+ 	 var index = 0;
+ 	 while (index  < varFromBox.length ) {
+ 	   index++;
+ 	   varToBox.remove(varFromBox.options.selectedIndex);
+ 	 }
+	
+}
+
+function fnSelectAll () {
+	alert('selecting all')
+	var e_select = document.forms['userSettings'].elements["AssignedCategories"];
+
+	for (var i = 0; i < e_select.options.length; i++)
+
+			e_select.options.selected = true;
+
+}
 </g:javascript>	
 </head>
-<body>
+<body onLoad="fnArrangeCategories()">
 	<%
 	
     def user = session.user;
- //   if (!user.isAttached()){
- //     user.attach();
-  //  }
-
   %>
 	<div class="container">
 		<div id="header" class="column span-24 last">
@@ -89,7 +106,7 @@ function fnMoveItems(lstbxFrom,lstbxTo)
 
 	<div id="grepGroupbox" class="grep_group_form"
 		style="margin: 40px auto;">
-		<g:form action="userSettings" controller="settings" action="updateSettings">
+		<g:form name="userSettings" controller="settings" action="updateSettings">
 			<h1>Settings</h1>
 			<g:if test='${confirmationMessage}'>
 				<br />
@@ -103,6 +120,7 @@ function fnMoveItems(lstbxFrom,lstbxTo)
 				<P>You can provide the facebook credentials below</P>
 				<table>
 					<tbody>
+					
 						<s2ui:textFieldRow name='facebookId' bean="${user}"
 							value="${user.facebookId}" size='25'
 							labelCode='user.facebookId.label' />
@@ -149,8 +167,8 @@ function fnMoveItems(lstbxFrom,lstbxTo)
 							<td />
 						<tr>
 							<td colspan='2' width='100%' align="center"><input
-								type='submit' tabindex="2" value='Submit' id='submit'
-								class='s2ui_hidden_button' /></td>
+								type='submit' tabindex="2" value='Submitxczxc' id='submit'
+								class='s2ui_hidden_button' onclick="fnSelectAll()"/></td>
 						</tr>
 						</tr>
 
