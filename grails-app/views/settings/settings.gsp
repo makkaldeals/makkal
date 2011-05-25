@@ -40,7 +40,6 @@ function fnMoveItems(lstbxFrom,lstbxTo)
    newOption.text = varFromBox.options[varFromBox.options.selectedIndex].text; 
    newOption.value = varFromBox.options[varFromBox.options.selectedIndex].value; 
    varToBox.options[varToBox.length] = newOption; //Append the item in Target Listbox
-   varToBox.options[varToBox.length].selected = true;
    varFromBox.remove(varFromBox.options.selectedIndex); //Remove the item from Source Listbox 
 
   } 
@@ -121,10 +120,10 @@ function fnSelectAll () {
 				<table>
 					<tbody>
 					
-						<s2ui:textFieldRow name='facebookId' bean="${user}"
+						<s2ui:textFieldRow name='facebookId' id='facebookId' bean="${user}"
 							value="${user.facebookId}" size='25'
 							labelCode='user.facebookId.label' />
-						<s2ui:passwordFieldRow name='facebookPass' bean="${user}"
+						<s2ui:passwordFieldRow name='facebookPass' id='facebookPass' bean="${user}"
 							value="${user.facebookPassword}" size='25'
 							labelCode='user.facebookPassword.label' />
 						<tr>
@@ -167,7 +166,7 @@ function fnSelectAll () {
 							<td />
 						<tr>
 							<td colspan='2' width='100%' align="center"><input
-								type='submit' tabindex="2" value='Submitxczxc' id='submit'
+								type='submit' tabindex="2" value='Submit' id='submit'
 								class='s2ui_hidden_button' onclick="fnSelectAll()"/></td>
 						</tr>
 						</tr>

@@ -1,6 +1,7 @@
 package com.grepdeals
 
 import grails.plugins.springsecurity.Secured;
+import com.grepdeals.auth.User
 import com.grepdeals.auth.UserService;
 
 class SettingsController {

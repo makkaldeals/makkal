@@ -23,18 +23,19 @@ class UserService {
 	user1.facebookPassword = params.facebookPass
 	user1.removeAllCategories()
 	def categories = params.AssignedCategories
-	
-	System.out.println("Category Size "+categories.size());
-	
-	categories.each { category ->
-		System.out.println("Adding this Category : "+category);
-		user1.addCategory(CategoryTree.valueOf(category))
+	if(categories instanceof java.lang.String) {
+		user1.addCategory(CategoryTree.valueOf(categories))
+	} else {
+		categories.each { category ->
+			System.out.println("Adding this Category : "+category);
+			user1.addCategory(CategoryTree.valueOf(category))
+		}
 	}
 	
 	user1.save()
+	
+	
 	log.info(user1.errors)
 	def updatedUser = User.get(user1.id)
-	log.info(updatedUser.getCategories())
-
   }
 }
