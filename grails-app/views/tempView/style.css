@@ -1,0 +1,268 @@
+body {
+	background: #cbe08f url(images/background.gif) repeat-x;
+	font-family: tahoma, arial, sans-serif;
+	color: #555;
+	font-size: 8pt;
+}
+
+#header {
+	margin: 0 auto;
+	background: transparent url(images/header.gif) no-repeat;
+	width: 760px;
+	height: 150px;
+	margin-bottom: 10px;
+}
+
+#header h1 {
+	color: #cbe08f;
+	font-size: 40pt;
+	margin-left: 40px;
+	padding-top: 27px;
+	margin-bottom: 0;
+}
+
+#header h2 {
+	color: #cbe08f;
+	font-size: 16pt;
+	margin-left: 40px;
+	margin-top: 0;
+}
+
+#container-top {
+	margin: 0 auto;
+	width: 760px;
+	height: 10px;
+	background: #f69d47 url(images/container-top.gif) no-repeat;
+}
+
+#container {
+	margin: 0 auto;
+	width: 750px;
+	background-color: #f69d47;
+	padding-left: 10px;
+}
+
+#container-bottom {
+	margin: 0 auto;
+	width: 760px;
+	height: 10px;
+	background: transparent url(images/container-bottom.gif) no-repeat;
+}
+
+#container h1 {
+	margin: 0;
+	padding-left: 10px;
+	font-size: 16pt;
+}
+
+#container h2 {
+	margin: 0;
+	padding-left: 10px;
+	font-size: 14pt;
+}
+
+p {
+	margin: 0;
+	padding: 10px;
+	line-height: 2em;
+}
+
+a {
+	color: #5b88aa;
+}
+
+a:hover {
+	color: #7da6c4;
+	text-decoration: none;
+}
+
+#left {
+	width: 200px;
+	float: left;
+	margin: 0;
+}
+
+#left-top {
+	width: 200px;
+	height: 10px;
+	background: #eee url(images/left-top.gif) no-repeat;
+	margin: 18px 0 0 0;
+}
+
+#left-centre {
+	width: 200px;
+	background-color: #eee;
+}
+
+#left-bottom {
+	width: 200px;
+	height: 10px;
+	background: transparent url(images/left-bottom.gif) no-repeat;
+	margin: 0;
+}
+
+#right {
+	width: 530px;
+	float: left;
+	margin-left: 10px;
+}
+
+#right-top {
+	width: 530px;
+	height: 10px;
+	background: #eee url(images/right-top.gif) no-repeat;
+}
+
+#right-centre {
+	width: 530px;
+	background-color: #eee;
+}
+
+#right-bottom {
+	width: 530px;
+	height: 10px;
+	background: transparent url(images/right-bottom.gif) no-repeat;
+	margin: 0;
+}
+
+#tabs {
+	width: 530px;
+	height: 18px;
+	margin: 0;
+}
+
+#tabs ul {
+	margin: 0;
+	list-style: none;
+	height: 18px;
+	padding-left: 20px;
+	background-color: #f69d47;
+}
+
+#tabs li {
+	display: inline;
+	margin: 0;
+	padding: 0;
+	height: 18px;
+}
+
+.tab a {
+	float: left;
+	background: #cbe08f url(images/tab-left.gif) no-repeat left top;
+	margin: 0;
+	padding: 0 0 0 4px;
+	text-decoration: none;
+}
+
+.tab a span {
+	float: left;
+	display: block;
+	background: url(images/tab-right.gif) no-repeat right top;
+	padding: 2px 20px 0px 12px;
+	margin-bottom: -2px;
+	color: #555;
+	height: 18px;
+	font-weight: bold;
+}
+
+.tab a:hover span, .tab-active a:hover span {
+	color: #5b88aa;
+}
+
+.tab-active a {
+	float: left;
+	background: #eee url(images/tab-active-left.gif) no-repeat left top;
+	margin: 0;
+	padding: 0 0 0 4px;
+	text-decoration: none;
+}
+
+.tab-active a span {
+	float: left;
+	display: block;
+	background: url(images/tab-active-right.gif) no-repeat right top;
+	padding: 2px 20px 0px 12px;
+	margin-bottom: -2px;
+	color: #555;
+	height: 18px;
+	font-weight: bold;
+}
+
+#footer-top {
+	margin: 0 auto;
+	margin-top: 10px;
+	width: 760px;
+	height: 9px;
+	background: #d3e59f url(images/footer-top.gif) no-repeat;
+}
+
+#footer-centre {
+	margin: 0 auto;
+	width: 760px;
+	background-color: #d3e59f;
+}
+
+#footer-bottom {
+	margin: 0 auto;
+	width: 760px;
+	height: 9px;
+	background: transparent url(images/footer-bottom.gif) no-repeat;
+	margin-bottom: 10px;
+}
+
+#footer-centre p {
+	text-align: center;
+	padding: 0;
+}
+
+.clear {
+	clear: both;
+	margin: 0;
+	padding: 0;
+	height: 0;
+	overflow: hidden;
+}
+
+.left {
+	padding: 10px;
+	float: left;
+}
+
+.right {
+	padding: 10px;
+	float: right;
+}
+
+input {
+	border: 1px solid #f69d47;
+	font-family: tahoma, arial, sans-serif;
+	color: #555;
+}
+
+blockquote {
+	margin: 0 20px 0 20px;
+	background-color: #dfdfdf;
+}
+
+.menu {
+	list-style: none;
+	padding: 0 0 0 10px;
+	margin: 10px 0px 10px 0px;
+}
+
+.menu a {
+	width: 180px;
+	height: 50px;
+	display: block;
+	color: #5b88aa;
+	background: transparent url(images/menu.gif) no-repeat;
+	padding-top: 5px;
+	font-weight: bold;
+	padding-left: 10px;
+	margin-bottom: -5px;
+	text-decoration: none;
+}
+
+.menu a:hover {
+	background: transparent url(images/menu-hover.gif) no-repeat;
+}
