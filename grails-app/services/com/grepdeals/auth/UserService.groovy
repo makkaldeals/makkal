@@ -16,7 +16,7 @@ class UserService {
   
   static transactional = true
 
-  public void update(Map params) {
+  public User update(Map params) {
 	  
 	def  user1 = springSecurityService.currentUser
 	user1.facebookId = params.facebookId
@@ -33,9 +33,9 @@ class UserService {
 	}
 	
 	user1.save()
-	
-	
+
 	log.info(user1.errors)
 	def updatedUser = User.get(user1.id)
+	return updatedUser
   }
 }

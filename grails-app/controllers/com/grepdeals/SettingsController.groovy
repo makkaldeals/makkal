@@ -24,7 +24,8 @@ class SettingsController {
 	def updateSettings = {
   
 	  //log.info(params);
-	  userService.update(params)
+	  User updatedUser = userService.update(params)
+	  session.user = updatedUser
 	  render view:'settings';
 	}
 }
