@@ -19,8 +19,8 @@ class PostService implements InitializingBean {
     }
 
     public Post create(Map params) {
-        def post = Post.get(params.id) ?: new Post()
-        post.properties = params['post']
+        def post = Post.get(params.id) ?: new Post();
+        post.properties = params;
         post.expiresOn = DateUtil.convertFromJqueryFormat(params.expiresOn);
         post.author = springSecurityService.currentUser;
         post.published = true

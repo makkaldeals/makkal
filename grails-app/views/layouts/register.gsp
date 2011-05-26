@@ -5,7 +5,7 @@
 
 <title><g:layoutTitle default='User Registration'/></title>
 
-<resource:include components="richTextEditor" autoComplete="[skin: 'default']" />
+<resource:include components="richTextEditor" autoComplete="[skin: 'default']" /> 
 
 
 <link rel="shortcut icon" href="${resource(dir:'images',file:'favicon.ico')}" type="image/x-icon"/>
@@ -15,6 +15,7 @@
 <g:javascript src='jquery/jquery.checkbox.js'/>
 <g:javascript src='spring-security-ui.js'/>
 <jqui:resources/>
+<jqval:resources />
 <jqvalui:resources />
 
 <link rel="stylesheet" media="screen" href="${resource(dir:'css',file:'reset.css')}"/>
