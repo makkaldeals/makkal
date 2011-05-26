@@ -29,7 +29,7 @@ class Post implements Taggable{
 	static constraints = {
 		title blank:false;
         subject (blank:false, maxSize: SUBJECT_MAX_SIZE);
-    	content blank:false;
+    	content (nullable:true, blank:true);
         expiresOn (nullable:true);
     }
 	static mapping = {
