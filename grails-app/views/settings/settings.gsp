@@ -50,22 +50,27 @@ function fnMoveItems(lstbxFrom,lstbxTo)
 function fnArrangeCategories() {
 	 var varFromBox = document.all("AssignedCategories");
  	 var varToBox = document.all("All-Categories"); 
- 	 var index = 0;
- 	 while (index  < varFromBox.length ) {
- 	   index++;
- 	   varToBox.remove(varFromBox.options.selectedIndex);
+ 	 
+ 	 for (var i = 0; i < varFromBox.options.length; i++) {
+ 	 	var valueToRemove = varFromBox.options[i].value;
+ 	 	for (var j=0; j < varToBox.options.length; j++) {
+ 	 		
+ 	 		if (valueToRemove == varToBox.options[j].value) {
+ 	 			varToBox.remove(j);
+ 	 		}
+ 	 	}
  	 }
-	
+
 }
 
 function fnSelectAll () {
-	alert('selecting all')
+	
 	var e_select = document.forms['userSettings'].elements["AssignedCategories"];
 
 	for (var i = 0; i < e_select.options.length; i++)
-
-			e_select.options.selected = true;
-
+	{
+			e_select.options[i].selected = true;
+	}
 }
 </g:javascript>	
 </head>
