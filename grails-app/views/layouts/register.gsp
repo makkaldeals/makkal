@@ -18,6 +18,7 @@
 <jqval:resources />
 <jqvalui:resources />
 
+
 <link rel="stylesheet" media="screen" href="${resource(dir:'css',file:'reset.css')}"/>
 <link rel="stylesheet" media="screen" href="${resource(dir:'css',file:'spring-security-ui.css')}"/>
 
@@ -34,7 +35,7 @@
   <!-- TODO clean up nav plugin -->
 <nav:resources/>
 <g:layoutHead/>
-
+ 
 </head>
 
 <body>

@@ -11,6 +11,7 @@
 <head>
   <meta name='layout' content='register'/>
   <title>Grepdeals customer</title>
+  <bluetrip:resources />
   <ckeditor:resources/>
   <g:javascript src="ckeditor/ckcustomizations.js"/>
   <jqui:resources themeCss="${resource(dir:'jquery-ui/themes/ui-lightness' , file:'jquery-ui-1.8.13.custom.css')}"/>
@@ -89,8 +90,12 @@
       <g:textField size="50" name="tags" value="${post.tags.join(',')}"/>
     </p>
 
-    <g:submitButton name="publishPost" form="createPostForm"
+    <g:submitButton name="publishPost" class="s2ui_hidden_button" form="createPostForm"
             value="${message(code:'post.publish.button',default:'Publish')}"/>
+
+  <!--  <g:link controller="posts" action="publishPost" class="button positive" params="${params}">
+      <g:message code="post.publish.button" default="publish"></g:message>
+    </g:link> -->
   </g:form>
 
 </div>
