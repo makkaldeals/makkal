@@ -11,7 +11,7 @@
 <head>
   <meta name='layout' content='register'/>
   <title>Grepdeals customer</title>
-  <bluetrip:resources />
+  <blueprint:resources/>
   <ckeditor:resources/>
   <g:javascript src="ckeditor/ckcustomizations.js"/>
   <jqui:resources themeCss="${resource(dir:'jquery-ui/themes/ui-lightness' , file:'jquery-ui-1.8.13.custom.css')}"/>
@@ -40,7 +40,7 @@
     </g:if>
     <p>
       <label for="title"><g:message code="post.title.label" default="Title:"/></label>
-      <g:textField size="150" name="title" value="${post.title}"/>
+      <g:textField size="150" name="title" class = "title" value="${post.title}"/>
       <g:if test="${hasErrors(bean: post, field: 'title', 'errors')}">
         <jqvalui:renderError for="title" style="margin-top: -5px">
           <g:eachError bean="${post}" field="title"><g:message error="${it}"/></g:eachError>
@@ -50,7 +50,7 @@
 
     <p>
       <label for="subject"><g:message code="post.subject.label" default="Subject:"/></label>
-      <g:textField size="150" name="subject" value="${post.subject}"/>
+      <g:textField size="150" class="text" name="subject" value="${post.subject}"/>
       <g:if test="${hasErrors(bean: post, field: 'subject', 'errors')}">
         <jqvalui:renderError for="subject" style="margin-top: -5px">
           <g:eachError bean="${post}" field="title"><g:message error="${it}"/></g:eachError>
