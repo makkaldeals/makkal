@@ -107,7 +107,7 @@ function fnSelectAll () {
 			</div>
 		</div>
 	</div>
-<div  class="formbody">
+<div>
 <h2 valign="center">
    <g:if test="${flash.message}">
        <div class="message">
@@ -121,36 +121,48 @@ function fnSelectAll () {
 	</g:if>
 </h2>
 </div>
-	<div id="grepGroupbox" class="grep_group_form"
-		style="margin: 40px auto;">
-		<g:form name="userSettings" controller="settings" action="updateSettings">
+
+  	<div class="column span-12 append-6 prepend-6 last">
+		<g:form name="userSettings" controller="settings" action="updateSettings" class="inline">
 			<h1>Settings</h1>
 
 	<br/>
-			<div class="formbody">
+			<div>
 				<P>You can provide the facebook credentials below</P>
 				<table>
 					<tbody>
-					
-						<s2ui:textFieldRow name='facebookId' id='facebookId' bean="${user}"
-							value="${user.facebookId}" size='25'
-							labelCode='user.facebookId.label' />
-						<s2ui:passwordFieldRow name='facebookPass' id='facebookPass' bean="${user}"
-							value="${user.facebookPassword}" size='25'
-							labelCode='user.facebookPassword.label' />
-						<tr>
-							</td>
-						</tr>
-						<tr>
+						  <div class="column span-4">
+						  	<label for="facebookId"><g:message code="user.facebookId.label" default="FacebookId:"/></label>
+					      </div>
+					      <div class="column span-8 last">
+					      	<g:textField size="50" name="facebookId" class = "facebookId" value="${user.facebookId}"/>
+					      </div>
+
+						  <div class="column span-4">
+						  	<label for="facebookPass"><g:message code="user.facebookPassword.label" default="Facebook Password:"/></label>
+					      </div>
+					      <div class="column span-8 last">
+					      	<g:textField size="50" name="facebookPass" class = "facebookPassword" value="${user.facebookPassword}"/>
+					      </div>
+						  <div class="column span-4">
+						  	<label for="SelectedCategory"><g:message code="user.selectedcategory.label" default="Assigned Categories:"/></label>
+					      </div>
+					   	  <div class="column span-8 last">
+					      	<g:select name="AssignedCategories" size=25 from="${user.getCategories()}" value="${user.getCategories()}"
+									multiple="true" />
+					      </div>
+		
+ 					<!-- 	<tr>
 							<td valign="top" class="name"><label for="SelectedCategory">
 									${message(code: 'user.selectedcategory.label', default: labelCodeDefault)}
 							</label></td>
 
-							<td valign="top" class="value "><g:select
+							<td valign="top" class="value ">
+							<g:select
 									name="AssignedCategories" size=25
 									from="${user.getCategories()}" value="${user.getCategories()}"
 									multiple="true" /></td>
-						</tr>
+						</tr>  -->
 						<tr>
 							<td width='100%' align="Left"><input
 								type='button' tabindex="2" value='Remove Categories' id='move2'
@@ -188,15 +200,5 @@ function fnSelectAll () {
 			</div>
 
 		</g:form>
-	</div>
-
-	<div id="footer">
-		<P align="center">
-			<g:link controller='login' action='howitworks' title="How it Works"
-				style="color: #fff;text-decoration: none;padding: 15px;">How it Works</g:link>
-			<g:link controller='login' action='aboutus' title="About Us"
-				style="color: #fff;text-decoration: none;padding: 15px;">About Us</g:link>
-		</P>
-		<p>Copyright &copy; Grep Deals, all rights reserved.</p>
 	</div>
 </body>
