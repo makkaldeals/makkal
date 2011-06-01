@@ -17,7 +17,7 @@
 <jqui:resources/>
 <jqval:resources />
 <jqvalui:resources />
-
+<blueprint:resources/>
 
 <link rel="stylesheet" media="screen" href="${resource(dir:'css',file:'reset.css')}"/>
 <link rel="stylesheet" media="screen" href="${resource(dir:'css',file:'spring-security-ui.css')}"/>
