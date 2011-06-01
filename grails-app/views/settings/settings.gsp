@@ -107,19 +107,26 @@ function fnSelectAll () {
 			</div>
 		</div>
 	</div>
+<div  class="formbody">
+<h2 valign="center">
+   <g:if test="${flash.message}">
+       <div class="message">
+              ${flash.message}
+       </div>
+     </g:if>
 
+	<g:if test='${confirmationMessage}'>
+      <br/>
+      ${confirmationMessage}
+	</g:if>
+</h2>
+</div>
 	<div id="grepGroupbox" class="grep_group_form"
 		style="margin: 40px auto;">
 		<g:form name="userSettings" controller="settings" action="updateSettings">
 			<h1>Settings</h1>
-			<g:if test='${confirmationMessage}'>
-				<br />
-				<font color="red">
-					${confirmationMessage}
-				</font>
-				<br />
-			</g:if>
 
+	<br/>
 			<div class="formbody">
 				<P>You can provide the facebook credentials below</P>
 				<table>

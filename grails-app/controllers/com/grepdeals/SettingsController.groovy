@@ -1,8 +1,8 @@
 package com.grepdeals
 
-import grails.plugins.springsecurity.Secured;
+import grails.plugins.springsecurity.Secured
+
 import com.grepdeals.auth.User
-import com.grepdeals.auth.UserService;
 
 class SettingsController {
 
@@ -20,12 +20,16 @@ class SettingsController {
       render view:'settings';
     }
 	
-	@Secured(['ROLE_CLIENT', 'ROLE_ADMIN'])
+	@Secured(['IS_AUTHENTICATED_REMEMBERED'])
 	def updateSettings = {
   
-	  //log.info(params);
 	  User updatedUser = userService.update(params)
 	  session.user = updatedUser
+	  if(updatedUser.hasErrors()) {
+		  flash.error = message(code: 'user.transaction.unsuccessful')
+	  } else {
+	  	flash.message = message(code: 'user.transaction.successful')
+	  }
 	  render view:'settings';
 	}
 }
