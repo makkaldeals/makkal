@@ -1,7 +1,7 @@
 <%@ page import="com.grepdeals.consts.CategoryTree"%>
 <%@ page import="com.grepdeals.auth.Role" %>
 <head>
-	<meta name='layout' content='register'/>
+	<meta name='layout' content='main'/>
     <g:javascript library="prototype" />
 	<title><g:message code='spring.security.ui.register.title'/></title>
     <g:javascript>
@@ -44,7 +44,7 @@ function updateSubcategories(e) {
 
 <p/>
 
-<div id="grepGroupbox" class="grep_group_form" style="margin:70px auto;">
+<div id="grepGroupbox" class="grep_group_form" >
 <!--
 <s2ui:form width='400' height='275' elementId='loginFormContainer'
            titleCode='spring.security.ui.register.description' center='true'>
