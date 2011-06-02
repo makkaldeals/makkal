@@ -174,7 +174,7 @@ function fnclear() {
 									multiple="true" />
 						  </div>				      
 						<div class="column span-19 prepend-3 last">
-			    			<g:submitButton name="submit" class="s2ui_hidden_button" form="userSettings"
+			    			<g:submitButton name="submit" class="s2ui_hidden_button" form="userSettings" onClick="fnSelectAll()"
 			            	value="${message(code:'settings.submit.button',default:'Submit')}"/>
 			    			<input type='reset' name="clear" class="s2ui_hidden_button" onClick="fnclear()"
 			            	value="${message(code:'settings.clear.button',default:'Clear')}"/>
