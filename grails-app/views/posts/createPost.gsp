@@ -9,7 +9,7 @@
 <%@ page import="org.codehaus.groovy.grails.commons.ConfigurationHolder; com.grepdeals.util.DateUtil" contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-  <meta name='layout' content='register'/>
+  <meta name='layout' content='main'/>
   <title>Grepdeals customer</title>
   
   <ckeditor:resources/>
@@ -22,7 +22,7 @@
 
 <body>
 
-<div id="createPostContainer" class="container formbody">
+<div id="createPostContainer" class="formbody">
 
   <div class="formtitle span-24 prepand-1 last">
 
