@@ -72,6 +72,11 @@ function fnSelectAll () {
 			e_select.options[i].selected = true;
 	}
 }
+
+function fnclear() {
+
+	alert ("Clearing the categories is pending")
+}
 </g:javascript>	
 </head>
 <body onLoad="fnArrangeCategories()">
@@ -142,7 +147,7 @@ function fnSelectAll () {
 						  	<label for="facebookPass"><g:message code="user.facebookPassword.label" default="Facebook Password:"/></label>
 					      </div>
 					      <div class="column span-8 last">
-					      	<g:textField size="50" name="facebookPass" class = "facebookPassword" value="${user.facebookPassword}"/>
+					      	<g:passwordField size="50" name="facebookPass" class = "facebookPassword" value="${user.facebookPassword}"/>
 					      </div>
 						  <div class="column span-4">
 						  	<label for="SelectedCategory"><g:message code="user.selectedcategory.label" default="Assigned Categories:"/></label>
@@ -150,51 +155,30 @@ function fnSelectAll () {
 					   	  <div class="column span-8 last">
 					      	<g:select name="AssignedCategories" size=25 from="${user.getCategories()}" value="${user.getCategories()}"
 									multiple="true" />
-					      </div>
-		
- 					<!-- 	<tr>
-							<td valign="top" class="name"><label for="SelectedCategory">
-									${message(code: 'user.selectedcategory.label', default: labelCodeDefault)}
-							</label></td>
-
-							<td valign="top" class="value ">
-							<g:select
-									name="AssignedCategories" size=25
-									from="${user.getCategories()}" value="${user.getCategories()}"
-									multiple="true" /></td>
-						</tr>  -->
-						<tr>
-							<td width='100%' align="Left"><input
-								type='button' tabindex="2" value='Remove Categories' id='move2'
-								class='s2ui_hidden_button' onclick = "fnMoveItems('AssignedCategories','All-Categories')">
-							</td>						
-							<td width='100%' align="Right"><input
-								type='button' tabindex="2" value='Assign Categories' id='move1'
-								class='s2ui_hidden_button' onclick = "fnMoveItems('All-Categories','AssignedCategories')"></td>
-
-								
-						</tr>
-						<tr>
-							<td valign="top" class="name"><label for="AllCategory">
-									${message(code: 'user.allcategory.label', default: labelCodeDefault)}
-							</label></td>
-
-							<td valign="top" class="value "><g:select
-									name="All-Categories" size=25
-									from="${CategoryTree.Category.allChildren()}"
-									value="${CategoryTree.Category.allChildren()}" multiple="true" />
-							</td>
-						</tr>
-
-						<tr>
-							<td />
-						<tr>
-							<td colspan='2' width='100%' align="center"><input
-								type='submit' tabindex="2" value='Submit' id='submit'
-								class='s2ui_hidden_button' onclick="fnSelectAll()"/></td>
-						</tr>
-						</tr>
-
+							<div class="column span-8 last">
+								<input
+									type='button' tabindex="2" value='Remove Categories' id='move2'
+									class='s2ui_hidden_button' onclick = "fnMoveItems('AssignedCategories','All-Categories')">
+														
+								<input
+									type='button' tabindex="2" value='Assign Categories' id='move1'
+									class='s2ui_hidden_button' onclick = "fnMoveItems('All-Categories','AssignedCategories')">
+						  	</div>
+						  </div>
+					
+						  <div class="column span-4">
+						  	<label for="AllCategory"><g:message code="user.allcategory.label" default="All Categories:"/></label>
+					      </div>					   
+					   	  <div class="column span-8 last">
+					      	<g:select name="All-Categories" size=25 from="${CategoryTree.Category.allChildren()}" value="${CategoryTree.Category.allChildren()}" 
+									multiple="true" />
+						  </div>				      
+						<div class="column span-19 prepend-3 last">
+			    			<g:submitButton name="submit" class="s2ui_hidden_button" form="userSettings"
+			            	value="${message(code:'settings.submit.button',default:'Submit')}"/>
+			    			<input type='reset' name="clear" class="s2ui_hidden_button" onClick="fnclear()"
+			            	value="${message(code:'settings.clear.button',default:'Clear')}"/>
+			    		</div>
 					</tbody>
 				</table>
 			</div>
