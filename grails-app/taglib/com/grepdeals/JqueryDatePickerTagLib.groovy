@@ -13,7 +13,7 @@ class JqueryDatePickerTagLib {
 
 
 //Create date text field and supporting hidden text fields need by grails
-    out.println "<input type=\"text\" name=\"${name}\" id=\"${id}\" readonly=\"readonly\" />"
+    out.println "<input type=\"text\" name=\"${name}\" id=\"${id}\" readonly=\"readonly\" class=\"text\" />"
     out.println "<input type=\"hidden\" name=\"${name}_day\" id=\"${id}_day\" />"
     out.println "<input type=\"hidden\" name=\"${name}_month\" id=\"${id}_month\" />"
     out.println "<input type=\"hidden\" name=\"${name}_year\" id=\"${id}_year\" />"

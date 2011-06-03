@@ -53,6 +53,7 @@
       </g:if>
       </div>
   
+      <hr class="space" />
 
       <div class="column span-3">
       <label for="subject"><g:message code="post.subject.label" default="Subject:"/></label>
@@ -65,17 +66,20 @@
         </jqvalui:renderError>
       </g:if>
       </div>
+
+     <hr class="space" />
      <div class="column span-3">
       <label for="content"><g:message code="post.content.label" default="Content:"/></label>
       </div>
       <div class="column span-19 last">
-      <ckeditor:editor toolbar="custom" name="content" height="400px" width="100%"
+      <ckeditor:editor toolbar="custom" name="content" height="400px" width="95%"
               filebrowserImageBrowseUrl="" filebrowserBrowseUrl="" filebrowserFlashBrowseUrl=""
               filebrowserImageUploadUrl="${createLink(controller:'media' , action:'uploadImage')}"
               filebrowserUploadUrl="${createLink(controller:'media' , action:'uploadImage')}">
         ${post.content}
       </ckeditor:editor>
 
+      <hr class="space" />
       <g:if test="${hasErrors(bean: post, field: 'content', 'errors')}">
         <jqvalui:renderError for="content" style="margin-top: -5px">
           <g:eachError bean="${post}" field="title"><g:message error="${it}"/></g:eachError>
@@ -83,6 +87,7 @@
       </g:if>
       </div>
 
+    <hr class="space" />
     <div class="column span-3">
 
       <label for="expiresOn"><g:message code="post.expiresOn.label" default="Expires On:"/></label>
@@ -94,6 +99,7 @@
               maxDate="${ConfigurationHolder.config.grepdeals.posts.expiresOn.maxDuration}"/>
       </div>
 
+   <hr class="space" />
    <div class="column span-3">
       <label for="tags"><g:message code="post.tags.label" default="Tags:"/></label>
      </div>
@@ -101,6 +107,7 @@
       <g:textField size="50" name="tags" class="text" value="${post.tags.join(',')}"/>
     </div>
 
+      <hr class="space" />
     <div class="column span-19 prepend-3 last">
     <g:submitButton name="publishPost" class="s2ui_hidden_button" form="createPostForm"
             value="${message(code:'post.publish.button',default:'Publish')}"/>

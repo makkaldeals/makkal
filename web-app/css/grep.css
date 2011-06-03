@@ -1,8 +1,8 @@
 body {
 	margin: 0;
 	padding: 0;
-	/*background: #fbf9ef url(../images/header_bg.gif) repeat-x top; */
-    background : #FBF9EF
+	/*background: #fbf9ef url(../images/header_bg.gif) repeat-x top;
+    background : #FBF9EF                                             */
 }
 
 p, ul, li, h1, h2, h3, h4 {
@@ -50,6 +50,7 @@ ul {
 
 #header {
     margin-top : 0;
+    border-bottom: 5px solid #928977;
 	background: #fbf9ef url(../images/header_bg.gif) repeat-x top;
 }
 

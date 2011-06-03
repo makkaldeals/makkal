@@ -34,8 +34,8 @@
 </head>
 
 <body>
-<div class="container">
-	        <div id="header" class="column span-24 last">
+<div class="container showgrid">
+  	        <div id="header" class="column span-24 last">
 	          <h1 class="column span-8 last">Grep Deals</h1>
 	            <div id="nav" class="column span-16 last">
 	                <ul>
@@ -50,9 +50,10 @@
 	            </div>
 	        </div>
 
+  <div class="containerbody">
 
 <g:layoutBody/>
-
+ </div>
 <div id="footer" class="column span-24 last">
     <P align="center">
     	<g:link controller='login' action='howitworks' title="How it Works" style="color: #fff;text-decoration: none;padding: 15px;">How it Works</g:link>
@@ -60,7 +61,8 @@
     </P>
     <p>Copyright &copy; Grep Deals, all rights reserved.</p>
 </div>
-</div>
 
+</div>
+<br/>
 </body>
 </html>
