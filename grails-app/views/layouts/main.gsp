@@ -35,7 +35,7 @@
 </head>
 
 <body>
-<div class="container  showgrid">
+<div class="container ">
     <div id="header" class="column span-24 last">
         <h1 class="column span-6  last">Grep Deals</h1>
 

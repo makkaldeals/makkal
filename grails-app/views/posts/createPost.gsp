@@ -33,44 +33,48 @@
             <g:message code="post.create.title" default="Create Post"></g:message>
         </g:else>
     </div>
-    <g:renderErrors bean="${post}"></g:renderErrors>
     <g:form name="createPostForm" controller="posts" action="publishPost" class="inline">
         <div class="column span-22 append-1 prepend-1 last ">
 
             <g:if test="${post.id}">
                 <g:hiddenField name="id" value="${post.id}"/>
             </g:if>
-            <div class="column span-3">
+            <!--   <div class="column span-3">
                 <label for="title"><g:message code="post.title.label" default="Title:"/></label>
             </div>
 
             <div class="column span-19 last">
                 <g:textField size="150" name="title" class="title" value="${post.title}"/>
-                <g:if test="${hasErrors(bean: post, field: 'title', 'errors')}">
-                    <jqvalui:renderError for="title" style="margin-top: -5px">
-                        <g:eachError bean="${post}" field="title"><g:message error="${it}"/></g:eachError>
-                    </jqvalui:renderError>
-                </g:if>
-            </div>
+            <g:if test="${hasErrors(bean: post, field: 'title', 'errors')}">
+                <jqvalui:renderError for="title" style="margin-top: -5px">
+                    <g:eachError bean="${post}" field="title"><g:message error="${it}"/></g:eachError>
+                </jqvalui:renderError>
+            </g:if>
+            </div>  -->
 
-            <hr class="space"/>
+            <gd:textFieldRow name='title' value="${post.title}" labelCodeDefault="Title:" labelSpan="3" fieldSpan="19"
+                             class="title" labelCode='post.title.label'/>
 
-            <div class="column span-3">
+            <!--   <div class="column span-3">
                 <label for="subject"><g:message code="post.subject.label" default="Subject:"/></label>
             </div>
 
             <div class="column span-19 last">
                 <g:textField size="150" class="text" name="subject" value="${post.subject}"/>
-                <g:if test="${hasErrors(bean: post, field: 'subject', 'errors')}">
-                    <jqvalui:renderError for="subject" style="margin-top: -5px">
-                        <g:eachError bean="${post}" field="title"><g:message error="${it}"/></g:eachError>
-                    </jqvalui:renderError>
-                </g:if>
+            <g:if test="${hasErrors(bean: post, field: 'subject', 'errors')}">
+                <jqvalui:renderError for="subject" style="margin-top: -5px">
+                    <g:eachError bean="${post}" field="subject"><g:message error="${it}"/></g:eachError>
+                </jqvalui:renderError>
+            </g:if>
             </div>
 
-            <hr class="space"/>
+            <hr class="space"/>       -->
 
-            <div class="column span-3">
+            <gd:textFieldRow name='subject' value="${post.subject}" labelCodeDefault="Subject:" labelSpan="3"
+                             fieldSpan="19"
+                             class="text" labelCode='post.subject.label'/>
+
+            <!--    <div class="column span-3">
                 <label for="content"><g:message code="post.content.label" default="Content:"/></label>
             </div>
 
@@ -79,18 +83,28 @@
                                  filebrowserImageBrowseUrl="" filebrowserBrowseUrl="" filebrowserFlashBrowseUrl=""
                                  filebrowserImageUploadUrl="${createLink(controller:'media' , action:'uploadImage')}"
                                  filebrowserUploadUrl="${createLink(controller:'media' , action:'uploadImage')}">
-                    ${post.content}
-                </ckeditor:editor>
+                ${post.content}
+            </ckeditor:editor>
 
                 <hr class="space"/>
                 <g:if test="${hasErrors(bean: post, field: 'content', 'errors')}">
-                    <jqvalui:renderError for="content" style="margin-top: -5px">
-                        <g:eachError bean="${post}" field="title"><g:message error="${it}"/></g:eachError>
-                    </jqvalui:renderError>
-                </g:if>
+                <jqvalui:renderError for="content" style="margin-top: -5px">
+                    <g:eachError bean="${post}" field="title"><g:message error="${it}"/></g:eachError>
+                </jqvalui:renderError>
+            </g:if>
             </div>
 
-            <hr class="space"/>
+            <hr class="space"/>         -->
+
+            <gd:customFieldRow name='content' labelCodeDefault="Content::" labelSpan="3" fieldSpan="19"
+                               labelCode='post.content.label'>
+                <ckeditor:editor toolbar="custom" name="content" height="400px" width="90%"
+                                 filebrowserImageBrowseUrl="" filebrowserBrowseUrl="" filebrowserFlashBrowseUrl=""
+                                 filebrowserImageUploadUrl="${createLink(controller:'media' , action:'uploadImage')}"
+                                 filebrowserUploadUrl="${createLink(controller:'media' , action:'uploadImage')}">
+                    ${post.content}
+                </ckeditor:editor>
+            </gd:customFieldRow>
 
             <div class="column span-3">
 
