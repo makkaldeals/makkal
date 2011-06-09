@@ -96,15 +96,9 @@
 
             <hr class="space"/>         -->
 
-            <gd:customFieldRow name='content' labelCodeDefault="Content::" labelSpan="3" fieldSpan="19"
-                               labelCode='post.content.label'>
-                <ckeditor:editor toolbar="custom" name="content" height="400px" width="90%"
-                                 filebrowserImageBrowseUrl="" filebrowserBrowseUrl="" filebrowserFlashBrowseUrl=""
-                                 filebrowserImageUploadUrl="${createLink(controller:'media' , action:'uploadImage')}"
-                                 filebrowserUploadUrl="${createLink(controller:'media' , action:'uploadImage')}">
-                    ${post.content}
-                </ckeditor:editor>
-            </gd:customFieldRow>
+            <gd:ckeditorRow name='content' labelCodeDefault="Content::"  value="${post.content}" labelSpan="3" fieldSpan="19"
+                               labelCode='post.content.label' height="400px" width="90%" >
+             </gd:ckeditorRow>
 
             <div class="column span-3">
 
