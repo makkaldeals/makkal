@@ -112,10 +112,11 @@ function fnclear() {
 				<P>You can provide the facebook credentials below</P>
 				<table>
 					<tbody>
-                    <fb:login-button perms="email,publish_stream" onlogin="facebookLogin();" size="large">
-                        <g:message code="auth.login.facebook"/>
-                    </fb:login-button>
-
+					<div class="column span-24 last">
+		                    <fb:login-button perms="email,publish_stream" onlogin="facebookLogin();" size="large">
+		                        <g:message code="auth.login.facebook"/>
+		                    </fb:login-button>
+					</div>
 						  <div class="column span-4">
 						  	<label for="facebookId"><g:message code="user.facebookId.label" default="FacebookId:"/></label>
 					      </div>
