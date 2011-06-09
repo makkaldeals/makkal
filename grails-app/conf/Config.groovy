@@ -293,4 +293,5 @@ jqueryValidationUi {
             lettersonly: 'true'
     ]
 }
-
+facebook.applicationSecret='d7e66d01c1218fa8ba81ac8816587cba'
+facebook.applicationId='198317553548104'

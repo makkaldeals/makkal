@@ -10,6 +10,8 @@ class SettingsController {
 	
     static navigation = true;
 
+    def facebookGraphService
+
 	def index = {
 
       redirect action:'showSettings';
@@ -32,4 +34,25 @@ class SettingsController {
 	  }
 	  render view:'settings';
 	}
+
+    def show = {
+
+        if (facebookGraphService != null) {
+            System.out.println(session.facebook.uid)
+
+            System.out.println(facebookGraphService.getFacebookData())
+
+            //System.out.println(facebookGraphService.getFriends())
+
+            // facebookGraphService.api()
+
+            //redirect(action: '\showPosts');
+            // session.facebook.;
+
+            //facebookGraphService.publishWall()
+            System.out.println(session.facebook.uid)
+        }
+        render view: 'settings';
+
+    }
 }
