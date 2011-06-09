@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
@@ -68,5 +68,6 @@
         <p>Copyright &copy; Grep Deals, all rights reserved.</p>
     </div>
 </div>
+<fbg:resources locale="${Locale.getDefault()}" status="false" />
 </body>
 </html>

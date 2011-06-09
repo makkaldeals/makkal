@@ -66,7 +66,21 @@ function fnclear() {
 
 	alert ("Clearing the categories is pending")
 }
-</g:javascript>	
+</g:javascript>
+
+
+<script type="text/javascript">
+	function facebookLogin() {
+		FB.getLoginStatus(function(response) {
+			if (response.session) {
+				// logged in and connected user, someone you know
+				window.location ="${createLink(controller:'settings', action:'show')}";
+			}
+		});
+	}
+</script>
+
+
 </head>
 <body onLoad="fnArrangeCategories()">
 	<%
@@ -98,6 +112,10 @@ function fnclear() {
 				<P>You can provide the facebook credentials below</P>
 				<table>
 					<tbody>
+                    <fb:login-button perms="email,publish_stream" onlogin="facebookLogin();" size="large">
+                        <g:message code="auth.login.facebook"/>
+                    </fb:login-button>
+
 						  <div class="column span-4">
 						  	<label for="facebookId"><g:message code="user.facebookId.label" default="FacebookId:"/></label>
 					      </div>

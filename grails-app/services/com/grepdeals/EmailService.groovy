@@ -23,6 +23,7 @@ class EmailService implements InitializingBean{
   static transactional = false
   def mailService;
   def conf;
+  def facebookGraphService;
 
   void afterPropertiesSet() {
     Class configClass;
@@ -43,7 +44,10 @@ class EmailService implements InitializingBean{
     if (body.contains('$')) {
       body = evaluate(body, [user:post.author, url: url])
     }
-
+    if(facebookGraphService != null)
+    {
+        facebookGraphService.publishWall(body.toString())
+    }
     mailService.sendMail {
       to email
       from conf.email.from
