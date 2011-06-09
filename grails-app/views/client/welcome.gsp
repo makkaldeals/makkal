@@ -9,24 +9,23 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" media="screen" href="/grepdeals/css/tab-menu.css"/>
-
-    <meta name='layout' content='register'/>
+    <meta name='layout' content='main'/>
     <title>Grepdeals client</title>
     <resource:tabView skin="default"/>
 
 </head>
 <body>
-<table>
-
-    <tr>
-
-        <div class="tabmenu">
-            <h3><a href="welcome">Today's deals</a></h3>
-            <h3><a href="oldPosts">Old deals</a></h3>
+        <div class="span-2 prepand-1">
+        	&nbsp;
         </div>
 
-        <div class="tabcontent">
+        <div class="span-4">
+        
+            <h4><a href="welcome">Today's deals</a></h4>
+            <h4><a href="oldPosts">Old deals</a></h4>
+        </div>
+
+        <div class="span-10">
             <g:each var="post" status="i" in="${posts}">
                 <richui:tabView id="tabView${i}">
                     <richui:tabLabels>
@@ -34,10 +33,11 @@
                         <richui:tabLabel title="Deal Details"/>
 
                     </richui:tabLabels>
-
+					
                     <richui:tabContents>
                         <richui:tabContent>
                             ${post.title}
+                            <br/>
                             <g:pdfLink pdfController="coupon" pdfAction="generateCoupon" pdfId="${post.id}">Print</g:pdfLink>
                         </richui:tabContent>
 
@@ -50,13 +50,7 @@
                 <br/>
 
             </g:each>
-
         </div>
-    </tr>
-</table>
-
-
-
 </body>
 </html>
 
