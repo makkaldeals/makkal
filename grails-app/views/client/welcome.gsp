@@ -40,7 +40,13 @@
                         <richui:tabContent>
                             ${post.title}
                             <br/>
-                            <g:pdfLink pdfController="coupon" pdfAction="generateCoupon" pdfId="${post.id}">Print</g:pdfLink>
+                            <g:pdfLink pdfController="coupon" pdfAction="generateCoupon" pdfId="${post.id}">
+                           <!--   Print -->
+                           <!--  icon is taken from the following url
+                                                      http://findicons.com/icon/235462/printer?id=384231
+                                         -->             
+                            <img  src="/grepdeals/images/skin/printer.jpg" width="15px"/>
+                            </g:pdfLink>
                         </richui:tabContent>
 
                         <richui:tabContent>
