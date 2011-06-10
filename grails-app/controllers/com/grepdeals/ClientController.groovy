@@ -1,12 +1,10 @@
 package com.grepdeals
 
-import grails.plugins.springsecurity.Secured
 import com.grepdeals.auth.Role
-import com.grepdeals.PostService
+import grails.plugins.springsecurity.Secured
 
 class ClientController {
 
-    static navigation = true;
     def springSecurityService;
     def postService;
 
@@ -25,15 +23,13 @@ class ClientController {
 
     }
 
-       @Secured(['ROLE_CLIENT', 'ROLE_ADMIN'])
+    @Secured(['ROLE_CLIENT', 'ROLE_ADMIN'])
     def oldPosts = {
         def results = postService.findOldPosts(params);
         render(view: 'welcome', model: [posts: results.list, totalCount: results.totalCount]);
 
 
     }
-
-
 
 
 }

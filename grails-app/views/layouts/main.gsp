@@ -29,7 +29,6 @@
     <link rel="stylesheet" media="screen" href="${resource(dir: 'css', file: 'auth.css')}"/>
     <link rel="stylesheet" type="text/css" media="screen" href="${resource(dir: 'css', file: 'grep.css')}"/>
     <link rel="stylesheet" type="text/css" media="screen" href="${resource(dir: 'css', file: 'grep_form.css')}"/>
-    <!-- TODO clean up nav plugin -->
     <g:layoutHead/>
 
 </head>
@@ -68,6 +67,6 @@
         <p>Copyright &copy; Grep Deals, all rights reserved.</p>
     </div>
 </div>
-<fbg:resources locale="${Locale.getDefault()}" status="false" />
+<fbg:resources locale="${Locale.getDefault()}" status="false"/>
 </body>
 </html>

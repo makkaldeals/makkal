@@ -1,39 +1,36 @@
 package com.grepdeals
 
-import grails.plugins.springsecurity.Secured
-
 import com.grepdeals.auth.User
+import grails.plugins.springsecurity.Secured
 
 class SettingsController {
 
-	def userService
-	
-    static navigation = true;
+    def userService
 
     def facebookGraphService
 
-	def index = {
+    def index = {
 
-      redirect action:'showSettings';
+        redirect action: 'showSettings';
     }
 
     @Secured(['IS_AUTHENTICATED_REMEMBERED'])
     def showSettings = {
-      render view:'settings';
+        render view: 'settings';
     }
-	
-	@Secured(['IS_AUTHENTICATED_REMEMBERED'])
-	def updateSettings = {
-  
-	  User updatedUser = userService.update(params)
-	  session.user = updatedUser
-	  if(updatedUser.hasErrors()) {
-		  flash.error = message(code: 'user.transaction.unsuccessful')
-	  } else {
-	  	flash.message = message(code: 'user.transaction.successful')
-	  }
-	  render view:'settings';
-	}
+
+    @Secured(['IS_AUTHENTICATED_REMEMBERED'])
+    def updateSettings = {
+
+        User updatedUser = userService.update(params)
+        session.user = updatedUser
+        if (updatedUser.hasErrors()) {
+            flash.error = message(code: 'user.transaction.unsuccessful')
+        } else {
+            flash.message = message(code: 'user.transaction.successful')
+        }
+        render view: 'settings';
+    }
 
     def show = {
 
