@@ -17,10 +17,11 @@ class UserService {
   static transactional = true
 
   public User update(Map params) {
-	  
 	def  user1 = springSecurityService.currentUser
-	user1.facebookId = params.facebookId
-	user1.facebookPassword = params.facebookPass
+	user1.oldPassword=params.oldPassword
+	user1.password=params.newPassword
+	//user1.facebookSessionId = params.facebookSessionId
+
 	user1.removeAllCategories()
 	def categories = params.AssignedCategories
 	if(categories instanceof java.lang.String) {

@@ -105,8 +105,6 @@ function fnclear() {
 
   	<div class="column span-24 append-1 prepend-1 last">
 		<g:form name="userSettings" controller="settings" action="updateSettings" class="inline">
-			<h1>Settings</h1>
-
 	<br/>
 			<div>
 				<P><h2>Update Password</h2></P>

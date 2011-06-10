@@ -6,20 +6,21 @@ class User {
 
 	String email
 	String password
+	String oldPassword
 	boolean enabled
 	boolean accountExpired
 	boolean accountLocked
 	boolean passwordExpired
     String areaCode
-	String facebookId
-	String facebookPassword
+	String facebookSessionId
+	
 
 	static constraints = {
 		email blank: false, unique: true
 		password blank: false
         areaCode nullable:true
-		facebookId nullable:true
-		facebookPassword nullable:true;
+		facebookSessionId nullable:true
+		oldPassword nullable:true;
 	}
 
 	static mapping = {
