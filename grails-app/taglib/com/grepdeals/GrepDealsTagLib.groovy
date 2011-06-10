@@ -3,7 +3,9 @@ package com.grepdeals
 class GrepDealsTagLib {
     static namespace = 'gd';
 
-    private static class GdTagAttributes {
+    private class GdTagAttributes {
+
+        private def labelCodeDefault;
         private def labelCode;
         private def name;
         private def value;
@@ -11,50 +13,48 @@ class GrepDealsTagLib {
         private def fieldSpan;
 
         public GdTagAttributes(attrs, tagName) {
+            labelCodeDefault = attrs.remove('labelCodeDefault');
             name = getRequiredAttribute(attrs, 'name', tagName);
-            labelCode = getRequiredAttribute(attrs, 'labelCode', tagName);
+            labelCode = getAttribute(attrs, 'labelCode', tagName, isLabelCodeRequired(tagName));
             value = getRequiredAttribute(attrs, 'value', tagName);
             labelSpan = getRequiredAttribute(attrs, 'labelSpan', tagName);
             fieldSpan = getRequiredAttribute(attrs, 'fieldSpan', tagName);
         }
+
+        private boolean isLabelCodeRequired(String tagName) {
+            switch (tagName) {
+                case "submitButtonRow":
+                    return false;
+                default: return true;
+            }
+        }
     }
 
     def textFieldRow = { attrs ->
-        String labelCodeDefault = attrs.remove('labelCodeDefault')
+
         GdTagAttributes gdTagAttrs = new GdTagAttributes(attrs, 'textFieldRow');
 
         def fieldAttributes = [name: gdTagAttrs.name, value: gdTagAttrs.value] + attrs
 
-        out << """
-		<div class="column span-${gdTagAttrs.labelSpan}">
-			<label for="${gdTagAttrs.name}">${message(code: gdTagAttrs.labelCode, default: labelCodeDefault)}</label>
-	    </div>
-		<div class="column span-${gdTagAttrs.fieldSpan} last">
-			${textField(fieldAttributes)}
-		</div>
-		<hr class="space"/>
-		"""
+        def tagBody = {
+            textField(fieldAttributes);
+        }
+        renderTag(gdTagAttrs, tagBody);
     }
 
     def customFieldRow = { attrs, body ->
-        String labelCodeDefault = attrs.remove('labelCodeDefault')
         GdTagAttributes gdTagAttrs = new GdTagAttributes(attrs, 'customFieldRow');
 
         def fieldAttributes = [name: gdTagAttrs.name, value: gdTagAttrs.value] + attrs
 
-        out << """
-		<div class="column span-${gdTagAttrs.labelSpan}">
-			<label for="${gdTagAttrs.name}">${message(code: gdTagAttrs.labelCode, default: labelCodeDefault)}</label>
-	    </div>
-		<div class="column span-${gdTagAttrs.fieldSpan} last">
-			${body()}
-		</div>
-		<hr class="space"/>
-		"""
+        def tagBody = {
+            body();
+        }
+        renderTag(gdTagAttrs, tagBody);
+
     }
 
     def ckeditorRow = { attrs ->
-        String labelCodeDefault = attrs.remove('labelCodeDefault')
         GdTagAttributes gdTagAttrs = new GdTagAttributes(attrs, 'ckeditorRow');
 
         def fieldAttributes = [name: gdTagAttrs.name,
@@ -65,24 +65,61 @@ class GrepDealsTagLib {
                 filebrowserImageUploadUrl: createLink(controller: 'media', action: 'uploadImage'),
                 filebrowserUploadUrl: createLink(controller: 'media', action: 'uploadImage')] + attrs;
 
+        def tagBody = {
+            gdTagAttrs.value ? ckeditor.editor(fieldAttributes, gdTagAttrs.value) : ckeditor.editor(fieldAttributes);
+        }
+        renderTag(gdTagAttrs, tagBody);
+
+    }
+
+    def dateFieldRow = { attrs ->
+
+        GdTagAttributes gdTagAttrs = new GdTagAttributes(attrs, 'dateFieldRow');
+
+        def fieldAttributes = [name: gdTagAttrs.name, value: gdTagAttrs.value] + attrs
+
+        def tagBody = {
+            jqDatePicker(fieldAttributes);
+        }
+        renderTag(gdTagAttrs, tagBody);
+    }
+
+
+    def submitButtonRow = { attrs ->
+
+        GdTagAttributes gdTagAttrs = new GdTagAttributes(attrs, 'submitButtonRow');
+
+        def fieldAttributes = [name: gdTagAttrs.name, value: gdTagAttrs.value] + attrs
+
         out << """
-		<div class="column span-${gdTagAttrs.labelSpan}">
-			<label for="${gdTagAttrs.name}">${message(code: gdTagAttrs.labelCode, default: labelCodeDefault)}</label>
-	    </div>
-		<div class="column span-${gdTagAttrs.fieldSpan} last">
-		    ${gdTagAttrs.value ? ckeditor.editor(fieldAttributes, gdTagAttrs.value) : ckeditor.editor(fieldAttributes)}
+		<div class="column span-${gdTagAttrs.fieldSpan} prepend-${gdTagAttrs.labelSpan} last">
+			${submitButton(fieldAttributes)}
 		</div>
 		<hr class="space"/>
 		"""
     }
 
+    private renderTag(GdTagAttributes gdTagAttrs, Closure tagBody) {
+        out << """
+		<div class="column span-${gdTagAttrs.labelSpan}">
+			<label for="${gdTagAttrs.name}">${message(code: gdTagAttrs.labelCode, default: gdTagAttrs.labelCodeDefault)}</label>
+	    </div>
+		<div class="column span-${gdTagAttrs.fieldSpan} last">
+			${tagBody()}
+		</div>
+		<hr class="space"/>
+		"""
+    }
 
-    private static  getRequiredAttribute(attrs, String name, String tagName) {
-        if (!attrs.containsKey(name)) {
+    protected getAttribute(attrs, String name, String tagName, boolean isRequired) {
+        if (isRequired && !attrs.containsKey(name)) {
             throwTagError("Tag [$tagName] is missing required attribute [$name]")
         }
         attrs.remove name
     }
 
+    protected getRequiredAttribute(attrs, String name, String tagName) {
+        return getAttribute(attrs, name, tagName, true);
+    }
 
 }

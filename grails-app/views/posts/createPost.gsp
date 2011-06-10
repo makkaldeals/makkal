@@ -32,6 +32,7 @@
         <g:else>
             <g:message code="post.create.title" default="Create Post"></g:message>
         </g:else>
+
     </div>
     <g:form name="createPostForm" controller="posts" action="publishPost" class="inline">
         <div class="column span-22 append-1 prepend-1 last ">
@@ -39,99 +40,57 @@
             <g:if test="${post.id}">
                 <g:hiddenField name="id" value="${post.id}"/>
             </g:if>
-            <!--   <div class="column span-3">
-                <label for="title"><g:message code="post.title.label" default="Title:"/></label>
-            </div>
 
-            <div class="column span-19 last">
-                <g:textField size="150" name="title" class="title" value="${post.title}"/>
-            <g:if test="${hasErrors(bean: post, field: 'title', 'errors')}">
-                <jqvalui:renderError for="title" style="margin-top: -5px">
-                    <g:eachError bean="${post}" field="title"><g:message error="${it}"/></g:eachError>
-                </jqvalui:renderError>
-            </g:if>
-            </div>  -->
+            <gd:textFieldRow
+                    name='title'
+                    value="${post.title}"
+                    labelCodeDefault="Title:"
+                    labelSpan="3"
+                    fieldSpan="19"
+                    class="title" labelCode='post.title.label'/>
 
-            <gd:textFieldRow name='title' value="${post.title}" labelCodeDefault="Title:" labelSpan="3" fieldSpan="19"
-                             class="title" labelCode='post.title.label'/>
+            <gd:textFieldRow
+                    name='subject'
+                    value="${post.subject}" l
+                    abelCodeDefault="Subject:"
+                    labelSpan="3"
+                    fieldSpan="19"
+                    class="text" labelCode='post.subject.label'/>
 
-            <!--   <div class="column span-3">
-                <label for="subject"><g:message code="post.subject.label" default="Subject:"/></label>
-            </div>
+            <gd:ckeditorRow
+                    name='content'
+                    labelCodeDefault="Content::"
+                    value="${post.content}"
+                    labelSpan="3"
+                    fieldSpan="19"
+                    labelCode='post.content.label'
+                    height="400px" width="90%"/>
 
-            <div class="column span-19 last">
-                <g:textField size="150" class="text" name="subject" value="${post.subject}"/>
-            <g:if test="${hasErrors(bean: post, field: 'subject', 'errors')}">
-                <jqvalui:renderError for="subject" style="margin-top: -5px">
-                    <g:eachError bean="${post}" field="subject"><g:message error="${it}"/></g:eachError>
-                </jqvalui:renderError>
-            </g:if>
-            </div>
-
-            <hr class="space"/>       -->
-
-            <gd:textFieldRow name='subject' value="${post.subject}" labelCodeDefault="Subject:" labelSpan="3"
+            <gd:dateFieldRow name="expiresOn"
+                             labelCode="post.expiresOn.label"
+                             labelCodeDefault="Expires On:"
+                             labelSpan="3"
                              fieldSpan="19"
-                             class="text" labelCode='post.subject.label'/>
+                             value="${post?.expiresOn ? DateUtil.convertToJqueryFormat(post?.expiresOn) : DateUtil.getDefaultExpiresOn()}"
+                             minDate="${DateUtil.convertDateToJqueryFormat(new Date())}"
+                             maxDate="${ConfigurationHolder.config.grepdeals.posts.expiresOn.maxDuration}"/>
 
-            <!--    <div class="column span-3">
-                <label for="content"><g:message code="post.content.label" default="Content:"/></label>
-            </div>
+            <gd:textFieldRow name='tags'
+                             value="${post.tags.join(',')}"
+                             labelCodeDefault="Tags:"
+                             labelSpan="3"
+                             fieldSpan="19"
+                             class="text"
+                             labelCode='post.tags.label'/>
 
-            <div class="column span-19 last">
-                <ckeditor:editor toolbar="custom" name="content" height="400px" width="90%"
-                                 filebrowserImageBrowseUrl="" filebrowserBrowseUrl="" filebrowserFlashBrowseUrl=""
-                                 filebrowserImageUploadUrl="${createLink(controller:'media' , action:'uploadImage')}"
-                                 filebrowserUploadUrl="${createLink(controller:'media' , action:'uploadImage')}">
-                ${post.content}
-            </ckeditor:editor>
-
-                <hr class="space"/>
-                <g:if test="${hasErrors(bean: post, field: 'content', 'errors')}">
-                <jqvalui:renderError for="content" style="margin-top: -5px">
-                    <g:eachError bean="${post}" field="title"><g:message error="${it}"/></g:eachError>
-                </jqvalui:renderError>
-            </g:if>
-            </div>
-
-            <hr class="space"/>         -->
-
-            <gd:ckeditorRow name='content' labelCodeDefault="Content::"  value="${post.content}" labelSpan="3" fieldSpan="19"
-                               labelCode='post.content.label' height="400px" width="90%" >
-             </gd:ckeditorRow>
-
-            <div class="column span-3">
-
-                <label for="expiresOn"><g:message code="post.expiresOn.label" default="Expires On:"/></label>
-            </div>
-
-            <div class="column span-19 last">
-                <g:jqDatePicker name="expiresOn"
-                                value="${post?.expiresOn ? DateUtil.convertToJqueryFormat(post?.expiresOn) : DateUtil.getDefaultExpiresOn()}"
-                                minDate="${DateUtil.convertDateToJqueryFormat(new Date())}"
-                                maxDate="${ConfigurationHolder.config.grepdeals.posts.expiresOn.maxDuration}"/>
-            </div>
-
-            <hr class="space"/>
-
-            <div class="column span-3">
-                <label for="tags"><g:message code="post.tags.label" default="Tags:"/></label>
-            </div>
-
-            <div class="column span-19 last">
-                <g:textField size="50" name="tags" class="text" value="${post.tags.join(',')}"/>
-            </div>
-
-            <hr class="space"/>
-
-            <div class="column span-19 prepend-3 last">
-                <g:submitButton name="publishPost" class="s2ui_hidden_button" form="createPostForm"
-                                value="${message(code:'post.publish.button',default:'Publish')}"/>
-            </div>
-
+            <gd:submitButtonRow
+                    name="publishPost"
+                    labelSpan="3"
+                    fieldSpan="3"
+                    value="${message(code:'post.publish.button',default:'Publish')}"/>
         </div>
-    </g:form>
 
+    </g:form>
 </div>
 <br/><br/>
 </body>
