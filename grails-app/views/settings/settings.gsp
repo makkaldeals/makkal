@@ -109,27 +109,39 @@ function fnclear() {
 
 	<br/>
 			<div>
-				<P>You can provide the facebook credentials below</P>
+				<P><h2>Update Password</h2></P>
 				<table>
 					<tbody>
-					<div class="column span-24 last">
+<!-- 					<div class="column span-24 last">
 		                    <fb:login-button perms="email,publish_stream" onlogin="facebookLogin();" size="large">
 		                        <g:message code="auth.login.facebook"/>
 		                    </fb:login-button>
+		                    
 					</div>
+ -->
 						  <div class="column span-4">
-						  	<label for="facebookId"><g:message code="user.facebookId.label" default="FacebookId:"/></label>
+						  	<label for="oldPassword"><g:message code="user.oldpassword.label" default="Old Password:"/></label>
 					      </div>
 					      <div class="column span-20 last">
-					      	<g:textField size="50" name="facebookId" class = "facebookId" value="${user.facebookId}"/>
+					      	<g:passwordField size="50" name="oldPassword" class = "oldPassword" value="${}"/>
 					      </div>
 
 						  <div class="column span-4">
-						  	<label for="facebookPass"><g:message code="user.facebookPassword.label" default="Facebook Password:"/></label>
+						  	<label for="newPassword"><g:message code="user.newpassword.label" default="New Password:"/></label>
 					      </div>
 					      <div class="column span-20 last">
-					      	<g:passwordField size="50" name="facebookPass" class = "facebookPassword" value="${user.facebookPassword}"/>
+					      	<g:passwordField size="50" name="newPassword" class = "newPassword" value="${}"/>
 					      </div>
+						  <div class="column span-4">
+						  	<label for="confirmPassword"><g:message code="user.confirmpassword.label" default="Confirm Password:"/></label>
+					      </div>
+					      <div class="column span-20 last">
+					      	<g:passwordField size="50" name="confirmPassword" class = "confirmPassword" value="${}"/>
+					      </div>
+					      
+					<div class="column span-24 last">
+						<P><h2>Update Categories</h2></P>
+					</div>
 						  <div class="column span-12">
 						  	<label for="SelectedCategory"><g:message code="user.selectedcategory.label" default="Assigned Categories:"/></label>
 					      </div>
