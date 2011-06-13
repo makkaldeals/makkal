@@ -12,8 +12,22 @@
 <head>
     <meta name='layout' content='main'/>
     <title>Grepdeals client</title> 
-    <resource:tabView skin="default"/>
+    <!--  
+    <link rel="stylesheet" type="text/css" media="screen" href="/grepdeals/css/tabView.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/grepdeals/js/yui/tabview/assets/tabview-core.css" />
+    -->
 
+    <link rel="stylesheet" type="text/css" media="screen" href="/grepdeals/css/yui/tabView.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/grepdeals/css/yui/tabview-core.css" />
+
+      <resource:tabView skin="custom"/>
+    
+     
+    <!-- 
+    <resource:tabView skin="default"/>
+    
+ <resource:accordion skin="grey"/>
+ -->
 </head>
 <body>
 <br/>
@@ -27,11 +41,13 @@
             <a href="oldPosts">Old deals</a>
         </div>
 
-        <div class="span-10">
+        <div class="span-12">
+         <richui:font text="Hello World" fontName="Purisa" fontStyle="bold" size="36" color="#FF0000" />
             <g:each var="post" status="i" in="${posts}">
                 <richui:tabView id="tabView${i}">
                     <richui:tabLabels>
-                        <richui:tabLabel selected="true" title="${post.author.business.name}"/>
+                   
+                        <richui:tabLabel selected="true" title="${post.author.business.name}" />
                         <richui:tabLabel title="Deal Details"/>
 
                     </richui:tabLabels>
