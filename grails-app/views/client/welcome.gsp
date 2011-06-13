@@ -42,7 +42,7 @@
         </div>
 
         <div class="span-12">
-         <richui:font text="Hello World" fontName="Purisa" fontStyle="bold" size="36" color="#FF0000" />
+         
             <g:each var="post" status="i" in="${posts}">
                 <richui:tabView id="tabView${i}">
                     <richui:tabLabels>
