@@ -37,10 +37,12 @@ function fnMoveItems(lstbxFrom,lstbxTo)
 }
 
 function fnArrangeCategories() {
+
 	 var varFromBox = document.all("AssignedCategories");
  	 var varToBox = document.all("All-Categories"); 
  	 
  	 for (var i = 0; i < varFromBox.options.length; i++) {
+ 	 	alert(varFromBox.options[i].value);
  	 	var valueToRemove = varFromBox.options[i].value;
  	 	for (var j=0; j < varToBox.options.length; j++) {
  	 		

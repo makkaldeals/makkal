@@ -28,13 +28,12 @@ class SettingsController {
 		def newPassword = params.newPassword
 		def confirmPassword = params.confirmPassword
 		System.out.println("New Password "+newPassword);
-		if (newPassword == null || newPassword.isEmpty()) {
-			flash.message = message(code: 'user.newpassword.null')
-			render view: 'settings';
-			return
-		}
-		
-		if (params.oldPassword != null) {
+		if (!(params.oldPassword.isEmpty())) {
+			if (newPassword == null || newPassword.isEmpty()) {
+				flash.message = message(code: 'user.newpassword.null')
+				render view: 'settings';
+				return
+			}
 			//def oldPassword = springSecurityService.encodePassword(params.oldPassword, salt)
 			
 			if (!(newPassword.equals(confirmPassword))) {
