@@ -42,7 +42,6 @@ function fnArrangeCategories() {
  	 var varToBox = document.all("All-Categories"); 
  	 
  	 for (var i = 0; i < varFromBox.options.length; i++) {
- 	 	alert(varFromBox.options[i].value);
  	 	var valueToRemove = varFromBox.options[i].value;
  	 	for (var j=0; j < varToBox.options.length; j++) {
  	 		
@@ -64,23 +63,7 @@ function fnSelectAll () {
 	}
 }
 
-function fnclear() {
-
-	alert ("Clearing the categories is pending")
-}
 </g:javascript>
-
-
-<script type="text/javascript">
-	function facebookLogin() {
-		FB.getLoginStatus(function(response) {
-			if (response.session) {
-				// logged in and connected user, someone you know
-				window.location ="${createLink(controller:'settings', action:'show')}";
-			}
-		});
-	}
-</script>
 
 
 </head>
@@ -112,13 +95,6 @@ function fnclear() {
 				<P><h2>Update Password</h2></P>
 				<table>
 					<tbody>
-<!-- 					<div class="column span-24 last">
-		                    <fb:login-button perms="email,publish_stream" onlogin="facebookLogin();" size="large">
-		                        <g:message code="auth.login.facebook"/>
-		                    </fb:login-button>
-		                    
-					</div>
- -->
 						  <div class="column span-4">
 						  	<label for="oldPassword"><g:message code="user.oldpassword.label" default="Old Password:"/></label>
 					      </div>
