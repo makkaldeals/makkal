@@ -13,7 +13,14 @@ class GrepDealsTagLib {
         private def fieldSpan;
 
         public GdTagAttributes(attrs, tagName) {
+
+            //override value with optionValue for selects
+            if (attrs.optionValue){
+                attrs.value = attrs.remove("optionValue") ;
+            }
+
             labelCodeDefault = attrs.remove('labelCodeDefault');
+
             name = getRequiredAttribute(attrs, 'name', tagName);
             labelCode = getAttribute(attrs, 'labelCode', tagName, isLabelCodeRequired(tagName));
             value = getRequiredAttribute(attrs, 'value', tagName);
@@ -38,6 +45,29 @@ class GrepDealsTagLib {
 
         def tagBody = {
             textField(fieldAttributes);
+        }
+        renderTag(gdTagAttrs, tagBody);
+    }
+
+
+     def countrySelectRow = { attrs ->
+
+        GdTagAttributes gdTagAttrs = new GdTagAttributes(attrs, 'countrySelectRow');
+
+        def fieldAttributes = [name: gdTagAttrs.name, optionValue: gdTagAttrs.value] + attrs
+        def tagBody = {
+            countrySelect(fieldAttributes);
+        }
+        renderTag(gdTagAttrs, tagBody);
+    }
+
+     def selectFieldRow = { attrs ->
+
+        GdTagAttributes gdTagAttrs = new GdTagAttributes(attrs, 'selectFieldRow');
+
+        def fieldAttributes = [name: gdTagAttrs.name, optionValue: gdTagAttrs.value] + attrs
+        def tagBody = {
+            select(fieldAttributes);
         }
         renderTag(gdTagAttrs, tagBody);
     }
