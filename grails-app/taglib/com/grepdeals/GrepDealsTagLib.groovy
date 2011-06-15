@@ -15,7 +15,7 @@ class GrepDealsTagLib {
         public GdTagAttributes(attrs, tagName) {
 
             //override value with optionValue for selects
-            if (attrs.optionValue){
+            if (attrs.containsKey("optionValue")){
                 attrs.value = attrs.remove("optionValue") ;
             }
 
@@ -45,6 +45,18 @@ class GrepDealsTagLib {
 
         def tagBody = {
             textField(fieldAttributes);
+        }
+        renderTag(gdTagAttrs, tagBody);
+    }
+
+    def passwordFieldRow = { attrs ->
+
+        GdTagAttributes gdTagAttrs = new GdTagAttributes(attrs, 'textFieldRow');
+
+        def fieldAttributes = [name: gdTagAttrs.name, value: gdTagAttrs.value] + attrs
+
+        def tagBody = {
+            passwordField(fieldAttributes);
         }
         renderTag(gdTagAttrs, tagBody);
     }
