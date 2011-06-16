@@ -3,7 +3,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Settings</title>
 <meta name='layout' content='main'/>
-<g:javascript library="prototype" />
+<g:javascript library="prototype"/>
 <g:javascript>
 function fnMoveItems(lstbxFrom,lstbxTo)
 {
@@ -37,7 +37,7 @@ function fnMoveItems(lstbxFrom,lstbxTo)
 }
 
 function fnArrangeCategories() {
-
+	alert("checking")
 	 var varFromBox = document.all("AssignedCategories");
  	 var varToBox = document.all("All-Categories"); 
  	 
@@ -67,7 +67,7 @@ function fnSelectAll () {
 
 
 </head>
-<body onLoad="fnArrangeCategories()">
+<body  onLoad="fnArrangeCategories()">
 	<%
 	
     def user = session.user;

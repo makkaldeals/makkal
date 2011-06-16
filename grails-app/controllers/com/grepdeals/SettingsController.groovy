@@ -5,6 +5,8 @@ import grails.plugins.springsecurity.Secured
 
 class SettingsController {
 
+	def saltSource
+	
     def userService
 
     def facebookGraphService
@@ -24,17 +26,18 @@ class SettingsController {
     @Secured(['IS_AUTHENTICATED_REMEMBERED'])
     def updateSettings = {
 		def currentPassword = springSecurityService.currentUser.password
-		
+		String existingPassword = springSecurityService.encodePassword(params.oldPassword);
+		System.out.println("Exiting password "+existingPassword);
+		System.out.println("Sessiom password "+currentPassword);
 		def newPassword = params.newPassword
 		def confirmPassword = params.confirmPassword
-		System.out.println("New Password "+newPassword);
+		
 		if (!(params.oldPassword.isEmpty())) {
 			if (newPassword == null || newPassword.isEmpty()) {
 				flash.message = message(code: 'user.newpassword.null')
 				render view: 'settings';
 				return
 			}
-			//def oldPassword = springSecurityService.encodePassword(params.oldPassword, salt)
 			
 			if (!(newPassword.equals(confirmPassword))) {
 				flash.message = message(code: 'user.newAndConfirmPassword.not.equal')
@@ -43,7 +46,7 @@ class SettingsController {
 	
 			}
 		
-			if (!(currentPassword.equals (params.oldPassword))) {
+			if (!(currentPassword.equals (existingPassword))) {
 				System.out.println("we should be here")
 				flash.message = message(code: 'user.oldpassword.mismatch')
 				render view: 'settings'
