@@ -67,6 +67,6 @@
         <p>Copyright &copy; Grep Deals, all rights reserved.</p>
     </div>
 </div>
-<fbg:resources locale="${Locale.getDefault()}" status="false"/>
+<fbg:resources/>
 </body>
 </html>

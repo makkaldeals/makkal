@@ -17,6 +17,18 @@
     <jqui:resources themeCss="${resource(dir:'jquery-ui/themes/ui-lightness' , file:'jquery-ui-1.8.13.custom.css')}"/>
     <jqvalui:renderValidationScript for="com.grepdeals.Post"
                                     form="createPostForm" errorClass="invalid"/>
+
+    <script type="text/javascript">
+        function facebookLogin() {
+            FB.getLoginStatus(function(response) {
+                if (response.session) {
+                    // logged in and connected user, someone you know
+                    window.location ="${createLink(controller:'posts', action:'createPost')}";
+                }
+            });
+        }
+    </script>
+
 </head>
 
 
@@ -31,6 +43,13 @@
         </g:if>
         <g:else>
             <g:message code="post.create.title" default="Create Post"></g:message>
+            <g:if test="${session.facebook.uid == null}">
+                (<g:message code="facebook.login.defaultmessage"/>
+                <fb:login-button perms="email,publish_stream" onlogin="facebookLogin();" size="large">
+                    <g:message code="auth.login.facebook"/>
+                </fb:login-button>
+                )
+            </g:if>
         </g:else>
 
     </div>
