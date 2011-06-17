@@ -15,15 +15,15 @@ class GrepDealsTagLib {
         public GdTagAttributes(attrs, tagName) {
 
             //override value with optionValue for selects
-            if (attrs.containsKey("optionValue")){
-                attrs.value = attrs.remove("optionValue") ;
+            if (attrs.containsKey("optionValue")) {
+                attrs.value = attrs.remove("optionValue");
             }
 
             labelCodeDefault = attrs.remove('labelCodeDefault');
 
             name = getRequiredAttribute(attrs, 'name', tagName);
             labelCode = getAttribute(attrs, 'labelCode', tagName, isLabelCodeRequired(tagName));
-            value = getRequiredAttribute(attrs, 'value', tagName);
+            value = getAttribute(attrs, 'value', tagName, isValueRequired(tagName));
             labelSpan = getRequiredAttribute(attrs, 'labelSpan', tagName);
             fieldSpan = getRequiredAttribute(attrs, 'fieldSpan', tagName);
         }
@@ -31,6 +31,15 @@ class GrepDealsTagLib {
         private boolean isLabelCodeRequired(String tagName) {
             switch (tagName) {
                 case "submitButtonRow":
+                case "jcaptchaFieldRow":
+                    return false;
+                default: return true;
+            }
+        }
+
+        private boolean isValueRequired(String tagName) {
+            switch (tagName) {
+                case "jcaptchaFieldRow":
                     return false;
                 default: return true;
             }
@@ -62,7 +71,7 @@ class GrepDealsTagLib {
     }
 
 
-     def countrySelectRow = { attrs ->
+    def countrySelectRow = { attrs ->
 
         GdTagAttributes gdTagAttrs = new GdTagAttributes(attrs, 'countrySelectRow');
 
@@ -73,7 +82,7 @@ class GrepDealsTagLib {
         renderTag(gdTagAttrs, tagBody);
     }
 
-     def selectFieldRow = { attrs ->
+    def selectFieldRow = { attrs ->
 
         GdTagAttributes gdTagAttrs = new GdTagAttributes(attrs, 'selectFieldRow');
 
@@ -94,6 +103,20 @@ class GrepDealsTagLib {
         }
         renderTag(gdTagAttrs, tagBody);
 
+    }
+
+    def jcaptchaFieldRow = { attrs ->
+
+        GdTagAttributes gdTagAttrs = new GdTagAttributes(attrs, 'jcaptchaFieldRow');
+
+        def fieldAttributes = [name: gdTagAttrs.name] + attrs
+
+        out << """
+		<div class="column span-${gdTagAttrs.fieldSpan} prepend-${gdTagAttrs.labelSpan} last">
+			${jcaptcha.jpeg(fieldAttributes)};
+		</div>
+		<hr class="space"/>
+		"""
     }
 
     def ckeditorRow = { attrs ->

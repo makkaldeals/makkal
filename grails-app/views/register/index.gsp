@@ -4,6 +4,8 @@
     <meta name='layout' content='main'/>
     <g:javascript library="prototype"/>
     <title><g:message code='spring.security.ui.register.title'/></title>
+    <jqvalui:renderValidationScript for="com.grepdeals.auth.RegisterCommand"
+                                    form="registerForm" errorClass="invalid"/>
     <g:javascript>
 
         function updateSubcategories(e) {
@@ -41,81 +43,187 @@
 </head>
 
 <body>
-
+<!-- TODO: Complete validation -->
 <div id="registerContainer" class="formbody">
 
-    <div class="formtitle span-24  last">
+    <g:if test="${flash.message}">
+        <div class="message">
+            ${flash.message}
+        </div>
+    </g:if>
 
-        <g:message code='spring.security.ui.register.title'/>
+    <g:if test='${confirmationMessage}'>
+        <br/>
+        ${confirmationMessage}
+    </g:if>
 
-    </div>
-    <g:form action='register' name='registerForm' class="inline">
-        <g:set var="labelSpan" value="3"/>
-        <g:set var="fieldSpan" value="19"/>
-        <div class="column span-22 append-1 prepend-1 last ">
+    <g:else>
 
-            <g:if test="${params.role == Role.ROLE_CLIENT}">
+        <div class="formtitle span-24  last">
 
-                <gd:textFieldRow
-                        name='email'
-                        value="${command.email}"
-                        labelSpan="${labelSpan}"
-                        fieldSpan="${fieldSpan}"
-                        class="text"
-                        labelCode='user.email.label'
-                        labelCodeDefault='E-mail'/>
+            <g:message code='spring.security.ui.register.title'/>
 
-                <gd:passwordFieldRow
-                        name='password'
-                        labelCode='user.password.label'
-                        labelSpan="${labelSpan}"
-                        fieldSpan="${fieldSpan}"
-                        class="text"
-                        labelCodeDefault='Password'
-                        value="${command.password}"/>
-            </g:if>
-            <g:elseif test="${params.role == Role.ROLE_CUSTOMER}">
+        </div>
+        <g:form action='register' name='registerForm' class="inline">
+            <g:set var="labelSpan" value="3"/>
+            <g:set var="fieldSpan" value="19"/>
+            <div class="column span-22 append-1 prepend-1 last ">
+                <hr class="space"/>
+                <g:if test="${params.role == null || params.role == Role.ROLE_CLIENT}">
 
-                <gd:textFieldRow
-                        name='firstName'
-                        value="${command.firstName}"
-                        labelSpan="${labelSpan}"
-                        fieldSpan="${fieldSpan}"
-                        class="text"
-                        labelCode='user.firstName.label'/>
+                    <gd:textFieldRow
+                            name='email'
+                            value="${command.email}"
+                            labelSpan="${labelSpan}"
+                            fieldSpan="${fieldSpan}"
+                            class="text"
+                            labelCode='user.email.label'
+                            labelCodeDefault='E-mail'/>
 
-                <gd:textFieldRow
-                        name='lastName'
-                        value="${command.lastName}"
-                        labelSpan="${labelSpan}"
-                        fieldSpan="${fieldSpan}"
-                        class="text"
-                        labelCode='user.lastName.label'/>
+                    <gd:passwordFieldRow
+                            name='password'
+                            labelCode='user.password.label'
+                            labelSpan="${labelSpan}"
+                            fieldSpan="${fieldSpan}"
+                            class="text"
+                            labelCodeDefault='Password'
+                            value="${command.password}"/>
+                </g:if>
+                <g:elseif test="${params.role == Role.ROLE_CUSTOMER}">
 
-                <gd:textFieldRow
-                        name='businessName'
-                        value="${command.businessName}"
-                        labelSpan="${labelSpan}"
-                        fieldSpan="${fieldSpan}"
-                        class="text"
-                        labelCode='user.businessName.label'/>
+                    <gd:textFieldRow
+                            name='firstName'
+                            value="${command.firstName}"
+                            labelSpan="${labelSpan}"
+                            fieldSpan="${fieldSpan}"
+                            class="text"
+                            labelCode='user.firstName.label'/>
 
-                <gd:selectFieldRow name='category'
-                       from="${CategoryTree.Category.children()}"
-                       valueMessagePrefix='user.category.label'
-                       optionValue="${category}"
-                       labelCode='user.category.label'
-                       labelSpan="${labelSpan}"
-                       fieldSpan="${fieldSpan}"
-                       onchange="${remoteFunction(
+                    <gd:textFieldRow
+                            name='lastName'
+                            value="${command.lastName}"
+                            labelSpan="${labelSpan}"
+                            fieldSpan="${fieldSpan}"
+                            class="text"
+                            labelCode='user.lastName.label'/>
+
+                    <gd:textFieldRow
+                            name='businessName'
+                            value="${command.businessName}"
+                            labelSpan="${labelSpan}"
+                            fieldSpan="${fieldSpan}"
+                            class="text"
+                            labelCode='user.businessName.label'/>
+
+                    <gd:selectFieldRow
+                            name='category'
+                            from="${CategoryTree.Category.children()}"
+                            valueMessagePrefix='user.category.label'
+                            optionValue="${category}"
+                            labelCode='user.category.label'
+                            labelSpan="${labelSpan}"
+                            fieldSpan="${fieldSpan}"
+                            onchange="${remoteFunction(
                              controller:'register',
                              action:'ajaxGetSubcategories',
                              params:'\'name=\' + this.value',
                              onComplete:'updateSubcategories(e)')}"/>
 
-            </g:elseif>
-        </div>
-    </g:form>
+                    <gd:selectFieldRow
+                            name='subcategory'
+                            optionKey="${subcategory}"
+                            optionValue="${subcategory}"
+                            labelSpan="${labelSpan}"
+                            fieldSpan="${fieldSpan}"
+                            labelCode='user.subcategory.label'/>
+
+
+                    <gd:textFieldRow
+                            name='address'
+                            labelSpan="${labelSpan}"
+                            fieldSpan="${fieldSpan}"
+                            class="text"
+                            value="${command.address}"
+                            labelCode='user.address.label'/>
+
+                    <gd:textFieldRow
+                            name='city'
+                            value="${command.city}"
+                            labelSpan="${labelSpan}"
+                            fieldSpan="${fieldSpan}"
+                            class="text"
+                            labelCode='user.city.label'/>
+
+                    <gd:textFieldRow
+                            name='state'
+                            value="${command.state}"
+                            labelSpan="${labelSpan}"
+                            fieldSpan="${fieldSpan}"
+                            class="text"
+                            labelCode='user.state.label'/>
+                </g:elseif>
+                <gd:textFieldRow
+                        name='areaCode'
+                        value="${command.areaCode}"
+                        labelSpan="${labelSpan}"
+                        fieldSpan="${fieldSpan}"
+                        class="text"
+                        labelCode='user.areacode.label'
+                        labelCodeDefault='Area Code'/>
+
+                <g:if test="${params.role == Role.ROLE_CUSTOMER}">
+
+                    <gd:countrySelectRow
+                            name="country"
+                            from="${['US','IN'] }"
+                            optionValue="${country}"
+                            labelSpan="${labelSpan}"
+                            fieldSpan="${fieldSpan}"
+                            labelCode="user.country.label"
+                            valueMessagePrefix="user.country.label"/>
+
+                    <gd:textFieldRow
+                            name='phone'
+                            value="${command.phone}"
+                            labelSpan="${labelSpan}"
+                            fieldSpan="${fieldSpan}"
+                            class="text"
+                            labelCode='user.phone.label'/>
+
+                    <gd:textFieldRow
+                            name='website'
+                            value="${command.website}"
+                            labelSpan="${labelSpan}"
+                            fieldSpan="${fieldSpan}"
+                            class="text"
+                            labelCode='user.website.label'/>
+
+                </g:if>
+
+                <gd:jcaptchaFieldRow
+                        name="image"
+                        labelSpan="${labelSpan}"
+                        fieldSpan="${fieldSpan}"/>
+
+                <gd:textFieldRow
+                        name="response"
+                        labelSpan="${labelSpan}"
+                        fieldSpan="${fieldSpan}"
+                        class="text"
+                        labelCode="jcaptcha.response.label"
+                        value=""/>
+
+                <gd:submitButtonRow
+                        name="create_account"
+                        labelSpan="${labelSpan}"
+                        fieldSpan="${fieldSpan}"
+                        value="${message(code:'user.register..button',default:'Create Account:')}"/>
+            </div>
+
+            <g:hiddenField name="role" value="${params.role}"/>
+            <g:hiddenField name="targetUrl" value="${params.targetUrl}"/>
+        </g:form>
+    </g:else>
 </div>
 
 <!--
