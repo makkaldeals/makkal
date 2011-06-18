@@ -61,7 +61,7 @@
 
         <div class="formtitle span-24  last">
 
-            <g:message code='spring.security.ui.register.title'/>
+            <g:message code='spring.security.ui.register.title'/>    ${params.role}
 
         </div>
         <g:form action='register' name='registerForm' class="inline">

@@ -22,6 +22,9 @@ class RegisterController extends AbstractS2UiController {
   def customerService;
   def jcaptchaService;
   def index = {
+    if (!params.role){
+        params.role = Role.ROLE_CLIENT;
+    }
     [command: new RegisterCommand()]
   }
 
@@ -31,6 +34,9 @@ class RegisterController extends AbstractS2UiController {
     String targetUrl = command.targetUrl;
     log.info("Registering with role ${role} ");
     if (command.hasErrors()) {
+       command.getErrors().each{
+           log.info(it);
+       }
       render view: 'index', model: [command: command]
       return
     }
@@ -319,11 +325,11 @@ class RegisterController extends AbstractS2UiController {
       return 'command.password.error.username'
     }
 
-    if (password && password.length() >= 8 && password.length() <= 64 &&
+    /*if (password && password.length() >= 8 && password.length() <= 64 &&
             (!password.matches('^.*\\p{Alpha}.*$') ||
                     !password.matches('^.*\\p{Digit}.*$'))) {
       return 'command.password.error.strength'
-    }
+    }  */
   }
 
   static final areaCodeValidator = {String areaCode, command ->
