@@ -56,13 +56,13 @@ class RegisterController extends AbstractS2UiController {
             command.getErrors().each {
                 log.info(it);
             }
-            render view: 'index', model: [command: command]
+            render view: getViewByRole(role), model: [command: command]
             return
         }
 
         if (!jcaptchaService.validateResponse("image", session.id, params.response)) {
             flash.message = message(code: 'register.jcaptcha.error')
-            render view: 'index', model: [command: command]
+            render view: getViewByRole(role), model: [command: command]
             return
         }
 
@@ -212,7 +212,7 @@ class RegisterController extends AbstractS2UiController {
 
     def approveRegistration = {
         emailService.sendVerifyRegistration(params.email, params.role, params.targetUrl)
-        render view: 'index', model: [confirmationMessage: message(code: 'spring.security.ui.register.sent', args: [params.email])]
+        render view: getViewByRole(params.role), model: [confirmationMessage: message(code: 'spring.security.ui.register.sent', args: [params.email])]
     }
 
     def verifyRegistration = {
@@ -346,6 +346,10 @@ class RegisterController extends AbstractS2UiController {
 
     protected String evaluate(s, binding) {
         new SimpleTemplateEngine().createTemplate(s).make(binding)
+    }
+
+    private String getViewByRole(String role){
+        return (role == Role.ROLE_CLIENT) ? 'newUser' : 'newCustomer';
     }
 
     static final passwordValidator = {String password, command ->

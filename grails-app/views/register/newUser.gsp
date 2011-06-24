@@ -18,26 +18,28 @@
 
 <body>
 <!-- TODO: Complete validation -->
-<div id="registerContainer" class="formbody">
+<g:if test='${confirmationMessage}'>
+    <br/>
 
-    <g:if test="${flash.message}">
-        <div class="message">
-            ${flash.message}
-        </div>
-    </g:if>
+    <div class="span-16 prepend-4 append-4  last">
+        <div class="info"><h4>${confirmationMessage}</h4></div>
+    </div>
+</g:if>
 
-    <g:if test='${confirmationMessage}'>
-        <br/>
-        ${confirmationMessage}
-    </g:if>
-
-    <g:else>
+<g:else>
+    <div id="registerContainer" class="formbody">
 
         <div class="formtitle span-24  last">
 
             <g:message code='spring.security.ui.register.title'/>
 
         </div>
+        <g:if test="${flash.message}">
+            <hr class="space" />
+            <div class="error">
+                <h4> ${flash.message} </h4>
+            </div>
+        </g:if>
         <g:form action='register' name='registerForm' class="inline">
             <g:set var="labelSpan" value="3"/>
             <g:set var="fieldSpan" value="19"/>
@@ -94,10 +96,10 @@
             <g:hiddenField name="role" value="${Role.ROLE_CLIENT}"/>
             <g:hiddenField name="targetUrl" value="${params.targetUrl}"/>
         </g:form>
-    </g:else>
-</div>
 
+    </div>
 
+</g:else>
 <script>
 
 
