@@ -14,6 +14,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.security.web.savedrequest.SavedRequest
 
 import javax.servlet.http.HttpSession
+import com.grepdeals.auth.Role
 
 class LoginController {
 
@@ -34,10 +35,16 @@ class LoginController {
 
   def index = {
     if (springSecurityService.isLoggedIn()) {
+
+     if (params.role == Role.ROLE_CUSTOMER){
+
+      }
       if (params.targetUrl){
           redirect uri: params.targetUrl;
-      }else{
-        redirect uri : '/';
+      }else if (params.role == Role.ROLE_CUSTOMER){
+
+      } else {
+          redirect uri : '/';
       }
 
     }
@@ -174,7 +181,5 @@ class ContactUsCommand {
         lastName blank: false, maxSize: 50;
         phoneNumber blank: false
         reasonToContact blank: false, maxSize: 50;
-
-
-    }
+     }
 }

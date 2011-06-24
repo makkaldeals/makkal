@@ -49,6 +49,12 @@ class User {
     void addCategory(CategoryTree category){
       UserCategory.create(this,category, true);
     }
+
+    void addAllCategories(Set<CategoryTree> categories){
+        categories.each{
+            addCategory(it);
+        }
+    }
 	
 	boolean hasCategory(CategoryTree category) {
 		return this.getCategories().contains(category)
