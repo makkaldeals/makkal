@@ -28,15 +28,19 @@ class PostService implements InitializingBean {
         post.expiresOn = DateUtil.convertFromJqueryFormat(params.expiresOn);
         post.author = springSecurityService.currentUser;
         post.published = true
+		System.out.println("Category for advertisement "+post.author.business.category);
         if (post.save()) {
             post.parseTags(params.tags, ",")
             emailService.sendPostConfirmation(post);
 			List<String> emails = new ArrayList<String>()
-			List<User> users = userService.getAllUsers()
+			System.out.println("Business Category for which emails to sent "+post.author.business.category);
+			List<User> users = userService.getUsers(post.author.business.category)
 			for (User user : users) {
 				emails.add (user.email)
 			}
-			emailService.sendAdvertisementToUsers(post, emails)
+			if (!(emails.isEmpty())) {
+				emailService.sendAdvertisementToUsers(post, emails)
+			}
         }
         return post;
 
