@@ -1,7 +1,7 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>SampleCoupon</title>
+    <title>Grep Deals Coupon</title>
     <style>
       .coupon_page_layout {
         width:100%;
