@@ -35,12 +35,14 @@
 
         </div>
         <g:if test="${flash.message}">
-            <hr class="space" />
+            <hr class="space"/>
+
             <div class="error">
-                <h4> ${flash.message} </h4>
+                <h4>${flash.message}</h4>
             </div>
         </g:if>
-        <g:form action='register' name='registerForm' class="inline">
+
+        <g:form action='register' name='registerForm' controller="register" class="inline">
             <g:set var="labelSpan" value="3"/>
             <g:set var="fieldSpan" value="19"/>
             <div class="column span-22 append-1 prepend-1 last ">
@@ -53,6 +55,7 @@
                         fieldSpan="${fieldSpan}"
                         class="text"
                         labelCode='user.email.label'
+                        bean="${command}"
                         labelCodeDefault='E-mail'/>
 
                 <gd:passwordFieldRow
@@ -62,6 +65,7 @@
                         fieldSpan="${fieldSpan}"
                         class="text"
                         labelCodeDefault='Password'
+                        bean="${command}"
                         value="${command.password}"/>
 
                 <gd:textFieldRow
@@ -71,6 +75,7 @@
                         fieldSpan="${fieldSpan}"
                         class="text"
                         labelCode='user.areacode.label'
+                        bean="${command}"
                         labelCodeDefault='Area Code'/>
 
                 <gd:jcaptchaFieldRow
@@ -84,6 +89,7 @@
                         fieldSpan="${fieldSpan}"
                         class="text"
                         labelCode="jcaptcha.response.label"
+                        bean="${command}"
                         value=""/>
 
                 <gd:submitButtonRow
@@ -103,15 +109,15 @@
 <script>
 
 
-    $(document).ready(function() {
-        $('#email').focus();
+    /* $(document).ready(function() {
+     $('#email').focus();
 
 
-        $("#create_account").button();
-        $('#create_account').bind('click', function() {
-            document.forms.registerForm.submit();
-        });
-    });
+     $("#create_account").button();
+     $('#create_account').bind('click', function() {
+     document.forms.registerForm.submit();
+     });
+     });   */
 </script>
 
 </body>

@@ -11,6 +11,7 @@ class GrepDealsTagLib {
         private def value;
         private def labelSpan;
         private def fieldSpan;
+        private def bean;
 
         public GdTagAttributes(attrs, tagName) {
 
@@ -26,6 +27,7 @@ class GrepDealsTagLib {
             value = getAttribute(attrs, 'value', tagName, isValueRequired(tagName));
             labelSpan = getRequiredAttribute(attrs, 'labelSpan', tagName);
             fieldSpan = getRequiredAttribute(attrs, 'fieldSpan', tagName);
+            bean = getAttribute(attrs, 'bean', tagName, false);
         }
 
         private boolean isLabelCodeRequired(String tagName) {
@@ -169,11 +171,23 @@ class GrepDealsTagLib {
 		<div class="column span-${gdTagAttrs.labelSpan}">
 			<label for="${gdTagAttrs.name}">${message(code: gdTagAttrs.labelCode, default: gdTagAttrs.labelCodeDefault)}</label>
 	    </div>
-		<div class="column span-${gdTagAttrs.fieldSpan} last">
-			${tagBody()}
+		<div class="column span-${gdTagAttrs.fieldSpan} last">   """;
+
+        out << "${tagBody()}";
+
+        def bean = gdTagAttrs.bean;
+        if (bean && hasErrors(bean: bean, field: gdTagAttrs.name, 'errors')) {
+            out << jqvalui.renderError('for': gdTagAttrs.name, {
+                out << eachError(bean: bean, field: gdTagAttrs.name, {
+                    out << "<span> ${message(error: it)} </span>"
+                })
+            })
+        }
+
+        out << """
 		</div>
 		<hr class="space"/>
-		"""
+		""";
     }
 
     protected getAttribute(attrs, String name, String tagName, boolean isRequired) {
