@@ -46,7 +46,7 @@ class EmailService implements InitializingBean{
     }
     if(facebookGraphService != null)
     {
-        facebookGraphService.publishWall(body.toString())
+        facebookGraphService.publishWall(post.getTitle())
     }
     mailService.sendMail {
       to email
