@@ -131,14 +131,14 @@ class RegisterController extends AbstractS2UiController {
                         generateApproval(user, role, params.targetUrl);
                     } catch (ValidationException ve) {
                         command.errors = ve.errors;
-                        render(view: 'index', model: [command: command])
+                        render(view: 'newCustomer', model: [command: command])
                     }
 
                 }
                 else {
                     log.error("This should never happen");
                     log.error("Invalid role ${role}");
-                    render view: 'index';
+                    render view: 'newUser';
                 }
 
             }
@@ -164,7 +164,7 @@ class RegisterController extends AbstractS2UiController {
                 } catch (ValidationException ve) {
                     log.error("Error in saving user ${user.errors}")
                     command.errors = ve.errors;
-                    render(view: 'index', model: [command: command])
+                    render(view: 'newUser', model: [command: command])
                 }
             }
             else if (role.equals(Role.ROLE_CUSTOMER)) {
@@ -190,13 +190,13 @@ class RegisterController extends AbstractS2UiController {
                     generateApproval(user, role, targetUrl);
                 } catch (ValidationException ve) {
                     command.errors = ve.errors;
-                    render(view: 'index', model: [command: command])
+                    render(view: 'newCustomer', model: [command: command])
                 }
 
             }
             else {
                 log.error("Invalid role ${role}");
-                render view: 'index';
+                render view: 'newUser';
             }
         }
 
@@ -206,7 +206,7 @@ class RegisterController extends AbstractS2UiController {
     private void generateApproval(User user, String role, String targetUrl) {
 
         emailService.sendApproval(user, role, targetUrl);
-        render view: 'index', model: [confirmationMessage: message(code: 'spring.security.ui.approval.sent')]
+        render view: getViewByRole(params.role), model: [confirmationMessage: message(code: 'spring.security.ui.approval.sent')]
 
     }
 

@@ -1,5 +1,7 @@
 package com.grepdeals.auth
 
+import java.util.List;
+
 import com.grepdeals.UserCategory
 import com.grepdeals.consts.CategoryTree
 
@@ -42,11 +44,15 @@ class UserService {
   }
   
   public List<User> getUsers(String category) {
-	 Set<UserCategory> userCategories = UserCategory.findAllByCategory(CategoryTree.Category.valueOf(category))
+	  //TODO we should use the join and get the users for the category
+	 Set<UserCategory> userCategories = UserCategory.findAllByCategory(CategoryTree.Category.valueOf(category.trim()))
 	 List<User> users = new ArrayList<User> ();
 	 for (UserCategory userCategory: userCategories) {
 		 users.add(userCategory.getUser())
 	 }
+	 
+	 return users
+
   }
   
   public List<User> getAllUsers() {
