@@ -12,4 +12,5 @@ class CouponData {
 	private String companyPin;
 	private String companyPhone;
 	private String couponExpirationDate;
+	private String dealDetails;
 }
