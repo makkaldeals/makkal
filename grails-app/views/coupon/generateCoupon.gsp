@@ -83,7 +83,7 @@
    
 		} 
 		.expiredate_text{
-			font:8px arial,sans-serif;
+			font:6px arial,sans-serif;
         	color:red;
 		}
 		.deal_text {
@@ -108,18 +108,25 @@
         		<table class="coupon_layout">
 	        	 	<tr>
 			        	<td align="left" width="10%" valign="top">
-			        		<img src="/grepdeals/images/410/GD.jpg" alt="smallsample" title="smallsample" height="75px" width="125px"/>
+			        		<img src="/grepdeals/images/410/GD.jpg" alt="smallsample" title="smallsample" height="55px" width="125px"/>
 			    		</td>
 			    		
-		    			<td width="60%" valign="top" class="expiredate_text" align="center">Expires on ${data.couponExpirationDate}</td>
+		    			<td width="60%"> 
+		    				<table>
+		    					
+		    					<tr>
+		    						<td class="deal_text">
+		        						${data.dealDetails}
+		        					</td>
+		    						
+		    					</tr>
+		    				</table>
+		    				
+		    			</td>
 		    			<td width="20%"></td>
-			          <td align="right"><img src="/grepdeals/images/410/gun.jpg" alt="gun" title="gun" height="40px" width="80px"/></td>
+			          <td align="right"><img src="/grepdeals/images/410/gun.jpg" alt="gun" title="gun" height="55px" width="80px"/></td>
 			        </tr>    	
-		        	<tr align="center">
-		        		<td align="center" colspan="3" class="deal_text">
-		        		${data.dealDetails}
-		        		</td>
-		        	</tr>
+		        	
 			        <tr>
 			          <td colspan="3" class="small_text" >
 			          Redeem at: 
@@ -146,6 +153,8 @@
 			          Phone : ${data.companyPhone} 
 			          </td>
 			          <td></td>	
+			          <td  class="expiredate_text" align="left" wrap="soft">Expires on ${data.couponExpirationDate}
+		    						</td>
 			        </tr>
 
 			         <!-- 

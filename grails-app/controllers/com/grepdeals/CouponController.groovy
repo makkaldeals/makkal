@@ -139,7 +139,8 @@ class CouponController {
 			  // expiration data has to be here
 			  couponData.couponExpirationDate = "12/12/2011"
 			  
-			  couponData.dealDetails = post.content
+			  //couponData.dealDetails = post.content
+			  couponData.dealDetails = post.title
 			  return ['data':couponData]
 			
 		  }
