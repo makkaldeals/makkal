@@ -1,6 +1,9 @@
 package com.grepdeals
 
+import java.util.List;
+
 import com.grepdeals.auth.Customer
+import com.grepdeals.auth.User
 import grails.orm.PagedResultList
 import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
 import org.springframework.beans.factory.InitializingBean
@@ -8,6 +11,7 @@ import com.grepdeals.util.DateUtil
 
 class PostService implements InitializingBean {
 
+	def userService;
     def emailService;
     def springSecurityService;
     int maxPostsPerPage;
@@ -27,6 +31,12 @@ class PostService implements InitializingBean {
         if (post.save()) {
             post.parseTags(params.tags, ",")
             emailService.sendPostConfirmation(post);
+			List<String> emails = new ArrayList<String>()
+			List<User> users = userService.getAllUsers()
+			for (User user : users) {
+				emails.add (user.email)
+			}
+			emailService.sendAdvertisementToUsers(post, emails)
         }
         return post;
 

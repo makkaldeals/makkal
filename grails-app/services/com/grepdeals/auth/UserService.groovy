@@ -1,6 +1,7 @@
 package com.grepdeals.auth
 
-import com.grepdeals.consts.CategoryTree;
+import com.grepdeals.UserCategory
+import com.grepdeals.consts.CategoryTree
 
 /**
  * com.grepdeals.auth
@@ -39,4 +40,17 @@ class UserService {
 	def updatedUser = User.get(user1.id)
 	return updatedUser
   }
+  
+  public List<User> getUsers(String category) {
+	 Set<UserCategory> userCategories = UserCategory.findAllByCategory(CategoryTree.Category.valueOf(category))
+	 List<User> users = new ArrayList<User> ();
+	 for (UserCategory userCategory: userCategories) {
+		 users.add(userCategory.getUser())
+	 }
+  }
+  
+  public List<User> getAllUsers() {
+	  
+	  return User.getAll();
+   }
 }

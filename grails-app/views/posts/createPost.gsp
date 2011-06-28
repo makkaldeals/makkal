@@ -36,7 +36,7 @@
 
 <div id="createPostContainer" class="formbody">
 
-    <div class="formtitle span-24 prepand-1 last">
+    <div class="formtitle span-24 last">
 
         <g:if test="${post.id}">
             <g:message code="post.edit.title" default="Edit Post"></g:message>

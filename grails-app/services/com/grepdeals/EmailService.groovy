@@ -55,6 +55,21 @@ class EmailService implements InitializingBean{
       html body.toString()
     }
   }
+  
+  public void sendAdvertisementToUsers(Post post, List<String> userEmails) {
+	  def body = conf.email.advertisement.body;
+	  String url = generateLink('posts' , 'showPost', [id : post.id])
+	  if (body.contains('$')) {
+		body = evaluate(body, [post:post, url: url])
+	  }
+	  mailService.sendMail {
+		to "admin@grepdeals.com"
+		bcc userEmails
+		from conf.email.from
+		subject conf.email.advertisement.subject
+		html body.toString()
+	  }
+	}
 
   public void sendVerifyRegistration(String email, String role, String targetUrl){
     def registrationCode = new RegistrationCode(username: email).save()

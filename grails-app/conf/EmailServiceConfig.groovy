@@ -63,6 +63,23 @@ If you would like to view your post, click this  <a href="$url">$url</a>.
     subject = 'Your post is published'
   }
 
+  advertisement {
+	  body = '''\
+	  
+  <br/>
+  The new deal is posted on Grepdeals.com<br/>
+  
+    <br/>
+  The deals is -- $post.title<br/>
+  
+     <br/> $post.subject<br/>
+     
+  <br/>
+  If you would like to view the deal, click this  <a href="$url">$url</a>.
+  '''
+	  subject = 'Deal from GrepDeals'
+	}
+  
     contactUs {
         body = '''\
 Hi Admin ,<br/>

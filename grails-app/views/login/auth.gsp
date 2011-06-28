@@ -105,7 +105,6 @@
 							           <g:message code="${flash.message}"/>
 							      </div>
 							</g:if>
-							<!--<sec:ifNotLoggedIn>-->
 								<form action='${postUrl}' method='post' id="loginForm" name="loginForm" autocomplete='off'>
 								    <g:hiddenField name="spring-security-redirect" value="/login/authSuccess?targetUrl=${params.targetUrl}" />
 										<P>
@@ -133,10 +132,10 @@
 													});
 												</script> 
 		      								
-		      								<s2ui:linkButton elementId='register' controller='register' params="${params}" messageCode='spring.security.ui.login.register'/>
+		      								<s2ui:linkButton elementId='register' controller='register'   params="${params}" messageCode='spring.security.ui.login.register'/>
 		        						</p>
 	    							</form>
-	    						<!--</sec:ifNotLoggedIn>-->
+
     					</fieldset>
             </div>
             <div  id="subheader" class="column span-24 last"><h2>Grep Deals is coming soon</h2></div>

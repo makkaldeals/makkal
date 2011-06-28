@@ -9,13 +9,15 @@ class ClientController {
     def postService;
 
 
+    //TODO Add security
     def index = {
-        redirect(controller: 'login', action: 'index', params: ["targetUrl": "/client/welcome", "role": Role.ROLE_CLIENT])
+       // redirect(controller: 'login', action: 'index', params: ["targetUrl": "/client/welcome", "role": Role.ROLE_CLIENT])
+        redirect(action: 'welcome');
     }
 
 
 
-    @Secured(['ROLE_CLIENT', 'ROLE_ADMIN'])
+    @Secured(['IS_AUTHENTICATED_REMEMBERED'])
     def welcome = {
         def results = postService.findTodayPosts(params);
         render(view: 'welcome', model: [posts: results.list, totalCount: results.totalCount]);
@@ -23,7 +25,7 @@ class ClientController {
 
     }
 
-    @Secured(['ROLE_CLIENT', 'ROLE_ADMIN'])
+     @Secured(['IS_AUTHENTICATED_REMEMBERED'])
     def oldPosts = {
         def results = postService.findOldPosts(params);
         render(view: 'welcome', model: [posts: results.list, totalCount: results.totalCount]);
