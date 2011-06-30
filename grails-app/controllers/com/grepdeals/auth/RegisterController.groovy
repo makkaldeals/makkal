@@ -160,6 +160,10 @@ class RegisterController extends AbstractS2UiController {
                 )
                 try {
                     user.save(failOnError: true);
+					Set<CategoryTree> categories = new HashSet(CategoryTree.Category.allChildren());
+					user.addAllCategories(categories)
+					
+					user.save(failOnError: true);
                     chain(action: approveRegistration, params: [email: command.email, role: role, targetUrl: targetUrl])
                 } catch (ValidationException ve) {
                     log.error("Error in saving user ${user.errors}")
