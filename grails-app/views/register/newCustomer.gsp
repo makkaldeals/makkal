@@ -88,6 +88,7 @@
                     labelSpan="${labelSpan}"
                     fieldSpan="${fieldSpan}"
                     class="text"
+                    bean="${command}"
                     labelCode='user.firstName.label'/>
 
             <gd:textFieldRow
@@ -96,6 +97,7 @@
                     labelSpan="${labelSpan}"
                     fieldSpan="${fieldSpan}"
                     class="text"
+                    bean="${command}"
                     labelCode='user.lastName.label'/>
 
             <gd:textFieldRow
@@ -104,6 +106,7 @@
                     labelSpan="${labelSpan}"
                     fieldSpan="${fieldSpan}"
                     class="text"
+                    bean="${command}"
                     labelCode='user.businessName.label'/>
 
             <gd:selectFieldRow
@@ -135,6 +138,7 @@
                     fieldSpan="${fieldSpan}"
                     class="text"
                     value="${command.address}"
+                    bean="${command}"
                     labelCode='user.address.label'/>
 
             <gd:textFieldRow
@@ -143,6 +147,7 @@
                     labelSpan="${labelSpan}"
                     fieldSpan="${fieldSpan}"
                     class="text"
+                    bean="${command}"
                     labelCode='user.city.label'/>
 
             <gd:textFieldRow
@@ -159,6 +164,7 @@
                     fieldSpan="${fieldSpan}"
                     class="text"
                     labelCode='user.areacode.label'
+                    bean="${command}"
                     labelCodeDefault='Area Code'/>
 
 
@@ -177,6 +183,7 @@
                     labelSpan="${labelSpan}"
                     fieldSpan="${fieldSpan}"
                     class="text"
+                    bean="${command}"
                     labelCode='user.phone.label'/>
 
             <gd:textFieldRow
@@ -185,6 +192,7 @@
                     labelSpan="${labelSpan}"
                     fieldSpan="${fieldSpan}"
                     class="text"
+                    bean="${command}"
                     labelCode='user.website.label'/>
 
 

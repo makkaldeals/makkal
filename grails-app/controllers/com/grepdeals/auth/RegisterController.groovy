@@ -74,7 +74,7 @@ class RegisterController extends AbstractS2UiController {
         //Handle already exisiting user.
         if (user) {
             log.info("Handing registration for existing user ${user.email}");
-            if (userRoleClass.findByUserAndRole(user, roleInstance)) {
+           if (userRoleClass.findByUserAndRole(user, roleInstance)) {
                 log.error("User ${command.email} with role ${role} already exists");
                 flash.message = message(code: 'spring.security.ui.register.user.exists', args: [command.email]);
                 redirect(url: request.getHeader('Referer'));

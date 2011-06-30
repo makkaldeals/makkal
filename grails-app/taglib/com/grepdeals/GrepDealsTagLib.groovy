@@ -167,25 +167,34 @@ class GrepDealsTagLib {
     }
 
     private renderTag(GdTagAttributes gdTagAttrs, Closure tagBody) {
+
+        def bean = gdTagAttrs.bean;
+        boolean hasError = bean && hasErrors(bean: bean, field: gdTagAttrs.name, 'errors');
+        int fieldSpan =  Integer.parseInt(gdTagAttrs.fieldSpan);
+        int errorSpan = 0;
+        if (hasError){
+            fieldSpan = fieldSpan/2;
+            errorSpan =  Integer.parseInt(gdTagAttrs.fieldSpan) - fieldSpan;
+        }
+
         out << """
 		<div class="column span-${gdTagAttrs.labelSpan}">
 			<label for="${gdTagAttrs.name}">${message(code: gdTagAttrs.labelCode, default: gdTagAttrs.labelCodeDefault)}</label>
 	    </div>
-		<div class="column span-${gdTagAttrs.fieldSpan} last">   """;
+		<div class="column span-${fieldSpan} last">  ${tagBody()}   </div> """;
 
-        out << "${tagBody()}";
 
-        def bean = gdTagAttrs.bean;
-        if (bean && hasErrors(bean: bean, field: gdTagAttrs.name, 'errors')) {
+        if (hasError) {
+            out << """ <div class="column  span-${errorSpan} last"> """;
             out << jqvalui.renderError('for': gdTagAttrs.name, {
                 out << eachError(bean: bean, field: gdTagAttrs.name, {
-                    out << "<span> ${message(error: it)} </span>"
+                    out << "  ${message(error: it)} ";
                 })
             })
+           out << "</div>"  ;
         }
 
         out << """
-		</div>
 		<hr class="space"/>
 		""";
     }
