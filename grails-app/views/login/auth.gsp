@@ -173,23 +173,23 @@
                 <div valign="top" id="accordion" style="width: 70%;">
                     <h3><a href="#">Top Deal -1</a></h3>
 
-                    <p>Description of deal 1 goes here</p>
+                    <p>Contact admin to show your deal</p>
 
                     <h3><a href="#">Top deal 2</a></h3>
 
-                    <p>Description of deal 2 goes here.</p>
+                    <p></p>
 
                     <h3><a href="#">Top deal 3</a></h3>
 
-                    <p>Description of deal 3 goes here.</p>
+                    <p></p>
 
                     <h3><a href="#">Top deal 4</a></h3>
 
-                    <p>Description of deal 4 goes here.</p>
+                    <p></p>
 
                     <h3><a href="#">Top deal 5</a></h3>
 
-                    <p>Description of deal 5 goes here.</p>
+                    <p></p>
                 </div>
             </td>
             <td align="left" width="20%" valign="bottom">
@@ -197,24 +197,24 @@
                     <ul id="sliderContent">
                         <li class="sliderImage">
                             <a href=""><img src="/grepdeals/images/410/1.jpg" alt="1"/></a>
-                            <span class="top"><strong>Title text 1</strong><br/>Content text...</span>
+                            <span class="top"><strong>Restaurant deals</strong><br/></span>
                         </li>
                         <li class="sliderImage">
                             <a href=""><img src="/grepdeals/images/410/2.jpg" alt="2"/></a>
-                            <span class="top"><strong>Title text 2</strong><br/>Content text...Content text...Content text...Content text...Content text...Content text...Content text...Content text...Content text...Content text...Content text...
+                            <span class="top"><strong>Car deals</strong><br/>
                             </span>
                         </li>
                         <li class="sliderImage">
                             <img src="/grepdeals/images/410/3.jpg" alt="3"/>
-                            <span class="bottom"><strong>Title text 2</strong><br/>Content text...</span>
+                            <span class="bottom"><strong>Grocery deals</strong><br/></span>
                         </li>
                         <li class="sliderImage">
                             <img src="/grepdeals/images/410/4.jpg" alt="4"/>
-                            <span class="bottom"><strong>Title text 2</strong><br/>Content text...</span>
+                            <span class="bottom"><strong>Travel deals</strong><br/></span>
                         </li>
                         <li class="sliderImage">
                             <img src="/grepdeals/images/410/5.jpg" alt="5"/>
-                            <span class="top"><strong>Title text 2</strong><br/>Content text...</span>
+                            <span class="top"><strong>Hotel deals</strong><br/></span>
                         </li>
 
                         <div class="clear sliderImage"></div>
@@ -228,23 +228,23 @@
                 <div valign="top" align="center" id="accordion1" style="width: 70%;">
                     <h3><a href="#">Top Deal 6</a></h3>
 
-                    <p>Description of deal 1 goes here</p>
+                    <p>Contact admin to show your deal</p>
 
                     <h3><a href="#">Top deal 7</a></h3>
 
-                    <p>Description of deal 2 goes here.</p>
+                    <p></p>
 
                     <h3><a href="#">Top Deal 8</a></h3>
 
-                    <p>Description of deal 1 goes here</p>
+                    <p></p>
 
                     <h3><a href="#">Top deal 9</a></h3>
 
-                    <p>Description of deal 2 goes here.</p>
+                    <p></p>
 
                     <h3><a href="#">Top Deal 10</a></h3>
 
-                    <p>Description of deal 1 goes here</p>
+                    <p></p>
                 </div>
             </td>
         </tr>
