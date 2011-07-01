@@ -99,6 +99,8 @@
                     bean="${command}"
                     labelCodeDefault='Reason To Contact'/>
 
+        <div class="column span-12 prepend-3 last">
+
 
 
             <gd:submitButtonRow
@@ -106,6 +108,7 @@
                     labelSpan="${labelSpan}"
                     fieldSpan="${fieldSpan}"
                     value="Submit"/>
+            </div>
         </div>
 
     </g:form>
