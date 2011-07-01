@@ -202,11 +202,12 @@
                     fieldSpan="${fieldSpan}"/>
 
             <gd:textFieldRow
-                    name="response"
+                    name="jcaptchaResponse"
                     labelSpan="${labelSpan}"
                     fieldSpan="${fieldSpan}"
                     class="text"
                     labelCode="jcaptcha.response.label"
+                    bean="${command}"
                     value=""/>
 
             <gd:submitButtonRow

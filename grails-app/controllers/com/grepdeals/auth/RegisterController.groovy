@@ -51,17 +51,18 @@ class RegisterController extends AbstractS2UiController {
 
         String role = command.role;
         String targetUrl = command.targetUrl;
+
+        if (!jcaptchaService.validateResponse("image", session.id, command.jcaptchaResponse)) {
+           command.errors.rejectValue("jcaptchaResponse", 'register.jcaptcha.error');
+           render view: getViewByRole(role), model: [command: command]
+           return;
+        }
+
         log.info("Registering with role ${role} ");
         if (command.hasErrors()) {
             command.getErrors().each {
                 log.info(it);
             }
-            render view: getViewByRole(role), model: [command: command]
-            return
-        }
-
-        if (!jcaptchaService.validateResponse("image", session.id, params.response)) {
-            flash.message = message(code: 'register.jcaptcha.error')
             render view: getViewByRole(role), model: [command: command]
             return
         }
@@ -405,6 +406,7 @@ class RegisterCommand {
     String website;
     String role;
     String targetUrl;
+    String jcaptchaResponse;
 
 
     static constraints = {
