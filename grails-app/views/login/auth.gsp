@@ -173,7 +173,7 @@
                 <div valign="top" id="accordion" style="width: 70%;">
                     <h3><a href="#">Top Deal -1</a></h3>
 
-                    <p>Contact admin to show your deal</p>
+                    <p>Contact admin to show your deal here</p>
 
                     <h3><a href="#">Top deal 2</a></h3>
 
@@ -182,6 +182,7 @@
                     <h3><a href="#">Top deal 3</a></h3>
 
                     <p></p>
+
 
                     <h3><a href="#">Top deal 4</a></h3>
 
@@ -228,7 +229,7 @@
                 <div valign="top" align="center" id="accordion1" style="width: 70%;">
                     <h3><a href="#">Top Deal 6</a></h3>
 
-                    <p>Contact admin to show your deal</p>
+                    <p>Contact admin to show your deal here</p>
 
                     <h3><a href="#">Top deal 7</a></h3>
 
