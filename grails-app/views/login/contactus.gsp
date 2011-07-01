@@ -1,49 +1,115 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta name='layout' content='main'/>
-  <title>Contact Us</title>
+    <meta name='layout' content='main'/>
+    <g:javascript library="prototype"/>
+    <title>Contact Us</title>
+
 </head>
+
+
 <body>
 
-<div id="grepGroupbox" class="grep_group_form">
-  <g:form action="sendContactus">
-    <h1>
-      Contact Us
-    </h1>
-    <g:if test='${confirmationMessage}'>
-      <br/>
-      <font color="red">${confirmationMessage}</font>
-      <br/>
-    </g:if>
+<div id="registerContainer" class="formbody">
 
-    <div class="formbody">
-      <P>Please fill the form below so that we can reach you</P>
-      <table>
-        <tbody>
-        <s2ui:textFieldRow name='firstName' bean="${command}" value="${command.firstName}"
-                size='25' labelCode='user.firstName.label'/>
-        <s2ui:textFieldRow name='lastName' bean="${command}" value="${command.lastName}"
-                size='25' labelCode='user.lastName.label'/>
-        <s2ui:textFieldRow name='email' bean="${command}" value="${command.email}"
-                size='25' labelCode='user.email.label'/>
-        <s2ui:textFieldRow name='phoneNumber' bean="${command}" value="${command.phoneNumber}"
-                size='25' labelCode='user.phone.label'/>
-        <s2ui:textFieldRow name='reasonToContact' bean="${command}" value="${command.reasonToContact}"
-                size='25' labelCode='user.reasonToContact.label'/>
-        <tr>
-          <td/>
-          <td align='center'>
-            <input type='submit' tabindex="1" value='Submit'/>
-          </td>
-
-        </tr>
-
-        </tbody>
-      </table>
+    <div class="formtitle span-24  last">
+        Contact Us
     </div>
 
-  </g:form>
+
+
+    <g:form action="sendContactus">
+
+        <g:if test="${confirmationMessage}">
+            <hr class="space"/>
+
+            <div class="error">
+                <h4>${confirmationMessage}</h4>
+            </div>
+        </g:if>
+
+
+
+
+
+
+        <g:set var="labelSpan" value="3"/>
+        <g:set var="fieldSpan" value="19"/>
+        <div class="column span-22 append-1 prepend-1 last ">
+            <hr class="space"/>
+
+
+
+            Please fill the form below so that we can reach you
+
+
+            <hr class="space"/>
+
+
+            <gd:textFieldRow
+                    name='firstName'
+                    value="${command.firstName}"
+                    labelSpan="${labelSpan}"
+                    fieldSpan="${fieldSpan}"
+                    class="text"
+                    labelCode='user.firstName.label'
+                    bean="${command}"
+                    labelCodeDefault='First Name'/>
+
+            <gd:textFieldRow
+                    name='lastName'
+                    value="${command.lastName}"
+                    labelSpan="${labelSpan}"
+                    fieldSpan="${fieldSpan}"
+                    class="text"
+                    labelCode='user.lastName.label'
+                    bean="${command}"
+                    labelCodeDefault='Last Name'/>
+
+            <gd:textFieldRow
+                    name='email'
+                    value="${command.email}"
+                    labelSpan="${labelSpan}"
+                    fieldSpan="${fieldSpan}"
+                    class="text"
+                    labelCode='user.email.label'
+                    bean="${command}"
+                    labelCodeDefault='Email'/>
+
+            <gd:textFieldRow
+                    name='phoneNumber'
+                    value="${command.phoneNumber}"
+                    labelSpan="${labelSpan}"
+                    fieldSpan="${fieldSpan}"
+                    class="text"
+                    labelCode='user.phone.label'
+                    bean="${command}"
+                    labelCodeDefault='Phone Number'/>
+
+
+
+            <gd:textFieldRow
+                    name='reasonToContact'
+                    value="${command.reasonToContact}"
+                    labelSpan="${labelSpan}"
+                    fieldSpan="${fieldSpan}"
+                    class="text"
+                    labelCode='user.reasonToContact.label'
+                    bean="${command}"
+                    labelCodeDefault='Reason To Contact'/>
+
+
+
+            <gd:submitButtonRow
+                    name="sumbit"
+                    labelSpan="${labelSpan}"
+                    fieldSpan="${fieldSpan}"
+                    value="Submit"/>
+        </div>
+
+    </g:form>
+
 </div>
 </body>
 </html>
