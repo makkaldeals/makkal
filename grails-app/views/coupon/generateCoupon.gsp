@@ -8,8 +8,12 @@
         
       }
       
+      .coupon_margin {
+      	width:20%;
+      }
+      
       .coupon_layout {
-        width:60%;
+        width:90%;
         margin-left:20%; margin-right:20%;
         border-style:dotted;
 		border-color:black black;
@@ -80,7 +84,7 @@
 		.terms-condition
 		{  
 		   font-size:6pt;
-   
+   			width:60%;
 		} 
 		.expiredate_text{
 			font:6px arial,sans-serif;
@@ -98,12 +102,13 @@
     </style>
   </head>
   <body>
-    <h3>Grep Deals Coupon</h3>
+   <!--   <h3>Grep Deals Coupon</h3> -->
     <form>
     
     <table class="coupon_page_layout" >
       <tbody>
         <tr>
+        <td class="coupon_margin"></td>
 			<td>
         		<table class="coupon_layout">
 	        	 	<tr>
@@ -168,10 +173,18 @@
 		        </table>
 	        </td>
         </tr>
-        <tr class="terms-condition">
-        	<td>
-        	The coupon may not be sold or auctioned or reproduced. Consumer may have to pay all taxes or other charges if applicable
+        <tr >
+        	<td class="coupon-margin"></td>
+        	<td class="terms-condition">
+        	The coupon may not be sold or auctioned or reproduced. Consumer may have to pay all taxes or other charges if applicable.
+Coupon must be redeemed at location purchased for. No cash value for any Coupon or no cash back or credit will be issued for partial redemption of the paid portion of a Coupon, except as required by law. 
+Use of a Coupon for alcoholic beverages is at the sole discretion of Client (which may be limited by applicable state law), unless otherwise noted on the Coupon. 
+Neither Grepdeals nor Client is responsible for lost or stolen Coupons or Coupon reference numbers. 
+Duplicate use, sale or trade of a Coupon is prohibited, except as required by law. 
+Coupons cannot be combined with any other coupons or promotions unless otherwise noted in the Coupon.         	
+Grepdeals does not guarantee the price, terms, product, availability and/or services offered by any advertiser
         	</td>
+        	<td class="coupon-margin"></td>
         </tr>
       </tbody>
     </table>
