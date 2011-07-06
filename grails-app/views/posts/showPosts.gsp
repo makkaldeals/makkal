@@ -35,14 +35,23 @@
                     <richui:tabLabels>
                    
                         <richui:tabLabel selected="true" title="${post.title}" />
-                        <g:if test="${post.author.id == session.user.id}">
-                        	<richui:tabLabel title="Edit"/>
-                        </g:if>
-
+                        <richui:tabLabel title="Details"/>
+                        
                     </richui:tabLabels>
  					<richui:tabContents>
                         <richui:tabContent>
 							  <p>${post.subject}</p>
+							  <g:if test="${post.author.id == session.user.id}">	  
+								<g:link controller="posts" action="editPost" params="[id:post.id]">
+							        <g:message code="post.edit.link" default="Edit"></g:message>
+							     </g:link>
+								</g:if>	  
+                        </richui:tabContent>
+                        
+                        <richui:tabContent>
+							    <!-- Show edit link only if he is author of post -->
+							    
+							
 							  <p>${post.content}</p>
 							  <p>
 							    Posted by
@@ -62,18 +71,9 @@
 							    <br>
 							    Expires On : ${post.expiresOn} 
 							  </p>
-                        </richui:tabContent>
-                        <g:if test="${post.author.id == session.user.id}">
-                        <richui:tabContent>
-							    <!-- Show edit link only if he is author of post -->
-							    
-							
-							      <g:link controller="posts" action="editPost" params="[id:post.id]">
-							        <g:message code="post.edit.link" default="Edit"></g:message>
-							      </g:link>
 						
 						</richui:tabContent>
-						</g:if>
+						
                     </richui:tabContents>
 	  			</richui:tabView>	
 		  </g:each>
