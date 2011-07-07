@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
+<%@ page import="com.grepdeals.auth.Role" %>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
@@ -34,6 +35,7 @@
 </head>
 
 <body>
+
 <div class="container ">
     <div id="header" class="column span-24 last">
         <h1 class="column span-6  last">Grep Deals</h1>
@@ -42,7 +44,12 @@
             <ul>
                 <li><g:link controller='login' action='index' title="Grep Deals home">Home</g:link></li>
                 <li><g:link controller='login' action='contactus' title="Contact Us">Contact Us</g:link></li>
-                <li><g:link controller='customer' action='index' title="Merchant Signup">Merchant Signup</g:link></li>
+                <sec:access expression="hasRole('ROLE_CUSTOMER')">
+                	<li><g:link controller='customer' action='index' title="Post Advertisement">Post Advertisement</g:link></li>
+                </sec:access>
+                <sec:access expression="hasRole('ROLE_CLIENT')">
+                	<li><g:link controller='customer' action='index' title="Merchant Signup">Merchant Signup</g:link></li>
+                </sec:access>
                 <sec:ifLoggedIn>
                     <li><g:link controller='logout' action='index' title="Logout">Logout</g:link></li>
                     <li><g:link controller='settings' action='index' title="Settings">Settings</g:link></li>
