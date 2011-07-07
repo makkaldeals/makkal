@@ -139,7 +139,7 @@ class CouponController {
 			  // expiration data has to be here
 			  //couponData.couponExpirationDate = "12/12/2011"
 			  if (post.expiresOn != null){
-				  couponData.couponExpirationDate = post.expiresOn.format("mm/dd/yyyy")
+				  couponData.couponExpirationDate = post.expiresOn.format("MM/dd/yyyy")
 			  }
 			  
 			  //couponData.dealDetails = post.content
