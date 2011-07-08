@@ -91,7 +91,8 @@ class LoginController {
 
   def authSuccess = {
     session.user = springSecurityService.currentUser;
-    redirect uri: params.targetUrl;
+    //redirect uri: params.targetUrl;
+	render view: 'howitworks'
   }
 
   /**
