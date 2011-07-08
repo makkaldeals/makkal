@@ -1,13 +1,13 @@
 class UrlMappings {
 
   static mappings = {
-
-    "/$controller/$action?/$id?" {
-      constraints {
-        // apply constraints here
-      }
-    }
-
+	  
+	  "/$controller/$action?/$id?" {
+		  constraints {
+			// apply constraints here
+		  }
+		}
+  
     "/" {
       controller = 'client'
       action = 'index'
@@ -22,7 +22,6 @@ class UrlMappings {
 		controller = 'settings'
 		action = 'settings'
 	  }
-  
 
     name postsByTag : "/posts/tagged/$tag"(controller:"posts", action:"postsByTag")
 
