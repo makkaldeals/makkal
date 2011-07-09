@@ -29,11 +29,12 @@
 			    </g:if>
 
  <div class="column span-22 append-1 prepend-1 last ">
+ <br/>
 		      <label for="email">
 		        <g:message code='user.email.label'/>
 		        <input class="text" name="email" style="width: 21em;" tabindex="1" type="text" value=""/>
 		      </label>
-		<br/>
+<br/>		<br/>
 		      <label>
 		        <input type='submit' tabindex="2" value='Reset my password' id='reset_submit' class='s2ui_hidden_button'/>
 		      </label>
