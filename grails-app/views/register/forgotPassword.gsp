@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name='layout' content='main'/>
   <title><g:message code='spring.security.ui.forgotPassword.title'/></title>
 </head>
 <body>
 
-<div id="grepGroupbox" class="grep_group_form" style="margin:70px auto;">
-  <g:form action='forgotPassword' name="forgotPasswordForm" autocomplete='off'>
+<div id="grepGroupbox" class="formbody" style="margin:70px auto;">
+        <div class="formtitle span-24  last">
+            <g:message code='spring.security.ui.forgotPassword.header'/>    
+        </div>
 
-    <h1><g:message code='spring.security.ui.forgotPassword.header'/></h1>
+  <g:form action='forgotPassword' name="forgotPasswordForm" autocomplete='off' class="inline">
+  
 
-    <div class="formbody">
+    
 	    <g:if test='${emailSent}'>
 	      <div class="error_box">
 	        <g:message code='spring.security.ui.forgotPassword.sent'/>
@@ -24,17 +28,17 @@
 			      </div>
 			    </g:if>
 
-
+ <div class="column span-22 append-1 prepend-1 last ">
 		      <label for="email">
-		        <g:message code='user.email.label'/><br/>
+		        <g:message code='user.email.label'/>
 		        <input class="text" name="email" style="width: 21em;" tabindex="1" type="text" value=""/>
 		      </label>
-		
+		<br/>
 		      <label>
 		        <input type='submit' tabindex="2" value='Reset my password' id='reset_submit' class='s2ui_hidden_button'/>
 		      </label>
 		      <g:hiddenField name="targetUrl" value="${params.targetUrl}"/>
-
+</div>
 		      <script>
 		        $(document).ready(function() {
 		
@@ -46,9 +50,9 @@
 		        });
 		      </script>
     	</g:else>
-    </div>
+   
   </g:form>
-</div>
 
+ </div>
 </body>
 </html>
