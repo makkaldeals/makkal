@@ -1,0 +1,30 @@
+<appengine-web-app xmlns="http://appengine.google.com/ns/1.0">
+<!-- Your application ID -->
+<application>myappid</application>
+ 
+<version>1</version>
+ 
+<!-- If all your templates and groovlets are encoding in UTF-8 -->
+<!-- Please specify the settings below, otherwise weird characters may appear in your templates -->
+<system-properties>
+<property name="file.encoding" value="UTF-8" />
+<property name="groovy.source.encoding" value="UTF-8" />
+ 
+<!-- Define where the logging configuration file should be found -->
+<property name="java.util.logging.config.file" value="WEB-INF/logging.properties" />
+</system-properties>
+ 
+<!-- Uncomment this section if you want your application to be able to receive XMPP messages -->
+<!-- Similarily, if you want to receive incoming emails -->
+<!--
+<inbound-services>
+<service>xmpp_message</service>
+<service>mail</service>
+</inbound-services>
+-->
+ 
+<static-files>
+<exclude path="/WEB-INF/**.groovy" />
+<exclude path="**.gtpl" />
+</static-files>
+</appengine-web-app>
