@@ -1,10 +1,11 @@
 <%@ page import="com.grepdeals.consts.CategoryTree"%>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  -->
 <title>Settings</title>
-<meta name='layout' content='main'/>
-<g:javascript library="prototype"/>
+<!-- <meta name='layout' content='main'/> 
+<g:javascript library="prototype"/>-->
 <g:javascript>
+
 function fnMoveItems(lstbxFrom,lstbxTo)
 {
  var varFromBox = document.all(lstbxFrom);
@@ -67,7 +68,7 @@ function fnSelectAll () {
 
 
 </head>
-<body  onLoad="fnArrangeCategories()">
+<body onload="fnArrangeCategories()">
 	<%
 	
     def user = session.user;
@@ -89,7 +90,7 @@ function fnSelectAll () {
 </div>
 
   	<div class="column span-24 append-1 prepend-1 last">
-		<g:form name="userSettings" controller="settings" action="updateSettings" class="inline">
+		<g:form name="userSettings" controller="settings" action="updateSettings" class="inline" >
 	<br/>
 			<div>
 				<P><h2>Update Password</h2></P>
@@ -99,20 +100,20 @@ function fnSelectAll () {
 						  	<label for="oldPassword"><g:message code="user.oldpassword.label" default="Old Password:"/></label>
 					      </div>
 					      <div class="column span-20 last">
-					      	<g:passwordField size="50" name="oldPassword" class = "oldPassword" value="${}"/>
+					      	<g:passwordField size="50" name="oldPassword" class = "oldPassword" value=""/>
 					      </div>
 
 						  <div class="column span-4">
 						  	<label for="newPassword"><g:message code="user.newpassword.label" default="New Password:"/></label>
 					      </div>
 					      <div class="column span-20 last">
-					      	<g:passwordField size="50" name="newPassword" class = "newPassword" value="${}"/>
+					      	<g:passwordField size="50" name="newPassword" class = "newPassword" value=""/>
 					      </div>
 						  <div class="column span-4">
 						  	<label for="confirmPassword"><g:message code="user.confirmpassword.label" default="Confirm Password:"/></label>
 					      </div>
 					      <div class="column span-20 last">
-					      	<g:passwordField size="50" name="confirmPassword" class = "confirmPassword" value="${}"/>
+					      	<g:passwordField size="50" name="confirmPassword" class = "confirmPassword" value=""/>
 					      </div>
 					      
 					<div class="column span-24 last">
@@ -153,5 +154,5 @@ function fnSelectAll () {
 			</div>
 
 		</g:form>
-	</div>
+		</div>
 </body>
