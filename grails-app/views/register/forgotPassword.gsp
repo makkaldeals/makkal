@@ -13,8 +13,6 @@
 
   <g:form action='forgotPassword' name="forgotPasswordForm" autocomplete='off' class="inline">
   
-
-    
 	    <g:if test='${emailSent}'>
 	      <div class="error_box">
 	        <g:message code='spring.security.ui.forgotPassword.sent'/>
@@ -23,7 +21,7 @@
    		<g:else>
       
 			    <g:if test="${flash.error}">
-			      <div class="error_box">
+			      <div class="error">
 			        ${flash.error}
 			      </div>
 			    </g:if>
