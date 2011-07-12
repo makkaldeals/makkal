@@ -1,17 +1,20 @@
 <head>
 <title><g:message code='spring.security.ui.resetPassword.title'/></title>
-<meta name='layout' content='register'/>
+<meta name='layout' content='main'/>
 </head>
 
 <body>
 
 <p/>
 
-<div id="grepGroupbox" class="grep_group_form" style="margin:70px auto;">
+<div id="grepGroupbox" class="formbody" style="margin:70px auto;">
+    
+ 		<div class="formtitle span-24  last">
+            <g:message code='spring.security.ui.resetPassword.header'/>    
+        </div>
   <g:form action='resetPassword' name="resetPasswordForm" autocomplete='off'>
 	<g:hiddenField name='t' value='${token}'/>
-    <h1><g:message code='spring.security.ui.resetPassword.header'/></h1>
-    <div class="formbody">	    
+    <div class="column span-22 append-1 prepend-1 last ">	    
 		 <label for="password">
 		 	<s2ui:passwordFieldRow name='password' labelCode='user.password.label' bean="${command}" labelCodeDefault='Password' value="${command?.password}"/>
 		 </label>
