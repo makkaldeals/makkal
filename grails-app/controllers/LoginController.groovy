@@ -91,11 +91,13 @@ class LoginController {
 
   def authSuccess = {
     session.user = springSecurityService.currentUser;
-	List roles = springSecurityService.currentUser.getAuthorities().collect {it.authority};
-	if (roles.contains(Role.ROLE_CUSTOMER))
-		params.targetUrl = "/customer/welcome";
-	else 
-		params.targetUrl = "/client/welcome";	
+	if (params.targetUrl == null) {
+		List roles = springSecurityService.currentUser.getAuthorities().collect {it.authority};
+		if (roles.contains(Role.ROLE_CUSTOMER))
+			params.targetUrl = "/customer/welcome";
+		else 
+			params.targetUrl = "/client/welcome";	
+	}
     redirect uri: params.targetUrl;
   }
 
