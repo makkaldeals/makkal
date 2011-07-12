@@ -48,10 +48,10 @@ class BootStrap {
       UserRole.create(u1, clientRole, true);
 	  u1.addCategory(CategoryTree.AutoGlassServices)
 	  u1.addCategory(CategoryTree.Automotive)
-
+	  
       def b1 = Business.build();
-      def b2 = Business.build(name: b1.name, category: b1.category, city: 'Miami', areaCode: "45678");// same name as b1, but different city,areacode
-      def b3 = Business.build(name: b1.name, category: b1.category, areaCode: "33635");
+      def b2 = Business.build(name: b1.name, category: CategoryTree.AutoGlassServices, city: 'Miami', areaCode: "45678");// same name as b1, but different city,areacode
+      def b3 = Business.build(name: b1.name, category: CategoryTree.AutoGlassServices, areaCode: "33635");
       Map customers = [:];
 
       customers.c0 = Customer.build(email: "e.rajasekar@grepdeals.com", business: b1, password: password);

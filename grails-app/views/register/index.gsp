@@ -222,6 +222,7 @@
 
             <g:hiddenField name="role" value="${params.role}"/>
             <g:hiddenField name="targetUrl" value="${params.targetUrl}"/>
+            <g:hiddenField name="accountLocked" value="false"/>
         </g:form>
     </g:else>
 </div>
@@ -342,8 +343,8 @@
       </table>
         <g:hiddenField name="role" value="${params.role}"/>
         <g:hiddenField name="targetUrl" value="${params.targetUrl}"/>
-
     </g:else>
+    <g:hiddenField name="accountLocked" value="false"/>
     </div>
 </g:form>
 
@@ -366,7 +367,7 @@
    // This is called when the page loads to initialize subcategories
    var categorySelect = document.getElementById('category');
    var selectedCategory = categorySelect.options[categorySelect.selectedIndex];
-   ${remoteFunction(controller: "register", action: "ajaxGetSubcategories", params: "'name=' + selectedCategory.value", onComplete: "updateSubcategories(e)")}
+   ${remoteFunction(controller: "register", action: "ajaxGetSubcategories", params: "'name=' + selectedCategory.value, accountLocked=false", onComplete: "updateSubcategories(e)")}
 
 </g:javascript>
 
