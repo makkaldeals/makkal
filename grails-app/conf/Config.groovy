@@ -68,6 +68,9 @@ grails.spring.bean.packages = []
 // request parameters to mask when logging exceptions
 grails.exceptionresolver.params.exclude = ['password']
 
+grails.plugin.cloudfoundry.username = 'admin@grepdeals.com'
+grails.plugin.cloudfoundry.password = 'grepdeals2011'
+
 grepdeals {
     user {
         admin.email = "admin@grepdeals.com"
