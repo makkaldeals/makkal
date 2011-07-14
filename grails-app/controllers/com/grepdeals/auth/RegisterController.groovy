@@ -121,6 +121,7 @@ class RegisterController extends AbstractS2UiController {
                                         country: command.country,
                                         phone: command.phone,
                                         website: command.website,
+										accountLocked:"false"
                                 )
 
                         //since user was previously client, add ROLE_CLIENT
