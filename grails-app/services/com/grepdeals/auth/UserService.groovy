@@ -31,7 +31,6 @@ class UserService {
 		user1.addCategory(CategoryTree.valueOf(categories))
 	} else {
 		categories.each { category ->
-			System.out.println("Adding this Category : "+category);
 			user1.addCategory(CategoryTree.valueOf(category))
 		}
 	}

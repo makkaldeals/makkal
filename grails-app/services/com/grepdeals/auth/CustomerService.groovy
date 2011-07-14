@@ -29,7 +29,6 @@ class CustomerService {
       log.warn("Adding customer to exisiting business ${business.name} found with area code ${business.areaCode}")
     }
 
-	println("Creating as a Customer account - "+params.accountLocked)
     Customer customer = new Customer(email: params.email,
             password: params.password,
             firstName: params.firstName,
