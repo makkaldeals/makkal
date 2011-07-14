@@ -18,6 +18,14 @@
     
   </head>
   <body>
+          <g:if test="${confirmationMessage}">
+            <hr class="space"/>
+
+            <div class="error">
+                <h4>${confirmationMessage}</h4>
+            </div>
+        </g:if>
+  
  <br/>
         <div class="span-2 prepand-1">
         	&nbsp;

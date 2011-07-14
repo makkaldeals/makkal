@@ -17,6 +17,10 @@ class PostsController {
 
   }
 
+  def showPending = {
+	  def results =  postService.findPostsByAuthor(params);
+	  render(view: 'showPosts', model: [posts:results.list, totalCount:results.totalCount, confirmationMessage: message(code: 'spring.security.ui.approval.pending')]);
+  }
   @Secured(['ROLE_CUSTOMER', 'ROLE_ADMIN'])
   def createPost = {
     def post = new Post(request.method == 'POST' ? params['post'] : [:])
