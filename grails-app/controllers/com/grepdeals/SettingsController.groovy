@@ -27,8 +27,6 @@ class SettingsController {
     def updateSettings = {
 		def currentPassword = springSecurityService.currentUser.password
 		String existingPassword = springSecurityService.encodePassword(params.oldPassword);
-		System.out.println("Exiting password "+existingPassword);
-		System.out.println("Sessiom password "+currentPassword);
 		def newPassword = params.newPassword
 		def confirmPassword = params.confirmPassword
 		
@@ -47,7 +45,6 @@ class SettingsController {
 			}
 		
 			if (!(currentPassword.equals (existingPassword))) {
-				System.out.println("we should be here")
 				flash.message = message(code: 'user.oldpassword.mismatch')
 				render view: 'settings'
 				return
@@ -65,21 +62,7 @@ class SettingsController {
 
     def show = {
 
-        if (facebookGraphService != null) {
-            System.out.println(session.facebook.uid)
-
-            System.out.println(facebookGraphService.getFacebookData())
-
-            //System.out.println(facebookGraphService.getFriends())
-
-            // facebookGraphService.api()
-
-            //redirect(action: '\showPosts');
-            // session.facebook.;
-
-            //facebookGraphService.publishWall()
-            System.out.println(session.facebook.uid)
-        }
+      
         render view: 'settings';
 
     }
