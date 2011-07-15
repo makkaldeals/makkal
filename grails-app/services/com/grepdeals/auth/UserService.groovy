@@ -21,8 +21,10 @@ class UserService {
 
   public User update(Map params) {
 	def  user1 = springSecurityService.currentUser
-	user1.oldPassword = springSecurityService.encodePassword(params.oldPassword);
-	user1.password=springSecurityService.encodePassword(params.newPassword);
+	if (!(params.oldPassword.isEmpty())) {
+		user1.oldPassword = springSecurityService.encodePassword(params.oldPassword);
+		user1.password=springSecurityService.encodePassword(params.newPassword);
+	}
 	//user1.facebookSessionId = params.facebookSessionId
 
 	user1.removeAllCategories()
