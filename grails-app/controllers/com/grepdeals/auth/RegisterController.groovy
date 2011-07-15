@@ -130,6 +130,7 @@ class RegisterController extends AbstractS2UiController {
                         //restore user categories
 
                         user.addAllCategories(categories);
+						springSecurityService.reauthenticate user.email;
                         generateApproval(user, role, params.targetUrl);
                     } catch (ValidationException ve) {
                         command.errors = ve.errors;
