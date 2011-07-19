@@ -129,6 +129,7 @@ class LoginController {
 
     def refererUrl = request.getHeader("Referer");
     def username = session[UsernamePasswordAuthenticationFilter.SPRING_SECURITY_LAST_USERNAME_KEY]
+	//def password = session[UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_PASSWORD_KEY]
     String msg = ''
     def exception = session[WebAttributes.AUTHENTICATION_EXCEPTION]
 
@@ -146,7 +147,11 @@ class LoginController {
             msg = SpringSecurityUtils.securityConfig.errors.login.locked
           }
           else {
-            msg = "spring.security.ui.login.fail";
+			  if (username.isEmpty()) {
+			  	msg = "spring.security.ui.login.email.blank";
+			  } else {
+			  	msg = "spring.security.ui.login.fail";
+			  }
           }
     }
     if (springSecurityService.isAjax(request)) {
