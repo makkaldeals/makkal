@@ -29,25 +29,26 @@ class SettingsController {
 		String existingPassword = springSecurityService.encodePassword(params.oldPassword);
 		def newPassword = params.newPassword
 		def confirmPassword = params.confirmPassword
+		if (params.oldPassword != null) {
+			if (!(params.oldPassword.isEmpty())) {
+				if (newPassword == null || newPassword.isEmpty()) {
+					flash.message = message(code: 'user.newpassword.null')
+					render view: 'settings';
+					return
+				}
+				
+				if (!(newPassword.equals(confirmPassword))) {
+					flash.message = message(code: 'user.newAndConfirmPassword.not.equal')
+					render view: 'settings';
+					return
 		
-		if (!(params.oldPassword.isEmpty())) {
-			if (newPassword == null || newPassword.isEmpty()) {
-				flash.message = message(code: 'user.newpassword.null')
-				render view: 'settings';
-				return
-			}
+				}
 			
-			if (!(newPassword.equals(confirmPassword))) {
-				flash.message = message(code: 'user.newAndConfirmPassword.not.equal')
-				render view: 'settings';
-				return
-	
-			}
-		
-			if (!(currentPassword.equals (existingPassword))) {
-				flash.message = message(code: 'user.oldpassword.mismatch')
-				render view: 'settings'
-				return
+				if (!(currentPassword.equals (existingPassword))) {
+					flash.message = message(code: 'user.oldpassword.mismatch')
+					render view: 'settings'
+					return
+				}
 			}
 		}
         User updatedUser = userService.update(params)

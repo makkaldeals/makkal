@@ -8,8 +8,9 @@
 
 function fnMoveItems(lstbxFrom,lstbxTo)
 {
- var varFromBox = document.all(lstbxFrom);
- var varToBox = document.all(lstbxTo); 
+ 
+ var varFromBox = document.getElementById(lstbxFrom);
+ var varToBox = document.getElementById(lstbxTo); 
  if ((varFromBox != null) && (varToBox != null)) 
  { 
   if(varFromBox.length < 1) 
@@ -39,8 +40,8 @@ function fnMoveItems(lstbxFrom,lstbxTo)
 
 function fnArrangeCategories() {
 	alert("checking")
-	 var varFromBox = document.all("AssignedCategories");
- 	 var varToBox = document.all("All-Categories"); 
+	 var varFromBox = document.getElementById("AssignedCategories");
+ 	 var varToBox = document.getElementById("All-Categories"); 
  	 
  	 for (var i = 0; i < varFromBox.options.length; i++) {
  	 	var valueToRemove = varFromBox.options[i].value;
