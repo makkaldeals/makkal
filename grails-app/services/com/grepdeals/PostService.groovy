@@ -113,18 +113,19 @@ class PostService implements InitializingBean {
         } else if (areaCode) {
             business = Business.findAllByNameAndAreaCode(params.business, areaCode);
         }
+        PagedResultList results;
 
-
-        def criteria = Post.createCriteria();
-        PagedResultList results = criteria.list(max: params.max, offset: params.offset) {
-            author {
-                'in'('business', business)
+        if (business){
+            def criteria = Post.createCriteria();
+            results = criteria.list(max: params.max, offset: params.offset) {
+                author {
+                    'in'('business', business)
+                }
+                eq 'published', true
+                order "dateCreated", "desc"
+                cache true
             }
-            eq 'published', true
-            order "dateCreated", "desc"
-            cache true
         }
-
 
         return results;
     }

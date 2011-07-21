@@ -66,10 +66,15 @@ class PostsController {
   @Secured(['IS_AUTHENTICATED_REMEMBERED'])
   def postsByBusiness = {
 
-
     def results =  postService.findPostsByBusiness(params);
 
-    render(view: 'showPosts', model: [posts:results.list, totalCount:results.totalCount]);
+    if (!results){
+        log.warn("No posts match business ${params.business}, redirecting to showPosts");
+        redirect action: "showPosts";
+    }else{
+        render(view: 'showPosts', model: [posts:results.list, totalCount:results.totalCount]);
+    }
+
 
   }
 
