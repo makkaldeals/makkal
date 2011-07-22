@@ -38,22 +38,7 @@ function fnMoveItems(lstbxFrom,lstbxTo)
  return false; 
 }
 
-function fnArrangeCategories() {
-	alert("checking")
-	 var varFromBox = document.getElementById("AssignedCategories");
- 	 var varToBox = document.getElementById("All-Categories"); 
- 	 
- 	 for (var i = 0; i < varFromBox.options.length; i++) {
- 	 	var valueToRemove = varFromBox.options[i].value;
- 	 	for (var j=0; j < varToBox.options.length; j++) {
- 	 		
- 	 		if (valueToRemove == varToBox.options[j].value) {
- 	 			varToBox.remove(j);
- 	 		}
- 	 	}
- 	 }
 
-}
 
 function fnSelectAll () {
 	
@@ -69,11 +54,17 @@ function fnSelectAll () {
 
 
 </head>
-<body onload="fnArrangeCategories()">
+<body>
 	<%
-	
-    def user = session.user;
-  %>
+
+        def user = session.user;
+        def List allCategoryList = CategoryTree.Category.allChildren().asList().toList();
+        Set userSelectedCategoryList = session.user.getCategories();
+        for (CategoryTree category: userSelectedCategoryList) {
+            allCategoryList.remove(category);
+        }
+
+    %>
 
 <div>
 <h2 valign="center">
@@ -143,7 +134,7 @@ function fnSelectAll () {
 						  
 					
 					   	  <div class="column span-12 last">
-					      	<g:select name="All-Categories" size=25 from="${CategoryTree.Category.allChildren()}" value="${CategoryTree.Category.allChildren()}" 
+					      	<g:select name="All-Categories" size=25 from="${allCategoryList.asList()}" value="${allCategoryList.asList()}"
 									multiple="true" />
 						  </div>				      
 						<div class="column span-12 prepend-8 last">
