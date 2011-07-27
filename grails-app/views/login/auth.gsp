@@ -10,11 +10,11 @@
 
     <title><g:message code='spring.security.ui.login.title'/></title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel="stylesheet" type="text/css" media="screen" href="/grepdeals/css/screen.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="${resource(dir: 'css', file: 'screen.css')}"/>
     <!--[if IE]>
-        <link rel="stylesheet" href="/grepdeals/css/ie.css" type="text/css" media="screen, projection">
+        <link rel="stylesheet" href="${resource(dir: 'css', file: 'ie.css')}" type="text/css" media="screen, projection">
     <![endif]-->
-    <link rel="stylesheet" type="text/css" media="screen" href="/grepdeals/css/grep.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="${resource(dir: 'css', file: 'grep.css')}"/>
 
     <style type="text/css" media="screen">
 
@@ -105,7 +105,7 @@
     </div>
 
     <div id="mast" class="column span-24 last">
-        <img src="/grepdeals/images/rpm_guys.jpg"/>
+        <img src="${resource(dir: 'images', file: 'rpm_guys.jpg')}" alt="rpm guys" />
         <fieldset style="border:2px  #00f; margin:0;-moz-border-radius:5px;
         border-radius: 5px;  -webkit-border-radius: 5px;">
             <legend style="border:none; margin:0">&nbsp;</legend>
@@ -197,24 +197,24 @@
                 <div id="slider" valign="bottom">
                     <ul id="sliderContent">
                         <li class="sliderImage">
-                            <a href=""><img src="/grepdeals/images/410/1.jpg" alt="1"/></a>
+                            <a href=""><img src="${resource(dir: 'images/410', file: '1.jpg')}" alt="1"/></a>
                             <span class="top"><strong>Restaurant deals</strong><br/></span>
                         </li>
                         <li class="sliderImage">
-                            <a href=""><img src="/grepdeals/images/410/2.jpg" alt="2"/></a>
+                            <a href=""><img src="${resource(dir: 'images/410', file: '2.jpg')}" alt="2"/></a>
                             <span class="top"><strong>Car deals</strong><br/>
                             </span>
                         </li>
                         <li class="sliderImage">
-                            <img src="/grepdeals/images/410/3.jpg" alt="3"/>
+                            <img src="${resource(dir: 'images/410', file: '3.jpg')}" alt="3"/>
                             <span class="bottom"><strong>Grocery deals</strong><br/></span>
                         </li>
                         <li class="sliderImage">
-                            <img src="/grepdeals/images/410/4.jpg" alt="4"/>
+                            <img src="${resource(dir: 'images/410', file: '4.jpg')}" alt="4"/>
                             <span class="bottom"><strong>Travel deals</strong><br/></span>
                         </li>
                         <li class="sliderImage">
-                            <img src="/grepdeals/images/410/5.jpg" alt="5"/>
+                            <img src="${resource(dir: 'images/410', file: '5.jpg')}" alt="5"/>
                             <span class="top"><strong>Hotel deals</strong><br/></span>
                         </li>
 
