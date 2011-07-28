@@ -47,7 +47,7 @@
                 <sec:access expression="hasRole('ROLE_CUSTOMER')">
                 	<li><g:link controller='customer' action='index' title="Post Advertisement">Post Advertisement</g:link></li>
                 </sec:access>
-                <sec:access expression="hasRole('ROLE_CLIENT')">
+                <sec:access expression="!hasRole('ROLE_CUSTOMER')">
                 	<li><g:link controller='customer' action='index' title="Merchant Signup">Merchant Signup</g:link></li>
                 </sec:access>
                 <sec:ifLoggedIn>
