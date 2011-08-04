@@ -113,7 +113,7 @@
         		<table class="coupon_layout">
 	        	 	<tr>
 			        	<td align="left" width="10%" valign="top">
-			        		<img src="${resource(dir: 'images'/410, file: 'GD.jpg')}" alt="smallsample" title="smallsample" height="55px" width="125px"/>
+			        		<img src="${resource(dir: 'images/410', file: 'GD.jpg')}" alt="smallsample" title="smallsample" height="55px" width="125px"/>
 			    		</td>
 			    		
 		    			<td width="60%"> 
