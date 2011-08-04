@@ -16,9 +16,8 @@
     <link rel="stylesheet" type="text/css" media="screen" href="/grepdeals/css/tabView.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="/grepdeals/js/yui/tabview/assets/tabview-core.css" />
     -->
-
-    <link rel="stylesheet" type="text/css" media="screen" href="/grepdeals/css/yui/tabView.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="/grepdeals/css/yui/tabview-core.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="${resource(dir: 'css/yui', file: 'tabView.css')}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="${resource(dir: 'css/yui', file: 'tabview-core.css')}" />
 
       <resource:tabView skin="custom"/>
     
