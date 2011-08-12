@@ -31,7 +31,10 @@ environments {
     production {
         dataSource {
             dbCreate = "update"
-            url = "jdbc:hsqldb:file:prodDb;shutdown=true"
+            url = "jdbc:mysql://localhost/grepdeals"
+            driverClassName = "com.mysql.jdbc.Driver"
+            username = "grepdealsuser"
+            password = "agile4life"
         }
     }
 }
