@@ -38,7 +38,16 @@
 
 <div class="container ">
     <div id="header" class="column span-24 last">
+        
+		  <!--  
         <h1 class="column span-6  last">Grep Deals</h1>
+-->
+		<div class="column span-6  last">
+		    <p> <font size="5" face="arial" color="white"> <b>Grep Deals</b></font>
+				<font size="2" face="arial" color="white">(beta)</font>
+			</p>
+		</div>	   
+
 
         <div id="nav" class="column span-18 last">
             <ul>
