@@ -129,7 +129,11 @@
 		    				
 		    			</td>
 		    			<td width="20%"></td>
-			          <td align="right"><img src="/grepdeals/images/410/gun.jpg" alt="gun" title="gun" height="55px" width="80px"/></td>
+			          <td align="right">
+			          <!--  
+			          <img src="/grepdeals/images/410/gun.jpg" alt="gun" title="gun" height="55px" width="80px"/>
+			          -->
+			          </td>
 			        </tr>    	
 		        	
 			        <tr>
