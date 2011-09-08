@@ -1,5 +1,6 @@
 package com.grepdeals
 
+import groovy.servlet.TemplateServlet.TemplateCacheEntry;
 import pdf.PdfService
 
 import com.grepdeals.consts.CouponData
@@ -12,25 +13,35 @@ class CouponController {
 		  
 		  def pdfLink = {
 			  try{
+				Long startTime =  System.currentTimeMillis();
 				byte[] b
 				def baseUri = request.scheme + "://" + request.serverName + ":" + request.serverPort + grailsAttributes.getApplicationUri(request)
 				// TODO: get this working...
 				if(params.template){
+					Long templateStartTime =  System.currentTimeMillis();
 				  def content = g.render(template:params.template, model:[pdf:params])
 				  b = pdfService.buildPdfFromString(content.readAsString(), baseUri)
+				  log.info ("time for pdf service-pdf template  " + (System.currentTimeMillis()-templateStartTime)/1000);
 				}
 				if(params.pdfController){
+					Long controllerStartTime =  System.currentTimeMillis();
 					
 				  def content = g.include(controller:params.pdfController, action:params.pdfAction, id:params.pdfId)
 				  b = pdfService.buildPdfFromString(content.readAsString(), baseUri)
+				  log.info ("time for pdf service -pdfcontroller " + (System.currentTimeMillis()-controllerStartTime)/1000);
 				}
 				else{
+				Long elseStartTime =  System.currentTimeMillis();
 				  def url = baseUri + params.url
 				  b = pdfService.buildPdf(url)
+				  log.info ("time for pdf service -else " + (System.currentTimeMillis()-elseStartTime)/1000);
 				}
+		//		println  "Total time for pdf generation " + (System.currentTimeMillis()-startTime)/1000;
+				log.info ("Total time for pdf generation before send to browser " + (System.currentTimeMillis()-startTime)/1000);
 				response.setContentType("application/pdf")
 				response.setHeader("Content-disposition", "attachment; filename=" + (params.filename ?: "document.pdf"))
 				response.setContentLength(b.length)
+				log.info ("pdf write operation starts...");
 				response.getOutputStream().write(b)
 			  }
 			  catch (Throwable e) {
