@@ -7,6 +7,16 @@ Hi ,<br/>
 You (or someone pretending to be you) created an account with this email address.<br/>
 <br/>
 If you made the request, please click <a href="$url">here</a> to finish the registration.
+<br>
+_______________________________________________________________________________________________
+
+										Unsubscribe
+</br>
+<br>
+ To unsubscribe, login to grepdeals.com and goto settings page and remove all categories assigned to you,
+ you won't receive an email from us.
+_______________________________________________________________________________________________ 
+</br>
 '''
     subject = 'New Account registration with grepdeals'
   }
@@ -20,7 +30,19 @@ You (or someone pretending to be you) requested that your password be reset.<br/
 If you didn't make this request then ignore the email; no changes have been made.<br/>
 <br/>
 If you did make the request, then click <a href="$url">here</a> to reset your password.
+<br>
+_______________________________________________________________________________________________
+
+										Unsubscribe
+</br>
+<br>
+ To unsubscribe, login to grepdeals.com and goto settings page and remove all categories assigned to you,
+ you won't receive an email from us.
+_______________________________________________________________________________________________ 
+</br>
+
 '''
+
     subject = 'Password Reset for grepdeals Account'
   }
 
@@ -47,7 +69,16 @@ Please verify information provided by user below and click <a href="$url">here</
 <tr> <td> Phone </td> <td> $user.phone </tr>
 <tr> <td> Website </td> <td> $user.business.website </tr>
 </table>
+<br>
+_______________________________________________________________________________________________
 
+										Unsubscribe
+</br>
+<br>
+ To unsubscribe, login to grepdeals.com and goto settings page and remove all categories assigned to you,
+ you won't receive an email from us.
+_______________________________________________________________________________________________ 
+</br>
 '''
     subject = 'New Customer registration with grepdeals'
   }
@@ -59,6 +90,16 @@ Hi $user.firstName,<br/>
 Your post is successfully posted to grepdeals.<br/>
 <br/>
 If you would like to view your post, click this  <a href="$url">$url</a>.
+<br>
+_______________________________________________________________________________________________
+
+										Unsubscribe
+</br>
+<br>
+ To unsubscribe, login to grepdeals.com and goto settings page and remove all categories assigned to you,
+ you won't receive an email from us.
+_______________________________________________________________________________________________ 
+</br>
 '''
     subject = 'Your post is published'
   }
@@ -76,6 +117,16 @@ If you would like to view your post, click this  <a href="$url">$url</a>.
      
   <br/>
   If you would like to view the deal, click this  <a href="$url">$url</a>.
+<br>
+_______________________________________________________________________________________________
+
+										Unsubscribe
+</br>
+<br>
+ To unsubscribe, login to grepdeals.com and goto settings page and remove all categories assigned to you,
+ you won't receive an email from us.
+_______________________________________________________________________________________________ 
+</br>
   '''
 	  subject = 'Deal from GrepDeals'
 	}
@@ -94,6 +145,16 @@ $firstName $lastName has sent the contact information.
 <tr> <td> Phone </td> <td> $phoneNumber </td> </tr>
 <tr> <td> Reason to contact </td> <td> $reasonToContact </td></tr>
 </table>
+<br>
+_______________________________________________________________________________________________
+
+										Unsubscribe
+</br>
+<br>
+ To unsubscribe, login to grepdeals.com and goto settings page and remove all categories assigned to you,
+ you won't receive an email from us.
+_______________________________________________________________________________________________ 
+</br>
 
 '''
         subject = 'User submitted contact information'
