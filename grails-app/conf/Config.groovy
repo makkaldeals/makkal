@@ -296,5 +296,5 @@ jqueryValidationUi {
             lettersonly: 'true'
     ]
 }
-facebook.applicationSecret='d7e66d01c1218fa8ba81ac8816587cba'
-facebook.applicationId='198317553548104'
+facebook.applicationSecret='5e82473f8d5ce5b068a56ab380e089a2'
+facebook.applicationId='123013621134012'
