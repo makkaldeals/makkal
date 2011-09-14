@@ -12,6 +12,7 @@ class CouponController {
 	
 		  
 		  def pdfLink = {
+			  log.info ("Pdf link ");
 			  try{
 				Long startTime =  System.currentTimeMillis();
 				byte[] b
@@ -52,28 +53,41 @@ class CouponController {
 		  
 	
 		  def pdfForm = {
+			  log.info ("Pdf form ");
 			try{
 			  byte[] b
 			  def baseUri = request.scheme + "://" + request.serverName + ":" + request.serverPort + grailsAttributes.getApplicationUri(request)
 			  // def baseUri = g.createLink(uri:"/", absolute:"true").toString()
 			  if(request.method == "GET") {
+				  Long getStartTime =  System.currentTimeMillis();
 				def url = baseUri + params.url + '?' + request.getQueryString()
 				b = pdfService.buildPdf(url)
+				log.info ("time for pdf get service-pdf " + (System.currentTimeMillis()-getStartTime)/1000);
 			  }
 			  if(request.method == "POST"){
 				def content
+				Long postStartTime =  System.currentTimeMillis();
+				Long postRenderStartTime =  System.currentTimeMillis();
 				if(params.template){
 				  content = g.render(template:params.template, model:[pdf:params])
+				  log.info ("time for pdf post render template  " + (System.currentTimeMillis()-postRenderStartTime)/1000);
 				}
 				else{
 				  content = g.include(controller:params.pdfController, action:params.pdfAction, id:params.id, pdf:params)
+				  log.info ("time for pdf POST service-pdf else render  " + (System.currentTimeMillis()-postRenderStartTime)/1000);
 				}
+				Long postpdfStartTime =  System.currentTimeMillis();
+				
 				b = pdfService.buildPdfFromString(content.readAsString(), baseUri)
+				log.info ("time for POST pdf service-pdf   " + (System.currentTimeMillis()-postpdfStartTime)/1000);
+				log.info ("time for pdf service-pdf template   " + (System.currentTimeMillis()-postStartTime)/1000);
 			  }
+			  Long reponseStartTime =  System.currentTimeMillis();
 			  response.setContentType("application/pdf")
 			  response.setHeader("Content-disposition", "attachment; filename=" + (params.filename ?: "document.pdf"))
 			  response.setContentLength(b.length)
 			  response.getOutputStream().write(b)
+			  log.info ("time for pdf POST response write into brower" + (System.currentTimeMillis()-reponseStartTime)/1000);
 			}
 			catch (Throwable e) {
 			  if(params.template) render(template:params.template)
@@ -86,9 +100,9 @@ class CouponController {
 	
 		  def generateCoupon = {
 			  //TODO get the coupon data from service call
-			  
+			  log.info ("populate generate coupon data object");
 			  def post = Post.get(params.pdfId);
-			  
+			  log.info ("get values for populate generate coupon data object");
 			  
 			  def couponData = new CouponData();
 			  couponData.companyName = post.author.business.name
