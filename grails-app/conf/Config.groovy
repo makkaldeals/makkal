@@ -108,7 +108,7 @@ log4j = {
     //
     appenders {
         console name: 'stdout', layout: pattern(conversionPattern: '%d{yy/MM/dd HH:mm:ss.SSS} %-5p [%t] [%c{1}] %m%n')
-        appender new DailyRollingFileAppender(name: 'makkalDealsServerLog', fileName: 'logs/makkalDealsServer.log', layout: pattern(conversionPattern: '%d{yy/MM/dd HH:mm:ss.SSS} %-5p [%t] [%c{1}] %m%n'))
+        appender new DailyRollingFileAppender(name: 'grepDealsServerLog', fileName: '../logs/grepDealsServer.log', layout: pattern(conversionPattern: '%d{yy/MM/dd HH:mm:ss.SSS} %-5p [%t] [%c{1}] %m%n'))
     }
 
 
