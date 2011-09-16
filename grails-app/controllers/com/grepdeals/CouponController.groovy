@@ -11,37 +11,8 @@ class CouponController {
 		  def index = { redirect(action: demo) }
 	
 		  
-		  def pdfLink = {
+	/*	  def pdfLink = {
 			  log.info ("Pdf link ");
-			  //Updated by Riaz - Start
-			  log.info ("populate generate coupon data object");
-			  def post = Post.get(params.pdfId);
-			  log.info ("get values for populate generate coupon data object");
-			  
-			  def couponData = new CouponData();
-			  couponData.companyName = post.author.business.name
-			  couponData.companyAddrLine1=post.author.business.address
-			  couponData.companyCity=post.author.business.city
-			  couponData.companyState=post.author.business.state
-			  couponData.companyPin=post.author.business.areaCode
-			  //TODO
-			  // Generated coupon id has to be here
-			  couponData.couponId="ABDCCoupone123"
-			  couponData.customerFirstName=post.author.firstName
-			  couponData.customerLastName=post.author.lastName
-			  couponData.companyPhone=post.author.phone
-			  // TODO
-			  // expiration data has to be here
-			  //couponData.couponExpirationDate = "12/12/2011"
-			  if (post.expiresOn != null){
-				  couponData.couponExpirationDate = post.expiresOn.format("MM/dd/yyyy")
-			  }
-			  
-			  couponData.dealDetails = post.title
-			  //End
-			  
-			  
-			  
 			  try{
 				Long startTime =  System.currentTimeMillis();
 				byte[] b
@@ -79,9 +50,9 @@ class CouponController {
 				else redirect(uri:params.url + '?' + request.getQueryString())
 			  }
 			}
-		  
+		  */
 	
-		  def pdfForm = {
+	/*	  def pdfForm = {
 			  log.info ("Pdf form ");
 			try{
 			  byte[] b
@@ -125,7 +96,7 @@ class CouponController {
 			}
 		  }
 	
-	
+	*/
 	
 		  def generateCoupon = {
 			  //TODO get the coupon data from service call
@@ -153,6 +124,7 @@ class CouponController {
 			  }
 			  
 			  couponData.dealDetails = post.title
+			  log.info ("complete populate generate coupon data object");
 			  return ['data':couponData]
 			
 		  }
