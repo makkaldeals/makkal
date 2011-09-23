@@ -113,7 +113,7 @@
         		<table class="coupon_layout">
 	        	 	<tr>
 			        	<td align="left" width="10%" valign="top">
-			        		<img src="${resource(dir: 'images', file: 'grails_logo.jpg')}" alt="smallsample" title="smallsample" height="55px" width="125px"/>
+			        		<img src="/grepdeals/images/410/GD.jpg" height="55px" width="55px"" alt="smallsample" title="smallsample" "/>
 			    		</td>
 			    		
 		    			<td width="60%"> 
