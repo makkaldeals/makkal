@@ -99,8 +99,13 @@ class CouponController {
 	*/
 	
 		  def generateCoupon = {
-			  //TODO get the coupon data from service call
+			  long MB = 1024*1024;
+			  long KB = 1024;
+			  
 			  log.info ("populate generate coupon data object");
+			  log.info("FreeMemory in MB : " +Runtime.getRuntime().freeMemory()/MB + ", Total Memory  in MB: "+Runtime.getRuntime().maxMemory()/MB);
+			  log.info("FreeMemory in KB : " +Runtime.getRuntime().freeMemory()/KB + ", Total Memory  in kB: "+Runtime.getRuntime().maxMemory()/KB);
+			  //TODO get the coupon data from service call
 			  def post = Post.get(params.pdfId);
 			  log.info ("get values for populate generate coupon data object");
 			  
@@ -125,6 +130,9 @@ class CouponController {
 			  
 			  couponData.dealDetails = post.title
 			  log.info ("complete populate generate coupon data object");
+			  
+			  log.info("FreeMemory in MB : " +Runtime.getRuntime().freeMemory()/MB + ", Total Memory  in MB: "+Runtime.getRuntime().maxMemory()/MB);
+			  log.info("FreeMemory in KB : " +Runtime.getRuntime().freeMemory()/KB + ", Total Memory  in kB: "+Runtime.getRuntime().maxMemory()/KB);
 			  return ['data':couponData]
 			
 		  }
