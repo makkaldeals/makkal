@@ -30,11 +30,25 @@ environments {
     }
     production {
         dataSource {
+			pooled = true
             dbCreate = "update"
             url = "jdbc:mysql://localhost/grepdeals"
             driverClassName = "com.mysql.jdbc.Driver"
             username = "grepdealsuser"
             password = "agile4life"
+			properties {
+				maxActive = 30
+				maxIdle = 15
+				minIdle = 5
+				initialSize = 10
+				minEvictableIdleTimeMillis = 60000
+				timeBetweenEvictionRunsMillis = 60000
+				maxWait = 10000
+				testOnBorrow=true
+				testWhileIdle=true
+				testOnReturn=true
+				validationQuery="SELECT 1 from dual"
+			}
         }
     }
 }
