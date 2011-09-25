@@ -99,6 +99,13 @@
         	color:black;
         	align:left;
       	}
+
+		.gd_text {
+			font:bold 12px fantasy;
+        	align:center;
+      	}
+
+
     </style>
   </head>
   <body>
@@ -111,6 +118,39 @@
         <td class="coupon_margin"></td>
 			<td>
         		<table class="coupon_layout">
+        		
+        		<tr>
+			        	<td align="left" width="25%" valign="top">
+			        	</td>
+			    		
+		    			<td width="50%" class="gd_text" align="center"> 
+		    							Grep Deals
+		        		</td>
+		    			<td width="25%"></td>
+			          <td align="right">
+			            
+			          </td>
+			        </tr>
+        		
+        		
+        		
+        		
+        		<tr>
+			        	<td align="left" width="25%" valign="top">
+			        	</td>
+			    		
+		    			<td width="50%" class="deal_text" align="center"> 
+		    							${data.dealDetails}
+		        				    				
+		    			</td>
+		    			<td width="25%"></td>
+			          <td align="right">
+			            &#160;
+			          </td>
+			        </tr>
+        		
+        		
+        		<!--  
 	        	 	<tr>
 			        	<td align="left" width="10%" valign="top">
 			        		<img src="/grepdeals/images/410/GD.jpg" height="55px" width="55px" alt="smallsample" title="smallsample"/>
@@ -130,12 +170,12 @@
 		    			</td>
 		    			<td width="20%"></td>
 			          <td align="right">
-			          <!--  
+			            
 			          <img src="/grepdeals/images/410/gun.jpg" alt="gun" title="gun" height="55px" width="80px"/>
-			          -->
+			          
 			          </td>
 			        </tr>    	
-		        	
+		        	-->
 			        <tr>
 			          <td colspan="3" class="small_text" >
 			          Redeem at: 
@@ -161,8 +201,8 @@
 			          <td colspan="2" class="address_text">
 			          Phone : ${data.companyPhone} 
 			          </td>
-			          <td></td>	
-			          <td  class="expiredate_text" align="left" wrap="soft">Expires on ${data.couponExpirationDate}
+			          	
+			          <td  width="25%" class="expiredate_text" align="left" wrap="soft">Expires on ${data.couponExpirationDate}
 		    						</td>
 			        </tr>
 
