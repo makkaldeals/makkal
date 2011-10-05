@@ -33,13 +33,13 @@
          4. you will receive an email once your request is approved by grepdeals admin</P>
       <P><B>Post an advertisement:</B></P>
       <P>1. Login to grepdeals account, You have to be approved merchant to get into Post Advertisement link
-         2. Clic on Post Advertisement link
+         2. Click on Post Advertisement link
          3. Enter the details into the Title, Subject and upload the photos if any. Describe your advertisement
          4. Click Submit Button
          5. Your post will be emailed to all registered users and also be posted into your Facebook
        </P>
       
-      <h1>Video is coming soon to help you understand the process</h1>
+      <h1>Video will also be coming soon to help you understand the process</h1>
       
     </div>
   </form>
