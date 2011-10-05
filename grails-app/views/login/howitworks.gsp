@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-  <title>About Us</title>
-  <meta name='layout' content='main'/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>How it works</title>
+    <meta name='layout' content='main'/>
 </head>
 <body>
 
