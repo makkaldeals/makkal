@@ -22,8 +22,17 @@ class CustomerController {
 			    }
              }
      }else{
-           params.targetUrl = "/customer/index"  ;
-           redirect (controller:'login' , action: 'auth', params: params);
+		 switch(Environment.current) {
+			 case Environment.DEVELOPMENT:
+	           params.targetUrl = "/customer/index"  ;
+	           redirect (controller:'login' , action: 'auth', params: params);
+			 break
+			 case Environment.PRODUCTION:
+				 params.targetUrl = "$request.scheme://www.grepdeals.com/customer/index"  ;
+				 redirect (controller:'login' , action: 'auth', params: params);
+			 break
+		 }
+
       }
 
     }
@@ -35,8 +44,15 @@ class CustomerController {
 
      @Secured(['IS_AUTHENTICATED_REMEMBERED'])
     def register = {
-
-        redirect(controller: 'login', action: 'index', params: ["targetUrl": "/posts/showPosts", "role": Role.ROLE_CUSTOMER])
+		switch(Environment.current) {
+			case Environment.DEVELOPMENT:
+				redirect(controller: 'login', action: 'index', params: ["targetUrl": "/posts/showPosts", "role": Role.ROLE_CUSTOMER])
+			break
+			case Environment.PRODUCTION:
+				redirect(controller: 'login', action: 'index', params: ["targetUrl": "$request.scheme://www.grepdeals.com/posts/showPosts", "role": Role.ROLE_CUSTOMER])
+			break
+		}
+        
     }
 
 	private String getViewByRole(String role){

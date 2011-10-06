@@ -15,6 +15,7 @@ import org.springframework.security.web.savedrequest.SavedRequest
 
 import javax.servlet.http.HttpSession
 import com.grepdeals.auth.Role
+import grails.util.Environment;
 
 class LoginController {
 
@@ -79,7 +80,15 @@ class LoginController {
     if (session != null) {
       SavedRequest savedRequest = (SavedRequest) session.getAttribute(WebAttributes.SAVED_REQUEST);
       if (savedRequest != null) {
-        params.targetUrl = savedRequest.getRedirectUrl() - "$request.scheme://$request.serverName:$request.serverPort$request.contextPath";
+		  switch(Environment.current) {
+			  case Environment.DEVELOPMENT:
+			  	params.targetUrl = savedRequest.getRedirectUrl() - "$request.scheme://$request.serverName:$request.serverPort$request.contextPath";
+			  break
+			  case Environment.PRODUCTION:
+			  	params.targetUrl = savedRequest.getRedirectUrl() - "$request.scheme://www.grepdeals.com";
+			  break
+		  }
+        
 
       }
     }
