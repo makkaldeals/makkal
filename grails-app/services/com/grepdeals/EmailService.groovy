@@ -9,6 +9,7 @@ import com.grepdeals.auth.User
 import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
 import org.springframework.beans.factory.InitializingBean
 import grails.util.GrailsUtil;
+import grails.util.Environment;
 
 
 /**
@@ -128,9 +129,19 @@ class EmailService implements InitializingBean{
     def request = RequestContextHolder.getRequestAttributes().getRequest();
     def g = new org.codehaus.groovy.grails.plugins.web.taglib.ApplicationTagLib()
 
-    g.createLink(base: "$request.scheme://$request.serverName:$request.serverPort$request.contextPath",
+	switch(Environment.current) {
+		case Environment.DEVELOPMENT:
+			g.createLink(base: "$request.scheme://$request.serverName:$request.serverPort$request.contextPath",
             controller: controller, action: action,
             params: linkParams)
+		break
+		case Environment.PRODUCTION:
+			g.createLink(base: "$request.scheme://www.grepdeals.com$request.contextPath",
+            controller: controller, action: action,
+            params: linkParams)
+		break
+	}
+    
 
   }
 
