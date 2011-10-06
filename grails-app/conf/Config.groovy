@@ -91,6 +91,7 @@ grepdeals {
 environments {
     production {
         grails.serverURL = "http://www.grepdeals.com"
+		server.host = "www.grepdeals.com"
     }
     development {
         grails.serverURL = "http://localhost:8080/${appName}"
