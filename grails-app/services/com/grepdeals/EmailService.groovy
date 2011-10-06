@@ -136,7 +136,7 @@ class EmailService implements InitializingBean{
             params: linkParams)
 		break
 		case Environment.PRODUCTION:
-			g.createLink(base: "$request.scheme://www.grepdeals.com$request.contextPath",
+			g.createLink(base: "$request.scheme://www.grepdeals.com",
             controller: controller, action: action,
             params: linkParams)
 		break
