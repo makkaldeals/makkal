@@ -129,20 +129,15 @@ class EmailService implements InitializingBean{
     def request = RequestContextHolder.getRequestAttributes().getRequest();
     def g = new org.codehaus.groovy.grails.plugins.web.taglib.ApplicationTagLib()
 
-	switch(Environment.current) {
-		case Environment.DEVELOPMENT:
-			g.createLink(base: "$request.scheme://$request.serverName:$request.serverPort$request.contextPath",
-            controller: controller, action: action,
-            params: linkParams)
-		break
-		case Environment.PRODUCTION:
+		if(Environment.current.equals(Environment.PRODUCTION)) {
 			g.createLink(base: "$request.scheme://www.grepdeals.com",
             controller: controller, action: action,
             params: linkParams)
-		break
-	}
-    
-
+		}else {
+			g.createLink(base: "$request.scheme://$request.serverName:$request.serverPort$request.contextPath",
+			controller: controller, action: action,
+			params: linkParams)
+		}
   }
 
     public void contactUs(String firstName, String lastName, String email, String phoneNumber, String reasonToContact) {

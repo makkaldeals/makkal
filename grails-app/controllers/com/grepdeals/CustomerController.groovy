@@ -44,15 +44,13 @@ class CustomerController {
 
      @Secured(['IS_AUTHENTICATED_REMEMBERED'])
     def register = {
-		switch(Environment.current) {
-			case Environment.DEVELOPMENT:
-				redirect(controller: 'login', action: 'index', params: ["targetUrl": "/posts/showPosts", "role": Role.ROLE_CUSTOMER])
-			break
-			case Environment.PRODUCTION:
-				redirect(controller: 'login', action: 'index', params: ["targetUrl": "$request.scheme://www.grepdeals.com/posts/showPosts", "role": Role.ROLE_CUSTOMER])
-			break
+
+		if(Environment.current.equals(Environment.PRODUCTION)) {
+			redirect(controller: 'login', action: 'index', params: ["targetUrl": "$request.scheme://www.grepdeals.com/posts/showPosts", "role": Role.ROLE_CUSTOMER])
+		}else {
+			redirect(controller: 'login', action: 'index', params: ["targetUrl": "/posts/showPosts", "role": Role.ROLE_CUSTOMER])
 		}
-        
+
     }
 
 	private String getViewByRole(String role){
