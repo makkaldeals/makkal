@@ -81,6 +81,7 @@
         </P>
 
         <p>Copyright &copy; Grep Deals, all rights reserved.</p>
+        <P align="center"><img  width="120" height="120" src="${resource(dir: 'images', file: 'CoSentry_color.jpg')}" /></P>
     </div>
 </div>
 <fbg:resources/>
