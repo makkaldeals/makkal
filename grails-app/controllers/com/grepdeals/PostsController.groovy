@@ -38,6 +38,18 @@ class PostsController {
     }
   }
 
+    @Secured(['ROLE_CUSTOMER', 'ROLE_ADMIN'])
+    def deletePost = {
+      def post = Post.get(params.id)
+      if (post) {
+        post.delete();
+        redirect(action: 'showPosts');
+      }
+      else {
+        response.sendError 404
+      }
+    }
+
   @Secured(['ROLE_CUSTOMER', 'ROLE_ADMIN'])
   def publishPost = {
 

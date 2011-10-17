@@ -49,11 +49,16 @@
  					<richui:tabContents>
                         <richui:tabContent>
 							  <p>${post.subject}</p>
-							  <g:if test="${post.author.id == session.user.id}">	  
-								<g:link controller="posts" action="editPost" params="[id:post.id]">
-							        <g:message code="post.edit.link" default="Edit"></g:message>
-							     </g:link>
-								</g:if>	  
+							  <g:if test="${post.author.id == session.user.id}">
+                                  <g:link controller="posts" action="editPost" params="[id:post.id]">
+                                      <g:message code="post.edit.link" default="Edit"></g:message>
+                                  </g:link>
+                                  &nbsp;&nbsp;&nbsp;&nbsp;
+                                  <g:link controller="posts" action="deletePost" params="[id:post.id]">
+                                      <g:message code="post.delete.link" default="Delete"></g:message>
+                                  </g:link>
+
+                              </g:if>
                         </richui:tabContent>
                         
                         <richui:tabContent>
